@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://elu.laravel.io'),
+    'url' => env('APP_URL', 'http://elu.blog.io'),
 
     'asset_url' => env('ASSET_URL', null),
 

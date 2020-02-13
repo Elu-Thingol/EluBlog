@@ -11,11 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Web\AppController@getApp');
 
-
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'fuck'], function () {
     Voyager::routes();
 });

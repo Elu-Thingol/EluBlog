@@ -1,4 +1,11 @@
 {
     "last_remote_check": 1581341323,
-    "hooks": []
+    "hooks": {
+        "chinese-lang": {
+            "name": "chinese-lang",
+            "description": "voyager chinese-lang hook",
+            "version": "v1.0.2",
+            "enabled": true
+        }
+    }
 }
