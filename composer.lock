@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9518cdf9ac2909bf7f4e9ff4f987dc60",
+    "content-hash": "a93f8a5da3995a061105386da30b3019",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -125,56 +125,6 @@
                 "lpm"
             ],
             "time": "2020-02-02T13:13:33+00:00"
-        },
-        {
-            "name": "chinese-lang",
-            "version": "v1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tu6ge/voyager-chinese-lang.git",
-                "reference": "2d966b08132ae8eff6174a3ce156851c99191e3c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tu6ge/voyager-chinese-lang/zipball/2d966b08132ae8eff6174a3ce156851c99191e3c",
-                "reference": "2d966b08132ae8eff6174a3ce156851c99191e3c",
-                "shasum": ""
-            },
-            "require": {
-                "larapack/hooks": "^1.0.5"
-            },
-            "type": "library",
-            "extra": {
-                "hook": {
-                    "providers": [
-                        "VoyagerChineseLang\\VoyagerChineseLangServiceProvider"
-                    ],
-                    "seeders": [
-                        "database/seeders"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "VoyagerChineseLang\\": "src/"
-                }
-            },
-            "notification-url": "http://satisfy.xiaoqiezi.top/downloads",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "tu6ge",
-                    "email": "772364230@qq.com"
-                }
-            ],
-            "description": "voyager chinese-lang hook",
-            "support": {
-                "source": "https://github.com/tu6ge/voyager-chinese-lang/tree/v1.0.2",
-                "issues": "https://github.com/tu6ge/voyager-chinese-lang/issues"
-            },
-            "time": "2020-02-02T03:40:51+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -393,16 +343,16 @@
         },
         {
             "name": "composer/spdx-licenses",
-            "version": "1.5.2",
+            "version": "1.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/spdx-licenses.git",
-                "reference": "7ac1e6aec371357df067f8a688c3d6974df68fa5"
+                "reference": "0c3e51e1880ca149682332770e25977c70cf9dae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/spdx-licenses/zipball/7ac1e6aec371357df067f8a688c3d6974df68fa5",
-                "reference": "7ac1e6aec371357df067f8a688c3d6974df68fa5",
+                "url": "https://api.github.com/repos/composer/spdx-licenses/zipball/0c3e51e1880ca149682332770e25977c70cf9dae",
+                "reference": "0c3e51e1880ca149682332770e25977c70cf9dae",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -455,7 +405,7 @@
                 "spdx",
                 "validator"
             ],
-            "time": "2019-07-29T10:31:59+00:00"
+            "time": "2020-02-14T07:44:31+00:00"
         },
         {
             "name": "composer/xdebug-handler",
@@ -3036,16 +2986,16 @@
         },
         {
             "name": "seld/phar-utils",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/phar-utils.git",
-                "reference": "84715761c35808076b00908a20317a3a8a67d17e"
+                "reference": "8800503d56b9867d43d9c303b9cbcc26016e82f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/phar-utils/zipball/84715761c35808076b00908a20317a3a8a67d17e",
-                "reference": "84715761c35808076b00908a20317a3a8a67d17e",
+                "url": "https://api.github.com/repos/Seldaek/phar-utils/zipball/8800503d56b9867d43d9c303b9cbcc26016e82f0",
+                "reference": "8800503d56b9867d43d9c303b9cbcc26016e82f0",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3080,9 +3030,9 @@
             ],
             "description": "PHAR file format utilities, for when PHP phars you up",
             "keywords": [
-                "phra"
+                "phar"
             ],
-            "time": "2020-01-13T10:41:09+00:00"
+            "time": "2020-02-14T15:25:33+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
