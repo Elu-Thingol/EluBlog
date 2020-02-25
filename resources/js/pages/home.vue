@@ -214,7 +214,7 @@ img.art-banner:hover {
 h5 {
     font-size: 18px;
 }
-.pagination {
+/* .pagination {
     background-color: #f9f9f9;
-}
+} */
 </style>

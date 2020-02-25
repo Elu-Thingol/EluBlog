@@ -20,6 +20,8 @@
     </noscript>
 
     <div id="app"></div>
+    <div id="jsi-flying-fish-container" class="container"></div>
+    <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
 
     <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ mix('js/app-other.js') }}"></script>

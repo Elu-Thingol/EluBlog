@@ -1,1 +1,12 @@
-//
+// 吊猫回到顶部
+@import "app-szgotop";
+
+// 背景动态鱼
+.container {
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+}

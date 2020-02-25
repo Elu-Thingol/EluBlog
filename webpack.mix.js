@@ -11,6 +11,10 @@ const mix = require("laravel-mix");
  |
  */
 
+// mix.autoload({
+//     jquery: ["$", "window.jQuery", "jQuery"] // more than one
+// });
+
 mix.js("resources/js/app.js", "public/js").sass(
     "resources/sass/app.scss",
     "public/css"
@@ -20,7 +24,9 @@ mix.scripts(
     [
         "resources/js/app-baidu-share.js",
         "resources/js/app-mouse-heart.js",
-        "resources/js/app-copy-info.js"
+        "resources/js/app-copy-info.js",
+        "resources/js/app-background-fish.js",
+        "resources/js/app-szgotop.js"
     ],
     "public/js/app-other.js"
 );
