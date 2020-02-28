@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->integer('category_id')->default(0)->comment('分类ID');
             $table->string('title')->default('')->comment('文章标题');
             $table->string('image')->nullable()->comment('文章封面');
-            $table->text('excerpt')->default('')->comment('文章摘要');
+            $table->text('excerpt')->comment('文章摘要');
             $table->text('body')->comment('文章正文');
             $table->string('slug')->unique()->comment('文章标识符(路径)');
             $table->enum('status', Post::$statuses)->default(Post::STATUS_DRAFT)->comment('文章状态');
