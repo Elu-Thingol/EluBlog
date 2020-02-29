@@ -14,7 +14,7 @@ class AlterCommentsIndexTable extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->integer('parent_id')->index()->nullable()->comment('父评论ID')->change();
+            $table->integer('parent_id')->index('comments_parent_id_index')->nullable()->comment('父评论ID')->change();
         });
     }
 
@@ -26,7 +26,7 @@ class AlterCommentsIndexTable extends Migration
     public function down()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->integer('parent_id')->nullable()->comment('父评论ID')->change();
+            $table->dropIndex('comments_parent_id_index');
         });
     }
 }
