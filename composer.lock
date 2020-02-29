@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a93f8a5da3995a061105386da30b3019",
+    "content-hash": "c147a3b624ada44b78b68e109dc9b6af",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -125,6 +125,56 @@
                 "lpm"
             ],
             "time": "2020-02-02T13:13:33+00:00"
+        },
+        {
+            "name": "chinese-lang",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tu6ge/voyager-chinese-lang.git",
+                "reference": "3b9cd868f8b08e403c3f6ffeda34672c805b0514"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tu6ge/voyager-chinese-lang/zipball/3b9cd868f8b08e403c3f6ffeda34672c805b0514",
+                "reference": "3b9cd868f8b08e403c3f6ffeda34672c805b0514",
+                "shasum": ""
+            },
+            "require": {
+                "larapack/hooks": "^1.0.5"
+            },
+            "type": "library",
+            "extra": {
+                "hook": {
+                    "providers": [
+                        "VoyagerChineseLang\\VoyagerChineseLangServiceProvider"
+                    ],
+                    "seeders": [
+                        "database/seeders"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "VoyagerChineseLang\\": "src/"
+                }
+            },
+            "notification-url": "http://satisfy.xiaoqiezi.top/downloads",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "tu6ge",
+                    "email": "772364230@qq.com"
+                }
+            ],
+            "description": "voyager chinese-lang hook",
+            "support": {
+                "source": "https://github.com/tu6ge/voyager-chinese-lang/tree/v1.0.3",
+                "issues": "https://github.com/tu6ge/voyager-chinese-lang/issues"
+            },
+            "time": "2020-02-11T02:48:42+00:00"
         },
         {
             "name": "composer/ca-bundle",
