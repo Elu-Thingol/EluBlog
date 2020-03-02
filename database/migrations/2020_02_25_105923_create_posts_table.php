@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration
             $table->string('image')->nullable()->comment('文章封面');
             $table->text('excerpt')->comment('文章摘要');
             $table->text('body')->comment('文章正文');
-            $table->string('slug')->unique()->comment('文章标识符(路径)');
+            $table->string('slug')->unique()->comment('URL别名');
             $table->enum('status', Post::$statuses)->default(Post::STATUS_DRAFT)->comment('文章状态');
             $table->boolean('top')->default(false)->comment('置顶标志');
             $table->integer('view')->default(0)->comment('文章阅读数');

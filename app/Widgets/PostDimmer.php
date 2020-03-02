@@ -31,7 +31,7 @@ class PostDimmer extends BaseDimmer
             'text'   => __('voyager::dimmer.post_text', ['count' => $count, 'string' => Str::lower($string)]),
             'button' => [
                 'text' => __('voyager::dimmer.post_link_text'),
-                'link' => route('voyager.users.index'),
+                'link' => route('voyager.posts.index'),
             ],
             'image' => voyager_asset('images/widget-backgrounds/02.jpg'),
         ]));
@@ -44,6 +44,6 @@ class PostDimmer extends BaseDimmer
      */
     public function shouldBeDisplayed()
     {
-        return Auth::user()->can('browse', Voyager::model('User'));
+        return Auth::user()->can('browse', app(Post::class));
     }
 }

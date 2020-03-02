@@ -32,7 +32,7 @@ class Post extends Model
 
 
     /**
-     * 一篇文章有一个分类
+     * 一篇文章属于一个分类
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function category()
