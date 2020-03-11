@@ -67,7 +67,7 @@ $add = is_null($dataTypeContent->getKey());
 
 @section('content')
 <div class="page-content container-fluid">
-    <form class="form-edit-add" role="form"
+    <form id="form-edit-add-1" class="form-edit-add" role="form"
         action="@if($edit){{ route('voyager.posts.update', $dataTypeContent->id) }}@else{{ route('voyager.posts.store') }}@endif"
         method="POST" enctype="multipart/form-data">
         <!-- PUT Method if we are editing -->
@@ -114,7 +114,7 @@ $add = is_null($dataTypeContent->getKey());
                 <!-- ### CONTENT ### -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{ __('voyager::post.content') }}</h3>
+                        <h3 class="panel-title"><i class="fa fa-book"></i> {{ __('voyager::post.content') }}</h3>
                         <div class="panel-actions">
                             <a class="panel-action voyager-resize-full" data-toggle="panel-fullscreen"
                                 aria-hidden="true"></a>
@@ -137,7 +137,7 @@ $add = is_null($dataTypeContent->getKey());
                 <!-- ### EXCERPT ### -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{!! __('voyager::post.excerpt') !!}</h3>
+                        <h3 class="panel-title"><i class="fa fa-bookmark"></i> {!! __('voyager::post.excerpt') !!}</h3>
                         <div class="panel-actions">
                             <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
                                 aria-hidden="true"></a>
@@ -154,7 +154,7 @@ $add = is_null($dataTypeContent->getKey());
 
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{ __('voyager::post.additional_fields') }}</h3>
+                        <h3 class="panel-title"><i class="fa fa-info-circle"></i> {{ __('voyager::post.additional_fields') }}</h3>
                         <div class="panel-actions">
                             <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
                                 aria-hidden="true"></a>
@@ -201,7 +201,7 @@ $add = is_null($dataTypeContent->getKey());
                 <!-- ### DETAILS ### -->
                 <div class="panel panel panel-bordered panel-warning">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="icon wb-clipboard"></i> {{ __('voyager::post.details') }}</h3>
+                        <h3 class="panel-title"><i class="fa fa-clipboard"></i> {{ __('voyager::post.details') }}</h3>
                         <div class="panel-actions">
                             <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
                                 aria-hidden="true"></a>
@@ -216,7 +216,7 @@ $add = is_null($dataTypeContent->getKey());
                             ])
                             <input type="text" class="form-control" id="slug" name="slug" placeholder="slug" {!!
                                 isFieldSlugAutoGenerator($dataType, $dataTypeContent, "slug" ) !!}
-                                value="{{ $dataTypeContent->slug ?? '' }}">
+                                value="{{ $dataTypeContent->slug ?? '' }}" onfocus="this.blur()">
                         </div>
                         <div class="form-group">
                             <label for="status">{{ __('voyager::post.status') }}</label>
@@ -231,7 +231,7 @@ $add = is_null($dataTypeContent->getKey());
                                 </option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="category_id">{{ __('voyager::post.category') }}</label>
                             <select class="form-control" name="category_id">
                                 @foreach(Voyager::model('Category')::all() as $category)
@@ -240,7 +240,7 @@ $add = is_null($dataTypeContent->getKey());
                                     selected="selected"@endif>{{ $category->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label>{{ __('voyager::generic.featured') }}</label>
                             @php
@@ -255,7 +255,7 @@ $add = is_null($dataTypeContent->getKey());
                 <!-- ### IMAGE ### -->
                 <div class="panel panel-bordered panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="icon wb-image"></i> {{ __('voyager::post.image') }}</h3>
+                        <h3 class="panel-title"><i class="fa fa-image"></i> {{ __('voyager::post.image') }}</h3>
                         <div class="panel-actions">
                             <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
                                 aria-hidden="true"></a>
@@ -273,7 +273,7 @@ $add = is_null($dataTypeContent->getKey());
                 <!-- ### SEO CONTENT ### -->
                 <div class="panel panel-bordered panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="icon wb-search"></i> {{ __('voyager::post.seo_content') }}
+                        <h3 class="panel-title"><i class="fa fa-search"></i> {{ __('voyager::post.seo_content') }}
                         </h3>
                         <div class="panel-actions">
                             <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
@@ -315,7 +315,7 @@ $add = is_null($dataTypeContent->getKey());
 
         @section('submit-buttons')
         <button type="submit" class="btn btn-primary pull-right">
-            @if($edit){{ __('voyager::post.update') }}@else <i class="icon wb-plus-circle"></i>
+            @if($edit){{ __('voyager::post.update') }}@else <i class="fa fa-plus-circle"></i>
             {{ __('voyager::post.new') }} @endif
         </button>
         @stop
@@ -424,5 +424,34 @@ $add = is_null($dataTypeContent->getKey());
             });
             $('[data-toggle="tooltip"]').tooltip();
         });
+
+                    /**
+             * 向服务器发送slug进行验证
+             * 或者获取新的slug
+             * 使用方法：$("#id").validate_slug("标题");
+             */
+            $.fn.validate_slug = function(title) {
+                slug = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: "/api/v1/posts/slug",
+                    cache: false,
+                    data: "title=" + title + "&slug=" + slug, //传参
+                    dataType: "json", //返回值类型
+                    async: false, //设置同步
+                    context: this,
+                    success: function(msg) {
+                        if (msg.data.reset === 1) {
+                            $(this).val(msg.data.slug);
+                            alert("slug变更，已更新为：" + msg.data.slug);
+                        }
+                    }
+                });
+            };
+
+            $("#form-edit-add-1").bind("submit", function(event) {
+                $("#slug").validate_slug($("#title").val());
+                return true;
+            });
 </script>
 @stop
