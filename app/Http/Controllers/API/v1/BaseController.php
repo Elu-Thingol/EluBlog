@@ -51,8 +51,8 @@ class BaseController extends Controller
     public function index()
     {
         $data = [
-            "获取全部文章" => route('posts.list', ['page' => 1, 'per_page' => 20, 'feature' => 1]),
-            "结果排序" => route('posts.list', ['sortby' => 'name', 'order' => 'asc_or_desc']),
+            "获取全部文章" => route('posts.list', ['page' => 1, 'per_page' => 20]),
+            "结果排序" => route('posts.list', ['sortby' => 'title', 'order' => 'asc_or_desc']),
             "根据slug获取文章" => route('posts.get', ['slug' => 'slug']),
             "校验并获取文章slug" => route('posts.slug', ['title' => 'title', 'slug' => 'slug']),
 

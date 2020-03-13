@@ -2,53 +2,53 @@
 
 namespace App\Http\Controllers\API\v1;
 
+use App\Model\Post;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class PostController extends BaseController
 {
     public function list(Request $request)
     {
-        $posts = Post::where('email', '=', Input::get('email'));
+        $page = $request->get('page', 1);
+        $per_page = $request->input('per_page', 20);
+        $sortby = $request->query('sortby', 'created_at');
+        $order = $request->get('order', 'desc');
 
-        $data = [
-            "page" => $request->get('page', 1),
-            "per_page" => $request->input('per_page', 20),
-            "featured" => $request->query('featured', 1),
-            "sortby" => $request->query('sortby', 'date'),
-            "order" => $request->get('order', 'asc'),
-        ];
+        $data = Post::with('category:id,name,slug','tag')
+            ->published()
+            ->orderBy('featured', 'desc')
+            ->orderBy($sortby, $order)
+            ->paginate($per_page, '*', 'page', $page);
 
         return $this->success($data);
     }
 
     public function getBySlug(Request $request, $slug)
     {
-        $data = [
-            "slug" => $slug,
-        ];
+        $data = Post::where('slug', $slug)
+            ->with('category:id,name,slug', 'tag')
+            ->first();
 
         return $this->success($data);
     }
 
     public function getSlug(Request $request)
     {
-        $offset = 0;
         $title = $request->input('title', 'title');
-        $o_slug = $request->input('slug');
-        $slug = strval(uright(crc32($title), 0) + $offset);
+        $slug = strval(uright(crc32($title), 0));
+        
+        // 去重验证
+        while (Post::where('slug', $slug)->exists()) {
+            $slug++;
+        }
+        
 
         $data = [
             "slug" => $slug,
             "original" => $title,
-            "offset" => $offset,
-            "reset" => 0,
         ];
 
-        if ($slug != $o_slug) {
-            # 查找数据库o_slug存在则删除并添加新记录
-            # 验证slug 存在则offset+1产生新slug重新验证
-            $data["reset"] = 1;
-        }
 
         return $this->success($data);
     }

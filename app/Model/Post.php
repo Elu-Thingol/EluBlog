@@ -13,7 +13,7 @@ class Post extends Model
 {
     use Translatable,
         Resizable;
-        
+
     /**
      * Statuses.
      */
@@ -29,22 +29,24 @@ class Post extends Model
      * @var array
      */
     public static $statuses = [self::STATUS_PUBLISHED, self::STATUS_DRAFT, self::STATUS_PENDING];
-
+  
+    public function tag()
+    {
+        /**
+         * 一篇文章拥有多个标签
+         * @return \Illuminate\Database\Eloquent\Relations\HasMany
+         */
+        return $this->belongsToMany(Tag::class, PostTag::class);
+    }
 
     /**
      * 一篇文章属于一个分类
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
-/*     public function index()
-    {
-        // 获取文章按照创建时间倒叙并分页，每页显示6条
-        $posts = Post::with('category:id,name')->latest()->paginate(6);
-        return view('web.index', compact('posts'));
-    } */
 
     /**
      * 一篇文章有多个评论
@@ -63,7 +65,7 @@ class Post extends Model
     {
         return $this->comments()->with('owner')->get()->groupBy('parent_id');
     }
-    
+
     public function save(array $options = [])
     {
         // If no author has been assigned, assign the current user's id as the author of the post
@@ -90,5 +92,4 @@ class Post extends Model
     {
         return $query->where('status', '=', static::STATUS_PUBLISHED);
     }
-
 }
