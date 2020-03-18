@@ -56,9 +56,6 @@ class BaseController extends Controller
             "根据slug获取文章" => route('posts.get', ['slug' => 'slug']),
             "生成新的文章slug并校验" => route('posts.slug', ['slug' => 'slug']),
 
-            "获取全部分类" => route('categories'),
-            "获取分类下文章" => route('categories', ['id' => 1]),
-
             "获取全部标签" => route('tags'),
             "获取标签下文章" => route('tags', ['id' => 1]),
 

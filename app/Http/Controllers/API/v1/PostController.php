@@ -15,7 +15,7 @@ class PostController extends BaseController
         $sortby = $request->query('sortby', 'created_at');
         $order = $request->get('order', 'desc');
 
-        $data = Post::with('category:id,name,slug','tag')
+        $data = Post::with('tag')
             ->published()
             ->orderBy('featured', 'desc')
             ->orderBy($sortby, $order)
@@ -27,7 +27,8 @@ class PostController extends BaseController
     public function getBySlug(Request $request, $slug)
     {
         $data = Post::where('slug', $slug)
-            ->with('category:id,name,slug', 'tag')
+            ->with('tag')
+            ->published()
             ->first();
 
         return $this->success($data);

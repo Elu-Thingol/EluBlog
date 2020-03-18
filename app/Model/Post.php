@@ -21,9 +21,9 @@ class Post extends Model
     const STATUS_DRAFT = 'DRAFT'; //草稿
     const STATUS_PENDING = 'PENDING'; //挂起
 
-    protected $translatable = ['title', 'excerpt', 'body', 'slug'];
+    protected $translatable = ['title', 'excerpt', 'body'];
 
-    /**T
+    /**
      * List of statuses.
      *
      * @var array
@@ -37,15 +37,6 @@ class Post extends Model
          * @return \Illuminate\Database\Eloquent\Relations\HasMany
          */
         return $this->belongsToMany(Tag::class, PostTag::class);
-    }
-
-    /**
-     * 一篇文章属于一个分类
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
     }
 
     /**

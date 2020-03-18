@@ -28,19 +28,6 @@ Route::get('/v1', 'API\v1\BaseController@index')->name('apiv1.index');
 Route::get('/v1/posts/list', 'API\v1\PostController@list')->name('posts.list');
 Route::get('/v1/posts/details/{slug}', 'API\v1\PostController@getBySlug')->where('slug', '[0-9]+')->name('posts.get');
 Route::get('/v1/posts/slug', 'API\v1\PostController@getSlug')->name('posts.slug');
-Route::get('/v1/categories', function (Request $request) {
-    return response()->apiRes(
-        [
-            "id" => $request->get('id'),
-            "page" => $request->get('page'),
-            "per_page" => $request->get('per_page'),
-            "featured" => $request->get('featured'),
-            "sortby" => $request->get('sortby'),
-            "order" => $request->get('order'),
-        ],
-        "This is categories."
-    );
-})->name('categories');
 Route::get('/v1/tags', function (Request $request) {
     return response()->apiRes(
         [
