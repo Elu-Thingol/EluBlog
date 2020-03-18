@@ -154,7 +154,8 @@ $add = is_null($dataTypeContent->getKey());
 
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-info-circle"></i> {{ __('voyager::post.additional_fields') }}</h3>
+                        <h3 class="panel-title"><i class="fa fa-info-circle"></i>
+                            {{ __('voyager::post.additional_fields') }}</h3>
                         <div class="panel-actions">
                             <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
                                 aria-hidden="true"></a>
@@ -233,102 +234,100 @@ $add = is_null($dataTypeContent->getKey());
                         </div>
                         {{-- <div class="form-group">
                             <label for="category_id">{{ __('voyager::post.category') }}</label>
-                            <select class="form-control" name="category_id">
-                                @foreach(Voyager::model('Category')::all() as $category)
-                                <option value="{{ $category->id }}" @if(isset($dataTypeContent->category_id) &&
-                                    $dataTypeContent->category_id == $category->id)
-                                    selected="selected"@endif>{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div> --}}
-                        <div class="form-group">
-                            <label>{{ __('voyager::generic.featured') }}</label>
-                            @php
-                            $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
-                            $row = $dataTypeRows->where('field', 'featured')->first();
-                            @endphp
-                            {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
-                        </div>
+                        <select class="form-control" name="category_id">
+                            @foreach(Voyager::model('Category')::all() as $category)
+                            <option value="{{ $category->id }}" @if(isset($dataTypeContent->category_id) &&
+                                $dataTypeContent->category_id == $category->id)
+                                selected="selected"@endif>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div> --}}
+                    <div class="form-group">
+                        <label>{{ __('voyager::generic.featured') }}</label>
+                        @php
+                        $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
+                        $row = $dataTypeRows->where('field', 'featured')->first();
+                        @endphp
+                        {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
                     </div>
                 </div>
+            </div>
 
-                <!-- ### IMAGE ### -->
-                <div class="panel panel-bordered panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-image"></i> {{ __('voyager::post.image') }}</h3>
-                        <div class="panel-actions">
-                            <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
-                                aria-hidden="true"></a>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        @if(isset($dataTypeContent->image))
-                        <img src="{{ filter_var($dataTypeContent->image, FILTER_VALIDATE_URL) ? $dataTypeContent->image : Voyager::image( $dataTypeContent->image ) }}"
-                            style="width:100%" />
-                        @endif
-                        <input type="file" name="image">
+            <!-- ### IMAGE ### -->
+            <div class="panel panel-bordered panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-image"></i> {{ __('voyager::post.image') }}</h3>
+                    <div class="panel-actions">
+                        <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
                     </div>
                 </div>
+                <div class="panel-body">
+                    @if(isset($dataTypeContent->image))
+                    <img src="{{ filter_var($dataTypeContent->image, FILTER_VALIDATE_URL) ? $dataTypeContent->image : Voyager::image( $dataTypeContent->image ) }}"
+                        style="width:100%" />
+                    @endif
+                    <input type="file" name="image">
+                </div>
+            </div>
 
-                <!-- ### SEO CONTENT ### -->
-                <div class="panel panel-bordered panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-search"></i> {{ __('voyager::post.seo_content') }}
-                        </h3>
-                        <div class="panel-actions">
-                            <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
-                                aria-hidden="true"></a>
-                        </div>
+            <!-- ### SEO CONTENT ### -->
+            <div class="panel panel-bordered panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-search"></i> {{ __('voyager::post.seo_content') }}
+                    </h3>
+                    <div class="panel-actions">
+                        <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
                     </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label for="meta_description">{{ __('voyager::post.meta_description') }}</label>
-                            @include('voyager::multilingual.input-hidden', [
-                            '_field_name' => 'meta_description',
-                            '_field_trans' => get_field_translations($dataTypeContent, 'meta_description')
-                            ])
-                            <textarea class="form-control"
-                                name="meta_description">{{ $dataTypeContent->meta_description ?? '' }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="meta_keywords">{{ __('voyager::post.meta_keywords') }}</label>
-                            @include('voyager::multilingual.input-hidden', [
-                            '_field_name' => 'meta_keywords',
-                            '_field_trans' => get_field_translations($dataTypeContent, 'meta_keywords')
-                            ])
-                            <textarea class="form-control"
-                                name="meta_keywords">{{ $dataTypeContent->meta_keywords ?? '' }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="seo_title">{{ __('voyager::post.seo_title') }}</label>
-                            @include('voyager::multilingual.input-hidden', [
-                            '_field_name' => 'seo_title',
-                            '_field_trans' => get_field_translations($dataTypeContent, 'seo_title')
-                            ])
-                            <input type="text" class="form-control" name="seo_title" placeholder="SEO Title"
-                                value="{{ $dataTypeContent->seo_title ?? '' }}">
-                        </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="meta_description">{{ __('voyager::post.meta_description') }}</label>
+                        @include('voyager::multilingual.input-hidden', [
+                        '_field_name' => 'meta_description',
+                        '_field_trans' => get_field_translations($dataTypeContent, 'meta_description')
+                        ])
+                        <textarea class="form-control"
+                            name="meta_description">{{ $dataTypeContent->meta_description ?? '' }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="meta_keywords">{{ __('voyager::post.meta_keywords') }}</label>
+                        @include('voyager::multilingual.input-hidden', [
+                        '_field_name' => 'meta_keywords',
+                        '_field_trans' => get_field_translations($dataTypeContent, 'meta_keywords')
+                        ])
+                        <textarea class="form-control"
+                            name="meta_keywords">{{ $dataTypeContent->meta_keywords ?? '' }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="seo_title">{{ __('voyager::post.seo_title') }}</label>
+                        @include('voyager::multilingual.input-hidden', [
+                        '_field_name' => 'seo_title',
+                        '_field_trans' => get_field_translations($dataTypeContent, 'seo_title')
+                        ])
+                        <input type="text" class="form-control" name="seo_title" placeholder="SEO Title"
+                            value="{{ $dataTypeContent->seo_title ?? '' }}">
                     </div>
                 </div>
             </div>
         </div>
+</div>
 
-        @section('submit-buttons')
-        <button type="submit" class="btn btn-primary pull-right">
-            @if($edit){{ __('voyager::post.update') }}@else <i class="fa fa-plus-circle"></i>
-            {{ __('voyager::post.new') }} @endif
-        </button>
-        @stop
-        @yield('submit-buttons')
-    </form>
+@section('submit-buttons')
+<button type="submit" class="btn btn-primary pull-right">
+    @if($edit){{ __('voyager::post.update') }}@else <i class="fa fa-plus-circle"></i>
+    {{ __('voyager::post.new') }} @endif
+</button>
+@stop
+@yield('submit-buttons')
+</form>
 
-    <iframe id="form_target" name="form_target" style="display:none"></iframe>
-    <form id="my_form" action="{{ route('voyager.upload') }}" target="form_target" method="POST"
-        enctype="multipart/form-data" style="width:0;height:0;overflow:hidden">
-        <input name="image" id="upload_file" type="file" onchange="$('#my_form').submit();this.value='';">
-        <input type="hidden" name="type_slug" id="type_slug" value="{{ $dataType->slug }}">
-        {{ csrf_field() }}
-    </form>
+<iframe id="form_target" name="form_target" style="display:none"></iframe>
+<form id="my_form" action="{{ route('voyager.upload') }}" target="form_target" method="POST"
+    enctype="multipart/form-data" style="width:0;height:0;overflow:hidden">
+    <input name="image" id="upload_file" type="file" onchange="$('#my_form').submit();this.value='';">
+    <input type="hidden" name="type_slug" id="type_slug" value="{{ $dataType->slug }}">
+    {{ csrf_field() }}
+</form>
 </div>
 
 <div class="modal fade modal-danger" id="confirm_delete_modal">
@@ -359,99 +358,98 @@ $add = is_null($dataTypeContent->getKey());
 @section('javascript')
 <script>
     var params = {};
-        var $file;
+    var $file;
 
-        function deleteHandler(tag, isMulti) {
-          return function() {
-            $file = $(this).siblings(tag);
+    function deleteHandler(tag, isMulti) {
+        return function() {
+        $file = $(this).siblings(tag);
 
-            params = {
-                slug:   '{{ $dataType->slug }}',
-                filename:  $file.data('file-name'),
-                id:     $file.data('id'),
-                field:  $file.parent().data('field-name'),
-                multi: isMulti,
-                _token: '{{ csrf_token() }}'
-            }
-
-            $('.confirm_delete_name').text(params.filename);
-            $('#confirm_delete_modal').modal('show');
-          };
+        params = {
+            slug:   '{{ $dataType->slug }}',
+            filename:  $file.data('file-name'),
+            id:     $file.data('id'),
+            field:  $file.parent().data('field-name'),
+            multi: isMulti,
+            _token: '{{ csrf_token() }}'
         }
 
-        $('document').ready(function () {
-            $('#slug').slugify();
+        $('.confirm_delete_name').text(params.filename);
+        $('#confirm_delete_modal').modal('show');
+        };
+    }
 
-            $('.toggleswitch').bootstrapToggle();
+    $('document').ready(function () {
+        $('#slug').slugify();
 
-            //Init datepicker for date fields if data-datepicker attribute defined
-            //or if browser does not handle date inputs
-            $('.form-group input[type=date]').each(function (idx, elt) {
-                if (elt.type != 'date' || elt.hasAttribute('data-datepicker')) {
-                    elt.type = 'text';
-                    $(elt).datetimepicker($(elt).data('datepicker'));
+        $('.toggleswitch').bootstrapToggle();
+
+        //Init datepicker for date fields if data-datepicker attribute defined
+        //or if browser does not handle date inputs
+        $('.form-group input[type=date]').each(function (idx, elt) {
+            if (elt.type != 'date' || elt.hasAttribute('data-datepicker')) {
+                elt.type = 'text';
+                $(elt).datetimepicker($(elt).data('datepicker'));
+            }
+        });
+
+        @if ($isModelTranslatable)
+            $('.side-body').multilingual({"editing": true});
+        @endif
+
+        $('.side-body input[data-slug-origin]').each(function(i, el) {
+            $(el).slugify();
+        });
+
+        $('.form-group').on('click', '.remove-multi-image', deleteHandler('img', true));
+        $('.form-group').on('click', '.remove-single-image', deleteHandler('img', false));
+        $('.form-group').on('click', '.remove-multi-file', deleteHandler('a', true));
+        $('.form-group').on('click', '.remove-single-file', deleteHandler('a', false));
+
+        $('#confirm_delete').on('click', function(){
+            $.post('{{ route('voyager.'.$dataType->slug.'.media.remove') }}', params, function (response) {
+                if ( response
+                    && response.data
+                    && response.data.status
+                    && response.data.status == 200 ) {
+
+                    toastr.success(response.data.message);
+                    $file.parent().fadeOut(300, function() { $(this).remove(); })
+                } else {
+                    toastr.error("Error removing file.");
                 }
             });
 
-            @if ($isModelTranslatable)
-                $('.side-body').multilingual({"editing": true});
-            @endif
-
-            $('.side-body input[data-slug-origin]').each(function(i, el) {
-                $(el).slugify();
-            });
-
-            $('.form-group').on('click', '.remove-multi-image', deleteHandler('img', true));
-            $('.form-group').on('click', '.remove-single-image', deleteHandler('img', false));
-            $('.form-group').on('click', '.remove-multi-file', deleteHandler('a', true));
-            $('.form-group').on('click', '.remove-single-file', deleteHandler('a', false));
-
-            $('#confirm_delete').on('click', function(){
-                $.post('{{ route('voyager.'.$dataType->slug.'.media.remove') }}', params, function (response) {
-                    if ( response
-                        && response.data
-                        && response.data.status
-                        && response.data.status == 200 ) {
-
-                        toastr.success(response.data.message);
-                        $file.parent().fadeOut(300, function() { $(this).remove(); })
-                    } else {
-                        toastr.error("Error removing file.");
-                    }
-                });
-
-                $('#confirm_delete_modal').modal('hide');
-            });
-            $('[data-toggle="tooltip"]').tooltip();
+            $('#confirm_delete_modal').modal('hide');
         });
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 
-                    /**
-             * 向服务器发送slug进行验证
-             * 或者获取新的slug
-             * 使用方法：$("#id").validate_slug("标题");
-             */
-            $.fn.validate_slug = function(title) {
-                slug = $(this).val();
-                $.ajax({
-                    type: "GET",
-                    url: "/api/v1/posts/slug",
-                    cache: false,
-                    data: "title=" + title + "&slug=" + slug, //传参
-                    dataType: "json", //返回值类型
-                    async: false, //设置同步
-                    context: this,
-                    success: function(msg) {
-                        if (msg.data.reset === 1) {
-                            $(this).val(msg.data.slug);
-                            alert("slug变更，已更新为：" + msg.data.slug);
-                        }
-                    }
-                });
-            };
-
-            $("#form-edit-add-1").bind("submit", function(event) {
-                $("#slug").validate_slug($("#title").val());
-                return true;
+    /**
+     * 向服务器发送slug进行验证
+     * 或者获取新的slug
+     * 使用方法：$("#id").validate_slug("标题");
+     */
+    $.fn.validate_slug = function(title) {
+        if (!$.trim($(this).val())){
+            $.ajax({
+                type: "GET",
+                url: "/api/v1/posts/slug",
+                cache: false,
+                data: "title=" + title, //传参
+                dataType: "json", //返回值类型
+                async: false, //设置同步
+                context: this,
+                success: function(msg) {
+                    $(this).val(msg.data.slug);
+                    alert("slug变更，已更新为：" + msg.data.slug);
+                }
             });
+        }
+    };
+
+    $("#form-edit-add-1").bind("submit", function(event) {
+        $("#slug").validate_slug($("#title").val());
+        return true;
+    });
 </script>
 @stop

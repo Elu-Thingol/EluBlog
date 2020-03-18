@@ -30,7 +30,7 @@ const routes = [
         component: archive
     },
     {
-        path: "/article",
+        path: "/article/:slug",
         name: "article",
         component: article
     },

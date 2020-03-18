@@ -8,55 +8,66 @@
             <el-col :span="16">
 
                 <el-row
-                    v-for="(post, index) in this._.chunk(posts,pagesize)[currentPage]"
+                    v-for="(post, index) in posts.data"
                     :key="index"
                     class="art-item"
                 >
                     <el-card shadow="hover">
                         <h5>
                             <router-link
-                                to="/article"
+                                :to="'/article/'+post.slug"
                                 tag="span"
                                 class="art-title"
                             >{{post.title}}</router-link>
                         </h5>
                         <el-row class="art-info d-flex align-items-center justify-content-start">
                             <div class="art-time">
-                                <i class="el-icon-time"></i>：{{post.date}}
+                                <i class="el-icon-time"></i>：{{post.created_at}}
                             </div>
                             <div class="d-flex align-items-center">
                                 <img
                                     class="tag"
                                     src="../../images/tag.png"
                                 />：
-                                <el-tag size="mini">{{post.tag}}</el-tag>
+                                <el-tag
+                                    v-if="post.tag.length==0"
+                                    size="mini"
+                                    style="margin-right: 4px;"
+                                >无标签</el-tag>
+                                <el-tag
+                                    v-else
+                                    v-for="(tag, index) in post.tag"
+                                    :key="index"
+                                    size="mini"
+                                    style="margin-right: 4px;"
+                                >{{tag.name}}</el-tag>
                             </div>
                         </el-row>
                         <el-row class="art-body">
                             <div class="side-img hidden-sm-and-down">
                                 <img
                                     class="art-banner"
-                                    :src="post.image"
+                                    :src="'/storage/' + post.image"
                                 />
                             </div>
                             <div class="side-abstract">
                                 <div class="art-abstract">{{post.excerpt}}</div>
                                 <div class="art-more">
                                     <router-link
-                                        to="/article"
+                                        :to="'/article/'+post.slug"
                                         tag="span"
                                     >
                                         <el-button plain>{{$t('home.readMore')}}</el-button>
                                     </router-link>
                                     <div class="view">
-                                        <i class="el-icon-view"></i>{{post.view_num}}
+                                        <i class="el-icon-view"></i> {{post.view_num?post.view_num:0}}
                                     </div>
                                 </div>
                             </div>
                         </el-row>
                     </el-card>
                     <img
-                        v-show="post.top"
+                        v-show="post.featured"
                         class="star"
                         src="../../images/star.png"
                     />
@@ -68,7 +79,7 @@
                         :current-page="currentPage"
                         :page-sizes="[5, 10, 20, 50, 100]"
                         :page-size="pagesize"
-                        :total="posts.length"
+                        :total="posts.total"
                         layout="total, sizes, prev, pager, next, jumper"
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
@@ -109,22 +120,33 @@ export default {
         tag
     },
     created() {
-        // 发起请求
-        let list_r = HttpAPI.getPostList(50)
-        if (!this._.isEmpty(list_r)) {
-            this.posts = list_r;
-        }
+        this.getPostList()
     },
     methods: {
+        getPostList: function () {
+            // 发起请求
+            let list_r = HttpAPI.getList({
+                page: this.currentPage,
+                per_page: this.pagesize
+            })
+            list_r.then(res => {
+                if (!this._.isEmpty(res)) {
+                    this.posts = res.data.data;
+                    console.log(this.posts.data);
+                }
+            })
+        },
         // size-change	pageSize 改变时会触发	每页条数size
         // current-change	currentPage 改变时会触发	当前页currentPage
         handleSizeChange: function (size) {
             this.pagesize = size
-            console.log(this.pagesize) // 每页下拉显示数据
+            console.log(this.pagesize)
+            this.getPostList() // 每页下拉显示数据
         },
         handleCurrentChange: function (currentPage) {
             this.currentPage = currentPage
-            console.log(this.currentPage) // 点击第几页
+            console.log(this.currentPage)
+            this.getPostList() // 点击第几页
         },
     }
 }
