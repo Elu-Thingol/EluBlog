@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Auth;
 use TCG\Voyager\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
     use Translatable,
-        Resizable;
+        Resizable,
+        SoftDeletes;
 
     /**
      * Statuses.

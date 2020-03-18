@@ -31,6 +31,9 @@ class PostController extends BaseController
             ->published()
             ->first();
 
+        $data->view_num++;
+        $data->save();
+
         return $this->success($data);
     }
 

@@ -10,6 +10,7 @@ import "element-ui/lib/theme-chalk/display.css";
 import fHeader from "./components/f-header";
 import fFooter from "./components/f-footer";
 import i18n from "./i18n/i18n";
+import HttpAPI from "./api/httpAPI";
 
 import "../sass/style.scss";
 import "../sass/siyuan.scss";
@@ -21,6 +22,7 @@ Vue.component("f-header", fHeader);
 Vue.component("f-footer", fFooter);
 
 Object.defineProperty(Vue.prototype, "_", { value: lodash });
+Object.defineProperty(Vue.prototype, "$HttpAPI", { value: HttpAPI });
 
 //Vue.use(ElementUI, {
 //i18n: (key, value) => i18n.t(key, value)

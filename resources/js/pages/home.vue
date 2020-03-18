@@ -103,7 +103,6 @@
 </template>
 
 <script>
-import HttpAPI from '../api/httpAPI';
 import friend from '../components/friend'
 import tag from '../components/tag'
 export default {
@@ -120,12 +119,12 @@ export default {
         tag
     },
     created() {
-        this.getPostList()
+        this.getList()
     },
     methods: {
-        getPostList: function () {
+        getList: function () {
             // 发起请求
-            let list_r = HttpAPI.getList({
+            let list_r = this.$HttpAPI.getList({
                 page: this.currentPage,
                 per_page: this.pagesize
             })
@@ -140,15 +139,22 @@ export default {
         // current-change	currentPage 改变时会触发	当前页currentPage
         handleSizeChange: function (size) {
             this.pagesize = size
-            console.log(this.pagesize)
-            this.getPostList() // 每页下拉显示数据
+            console.log(this.pagesize) // 每页下拉显示数据
         },
         handleCurrentChange: function (currentPage) {
             this.currentPage = currentPage
-            console.log(this.currentPage)
-            this.getPostList() // 点击第几页
+            console.log(this.currentPage) // 点击第几页
         },
-    }
+    },
+    watch: {
+        // 监控number的变化，并自动执行下面的函数
+        pagesize: function (val, oldVal) {
+          this.getList()
+        },
+        currentPage: function (val, oldVal) {
+          this.getList()
+        }
+      }
 }
 </script>
 
