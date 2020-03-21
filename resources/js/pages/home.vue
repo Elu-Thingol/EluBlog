@@ -22,7 +22,7 @@
                         </h5>
                         <el-row class="art-info d-flex align-items-center justify-content-start">
                             <div class="art-time">
-                                <i class="el-icon-time"></i>：{{post.created_at}}
+                                <i class="el-icon-time"></i>：{{$Helpers.dateFormat("YYYY-mm-dd", post.published_date)}}
                             </div>
                             <div class="d-flex align-items-center">
                                 <img
@@ -147,7 +147,7 @@ export default {
         },
     },
     watch: {
-        // 监控number的变化，并自动执行下面的函数
+        // 监控成员的变化，并自动执行下面的函数
         pagesize: function (val, oldVal) {
           this.getList()
         },

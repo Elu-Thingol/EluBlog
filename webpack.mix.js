@@ -24,7 +24,6 @@ mix.scripts(
     [
         "resources/js/app-baidu-share.js",
         "resources/js/app-mouse-heart.js",
-        "resources/js/app-copy-info.js",
         "resources/js/app-background-fish.js",
         "resources/js/app-szgotop.js"
     ],

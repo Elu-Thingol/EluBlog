@@ -1,5 +1,4 @@
 /* jshint esversion: 6 */
-import bullshit from "./bullshitGenerator";
 
 export default {
     // 基础路径

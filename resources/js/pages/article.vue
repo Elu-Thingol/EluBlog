@@ -12,7 +12,7 @@
                     <div class="text-center timeAndView">
                         <span class="article-time">
                             <i class="el-icon-time"></i>
-                            发表于：<span>{{post.published_date}}</span>
+                            发表于：<span>{{$Helpers.dateFormat("YYYY-mm-dd", post.published_date)}}</span>
                         </span>
                         &nbsp;|&nbsp;
                         <span class="article-views">
@@ -27,7 +27,11 @@
                 <hr />
                 <div id="artcle-content">
 
-                    <p id="markdown-content">{{post.body}}</p>
+                    <markdown-it-vue
+                        id="markdown-it-vue"
+                        class="md-body"
+                        :content="String(post.body)"
+                    />
 
                     <p>&nbsp;</p>
 
@@ -44,6 +48,8 @@
 </template>
 
 <script>
+import MarkdownItVue from 'markdown-it-vue'
+import 'markdown-it-vue/dist/markdown-it-vue.css'
 export default {
     name: 'articles', // 因为和article标记同名故改为复数形式
     data() {
@@ -52,11 +58,15 @@ export default {
             post: Object
         }
     },
+    components: {
+        MarkdownItVue
+    },
     created() {
         this.getDetail();
+        $('#artcle-info').css("background-image", 'white');
     },
     mounted() {
-        document.getElementById('markdown-content').addEventListener('copy', this.setClipboardText, false);
+        document.getElementById('markdown-it-vue').addEventListener('copy', this.setClipboardText, false);
     },
     methods: {
         getDetail: function () {
@@ -101,7 +111,7 @@ export default {
         }
     }
 }
-</script>s
+</script>
 
 <style scoped>
 #artcle-info {

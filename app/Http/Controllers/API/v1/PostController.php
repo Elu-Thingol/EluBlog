@@ -12,7 +12,7 @@ class PostController extends BaseController
     {
         $page = $request->get('page', 1);
         $per_page = $request->input('per_page', 20);
-        $sortby = $request->query('sortby', 'created_at');
+        $sortby = $request->query('sortby', 'published_date');
         $order = $request->get('order', 'desc');
 
         $data = Post::with('tag')

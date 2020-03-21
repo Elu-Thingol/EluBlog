@@ -23,6 +23,7 @@ class Post extends Model
     const STATUS_DRAFT = 'DRAFT'; //草稿
     const STATUS_PENDING = 'PENDING'; //挂起
 
+    // protected $translatable = ['title', 'excerpt', 'body', 'slug'];
     protected $translatable = ['title', 'excerpt', 'body'];
 
     /**
