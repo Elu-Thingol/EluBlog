@@ -4,6 +4,9 @@
             id="artList"
             type="flex"
             justify="space-around"
+            v-loading="_.isEmpty(posts)"
+            element-loading-text="拼命加载中"
+            element-loading-spinner="el-icon-loading"
         >
             <el-col :span="16">
 
@@ -149,12 +152,12 @@ export default {
     watch: {
         // 监控成员的变化，并自动执行下面的函数
         pagesize: function (val, oldVal) {
-          this.getList()
+            this.getList()
         },
         currentPage: function (val, oldVal) {
-          this.getList()
+            this.getList()
         }
-      }
+    }
 }
 </script>
 

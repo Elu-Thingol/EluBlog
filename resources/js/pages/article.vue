@@ -4,14 +4,15 @@
             class="main"
             type="flex"
             justify="center"
+            v-loading="_.isEmpty(post)"
+            element-loading-text="拼命加载中"
+            element-loading-spinner="el-icon-loading"
         >
-            <el-col
-                v-loading="_.isEmpty(post)"
-                element-loading-text="拼命加载中"
-                element-loading-spinner="el-icon-loading"
-                :span="16"
-            >
-                <div id="artcle-info">
+            <el-col :span="16">
+                <div
+                    id="artcle-info"
+                    class="is-hover-shadow"
+                >
                     <h2 class="text-center"><strong>{{post.title}}</strong></h2>
                     <!-- 描述：文章信息 -->
                     <img
@@ -34,22 +35,24 @@
                         前言：{{post.excerpt}}
                     </p>
                 </div>
-                <hr />
-                <div id="artcle-content">
-                    <markdown-it-vue
-                        id="markdown-it-vue"
-                        class="md-body"
-                        :content="String(post.body?post.body:'（/▽＼）看不见我')"
-                    />
+                <div class="post-card is-hover-shadow">
+                    <hr />
+                    <div id="artcle-content">
+                        <markdown-it-vue
+                            id="markdown-it-vue"
+                            class="md-body"
+                            :content="String(post.body?post.body:'（/▽＼）看不见我')"
+                        />
 
-                    <p>&nbsp;</p>
+                        <p>&nbsp;</p>
 
-                    <p><span style="color:#3399ea;"><em>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 向上的路并不拥挤，到多数人选择了安逸！--洛九</em></span></p>
-                </div>
-                <div id="statement">
-                    <div class="item">{{$t('article.author')}}：洛九</div>
-                    <div class="item">{{$t('article.originalLink')}}：<a :href="url">{{url}}</a></div>
-                    <div class="item">{{$t('article.copyright')}}：本博客所有文章除特别声明外,转载请注明出处!</div>
+                        <p><span style="color:#3399ea;"><em>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 向上的路并不拥挤，到多数人选择了安逸！--洛九</em></span></p>
+                    </div>
+                    <div id="statement">
+                        <div class="item">{{$t('article.author')}}：洛九</div>
+                        <div class="item">{{$t('article.originalLink')}}：<a :href="url">{{url}}</a></div>
+                        <div class="item">{{$t('article.copyright')}}：本博客所有文章除特别声明外,转载请注明出处!</div>
+                    </div>
                 </div>
             </el-col>
         </el-row>
@@ -127,6 +130,7 @@ export default {
     position: relative;
     padding: 20px;
     margin-bottom: 40px;
+    border-radius: 4px;
     overflow-y: hidden;
     overflow-x: hidden;
 }
@@ -151,9 +155,11 @@ export default {
     -webkit-filter: blur(10px); /* Chrome, Opera */
 }
 
-/*半透明黑色蒙版*/
+/*半透明黑色蒙版，圆角，动画等修饰*/
 #artcle-info {
+    border: 1px solid #ebeef5;
     background-color: rgba(0, 0, 0, 0.03);
+    transition: 0.3s;
 }
 
 #artcle-info .abstract {
@@ -169,6 +175,19 @@ export default {
     line-height: 30px;
     font-size: 16px;
     color: #ffffff;
+}
+
+.post-card {
+    padding: 20px;
+    border: 1px solid #ebeef5;
+    background-color: #fffb;
+    transition: 0.3s;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.is-hover-shadow:hover {
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
 pre.has {
