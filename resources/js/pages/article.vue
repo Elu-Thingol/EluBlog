@@ -36,7 +36,7 @@
                     </p>
                 </div>
                 <div class="post-card is-hover-shadow">
-                    <hr />
+                    <!-- <hr /> -->
                     <div id="artcle-content">
                         <markdown-it-vue
                             id="markdown-it-vue"
@@ -130,7 +130,6 @@ export default {
     position: relative;
     padding: 20px;
     margin-bottom: 40px;
-    border-radius: 4px;
     overflow-y: hidden;
     overflow-x: hidden;
 }
@@ -157,8 +156,10 @@ export default {
 
 /*半透明黑色蒙版，圆角，动画等修饰*/
 #artcle-info {
-    border: 1px solid #ebeef5;
-    background-color: rgba(0, 0, 0, 0.03);
+    margin-bottom: 50px;
+    border-radius: 2px;
+    box-shadow: inset 1px 1px 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.075);
     transition: 0.3s;
 }
 
@@ -180,14 +181,14 @@ export default {
 .post-card {
     padding: 20px;
     border: 1px solid #ebeef5;
-    background-color: #fffb;
+    background-color: #fff7;
     transition: 0.3s;
     border-radius: 4px;
     overflow: hidden;
 }
 
 .is-hover-shadow:hover {
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0), 0 2px 12px 0 rgba(0, 0, 0, 0.1) !important;
 }
 
 pre.has {
