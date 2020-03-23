@@ -47,7 +47,7 @@
                             <div class="side-img hidden-sm-and-down">
                                 <img
                                     class="art-banner"
-                                    :src="'/storage/' + post.image"
+                                    :src="$Helpers.imgUrl(post.image)"
                                 />
                             </div>
                             <div class="side-abstract">

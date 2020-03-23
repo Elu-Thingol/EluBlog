@@ -1,6 +1,7 @@
 /* jshint esversion: 6 */
 
 export default {
+    baseUrl: "http://elu.blog.io/storage/",
     dateFormat: function(fmt, date) {
         let ret;
         date = new Date(date);
@@ -25,5 +26,13 @@ export default {
             }
         }
         return fmt;
+    },
+    imgUrl: function(path) {
+        return (
+            this.baseUrl +
+            String(path)
+                .replace(/\\/g, "/")
+                .replace(/^\//, "")
+        );
     }
 };

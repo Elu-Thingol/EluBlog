@@ -5,10 +5,20 @@
             type="flex"
             justify="center"
         >
-            <el-col :span="16">
+            <el-col
+                v-loading="_.isEmpty(post)"
+                element-loading-text="拼命加载中"
+                element-loading-spinner="el-icon-loading"
+                :span="16"
+            >
                 <div id="artcle-info">
                     <h2 class="text-center"><strong>{{post.title}}</strong></h2>
                     <!-- 描述：文章信息 -->
+                    <img
+                        :src="post.image?$Helpers.imgUrl(post.image):'https://random.52ecy.cn/randbg.php'"
+                        class="blur"
+                    >
+                    <div class="cover"></div>
                     <div class="text-center timeAndView">
                         <span class="article-time">
                             <i class="el-icon-time"></i>
@@ -26,11 +36,10 @@
                 </div>
                 <hr />
                 <div id="artcle-content">
-
                     <markdown-it-vue
                         id="markdown-it-vue"
                         class="md-body"
-                        :content="String(post.body)"
+                        :content="String(post.body?post.body:'（/▽＼）看不见我')"
                     />
 
                     <p>&nbsp;</p>
@@ -115,9 +124,36 @@ export default {
 
 <style scoped>
 #artcle-info {
+    position: relative;
     padding: 20px;
-    background-image: url(../../images/vue.jpg);
     margin-bottom: 40px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+#artcle-info .text-center {
+    /* color: #5ca1f0ee; */
+    font-size: 2 em;
+    color: #fffe;
+    text-shadow: #000a 1px 1px 1px;
+}
+
+.blur {
+    position: absolute;
+    z-index: -999;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    filter: blur(2px);
+    -webkit-filter: blur(10px); /* Chrome, Opera */
+}
+
+/*半透明黑色蒙版*/
+#artcle-info {
+    background-color: rgba(0, 0, 0, 0.03);
 }
 
 #artcle-info .abstract {
@@ -128,7 +164,8 @@ export default {
 }
 
 #artcle-info .timeAndView {
-    padding: 20px;
+    /* padding: 20px; */
+    padding-bottom: 20px;
     line-height: 30px;
     font-size: 16px;
     color: #ffffff;
