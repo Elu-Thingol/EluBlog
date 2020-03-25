@@ -24,23 +24,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // });
 // Route::group(['prefix' => 'v1'], function () {
 // });
-Route::get('/v1', 'API\v1\BaseController@index')->name('apiv1.index');
-Route::get('/v1/posts/list', 'API\v1\PostController@list')->name('posts.list');
+Route::get('/v1', 'API\v1\BaseController@index')->name('api.v1.index');
+Route::get('/v1/posts', 'API\v1\PostController@index')->name('posts.index');
 Route::get('/v1/posts/details/{slug}', 'API\v1\PostController@getBySlug')->where('slug', '[0-9]+')->name('posts.get');
 Route::get('/v1/posts/slug', 'API\v1\PostController@getSlug')->name('posts.slug');
-Route::get('/v1/tags', function (Request $request) {
-    return response()->apiRes(
-        [
-            "id" => $request->get('id'),
-            "page" => $request->get('page'),
-            "per_page" => $request->get('per_page'),
-            "featured" => $request->get('featured'),
-            "sortby" => $request->get('sortby'),
-            "order" => $request->get('order'),
-        ],
-        "This is tags."
-    );
-})->name('tags');
+Route::get('/v1/tags', 'API\v1\TagController@index')->name('tags.index');
+Route::get('/v1/tags/{tag}', 'API\v1\TagController@getByTag')->name('tags.get');
 Route::get('/v1/comments', function (Request $request) {
     return response()->apiRes(
         [

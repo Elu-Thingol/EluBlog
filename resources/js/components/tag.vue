@@ -16,46 +16,12 @@
             </div>
             <div class="text item">
                 <el-tag
+                    v-for="(tag, index) in tags.data"
+                    :key="index"
                     size="mini"
                     class="tag-item"
-                    @click="tag('Java')"
-                >Java[12]</el-tag>
-                <el-tag
-                    size="mini"
-                    class="tag-item"
-                    type="success"
-                    @click="tag('SpringBoot')"
-                >SpringBoot[8]</el-tag>
-                <el-tag
-                    size="mini"
-                    class="tag-item"
-                    type="info"
-                    @click="tag('HTML')"
-                >HTML[8]</el-tag>
-                <el-tag
-                    size="mini"
-                    class="tag-item"
-                    type="warning"
-                    @click="tag('Mysql')"
-                >Mysql[5]</el-tag>
-                <el-tag
-                    size="mini"
-                    class="tag-item"
-                    type="danger"
-                    @click="tag('Vue')"
-                >Vue[3]</el-tag>
-                <el-tag
-                    size="mini"
-                    class="tag-item"
-                    type="info"
-                    @click="tag('jQuery')"
-                >jQuery[6]</el-tag>
-                <el-tag
-                    size="mini"
-                    class="tag-item"
-                    type="success"
-                    @click="tag('SpringCloud')"
-                >SpringCloud[9]</el-tag>
+                    @click="redirectTag(tag.name)"
+                >{{tag.name}}[{{tag.posts_count}}]</el-tag>
             </div>
         </el-card>
     </div>
@@ -64,8 +30,26 @@
 <script>
 export default {
     name: 'tag',
+    data() {
+        return {
+            tags: []
+        }
+    },
+    created() {
+        this.getTags()
+    },
     methods: {
-        tag(name) {
+        getTags: function () {
+            // 发起请求
+            let list_r = this.$HttpAPI.getTags()
+            list_r.then(res => {
+                if (!this._.isEmpty(res)) {
+                    this.tags = res.data;
+                    console.log(this.tags.data);
+                }
+            })
+        },
+        redirectTag: function (name) {
             this.$router.push({
                 name: 'tag',
                 params: {
@@ -94,6 +78,7 @@ export default {
 }
 
 .tag-item {
-    margin-right: 10px;
+    margin-right: 6px;
+    margin-bottom: 2px;
 }
 </style>

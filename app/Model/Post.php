@@ -33,11 +33,11 @@ class Post extends Model
      */
     public static $statuses = [self::STATUS_PUBLISHED, self::STATUS_DRAFT, self::STATUS_PENDING];
   
-    public function tag()
+    public function tags()
     {
         /**
-         * 一篇文章拥有多个标签
-         * @return \Illuminate\Database\Eloquent\Relations\HasMany
+         * 一篇文章关联多个标签
+         * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
          */
         return $this->belongsToMany(Tag::class, PostTag::class);
     }

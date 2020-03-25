@@ -8,14 +8,14 @@ use Symfony\Component\Console\Input\Input;
 
 class PostController extends BaseController
 {
-    public function list(Request $request)
+    public function index(Request $request)
     {
         $page = $request->get('page', 1);
         $per_page = $request->input('per_page', 20);
         $sortby = $request->query('sortby', 'published_date');
         $order = $request->get('order', 'desc');
 
-        $data = Post::with('tag')
+        $data = Post::with('tags')
             ->published()
             ->orderBy('featured', 'desc')
             ->orderBy($sortby, $order)
@@ -27,7 +27,7 @@ class PostController extends BaseController
     public function getBySlug(Request $request, $slug)
     {
         $data = Post::where('slug', $slug)
-            ->with('tag')
+            ->with('tags')
             ->published()
             ->first();
 

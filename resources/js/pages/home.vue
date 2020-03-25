@@ -4,14 +4,14 @@
             id="artList"
             type="flex"
             justify="space-around"
-            v-loading="_.isEmpty(posts)"
+            v-loading="_.isEmpty(posts.data)"
             element-loading-text="拼命加载中"
             element-loading-spinner="el-icon-loading"
         >
             <el-col :span="16">
 
                 <el-row
-                    v-for="(post, index) in posts.data"
+                    v-for="(post, index) in posts.data.data"
                     :key="index"
                     class="art-item"
                 >
@@ -33,13 +33,13 @@
                                     src="../../images/tag.png"
                                 />：
                                 <el-tag
-                                    v-if="post.tag.length==0"
+                                    v-if="post.tags.length==0"
                                     size="mini"
                                     style="margin-right: 4px;"
                                 >无标签</el-tag>
                                 <el-tag
                                     v-else
-                                    v-for="(tag, index) in post.tag"
+                                    v-for="(tag, index) in post.tags"
                                     :key="index"
                                     size="mini"
                                     style="margin-right: 4px;"
@@ -82,7 +82,7 @@
                         :current-page="currentPage"
                         :page-sizes="[5, 10, 20, 50, 100]"
                         :page-size="pagesize"
-                        :total="posts.total"
+                        :total="posts.data.total"
                         layout="total, sizes, prev, pager, next, jumper"
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
@@ -112,7 +112,7 @@ export default {
     name: 'home',
     data() {
         return {
-            posts: [],
+            posts: { data: [] },
             currentPage: 1, //  el-pagination 初始页
             pagesize: 5 //  el-pagination 每页的数据
         }
@@ -122,19 +122,19 @@ export default {
         tag
     },
     created() {
-        this.getList()
+        this.getPosts()
     },
     methods: {
-        getList: function () {
+        getPosts: function () {
             // 发起请求
-            let list_r = this.$HttpAPI.getList({
+            let list_r = this.$HttpAPI.getPosts({
                 page: this.currentPage,
                 per_page: this.pagesize
             })
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {
-                    this.posts = res.data.data;
-                    console.log(this.posts.data);
+                    this.posts = res.data;
+                    console.log(this.posts.data.data);
                 }
             })
         },
@@ -152,10 +152,10 @@ export default {
     watch: {
         // 监控成员的变化，并自动执行下面的函数
         pagesize: function (val, oldVal) {
-            this.getList()
+            this.getPosts()
         },
         currentPage: function (val, oldVal) {
-            this.getList()
+            this.getPosts()
         }
     }
 }

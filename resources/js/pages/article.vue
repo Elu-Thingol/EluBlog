@@ -35,8 +35,9 @@
                         前言：{{post.excerpt}}
                     </p>
                 </div>
+                <el-divider></el-divider>
+                <hr />
                 <div class="post-card is-hover-shadow">
-                    <!-- <hr /> -->
                     <div id="artcle-content">
                         <markdown-it-vue
                             id="markdown-it-vue"
@@ -156,7 +157,7 @@ export default {
 
 /*半透明黑色蒙版，圆角，动画等修饰*/
 #artcle-info {
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
     border-radius: 2px;
     box-shadow: inset 1px 1px 5px 0 rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(0, 0, 0, 0);
     background-color: rgba(0, 0, 0, 0.075);

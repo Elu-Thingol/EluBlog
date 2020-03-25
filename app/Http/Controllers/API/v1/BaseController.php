@@ -48,16 +48,16 @@ class BaseController extends Controller
         }
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $data = [
-            "获取全部文章" => route('posts.list', ['page' => 1, 'per_page' => 20]),
-            "结果排序" => route('posts.list', ['sortby' => 'title', 'order' => 'asc_or_desc']),
+            "获取全部文章" => route('posts.index', ['page' => 1, 'per_page' => 20]),
+            "结果排序" => route('posts.index', ['sortby' => 'title', 'order' => 'asc_or_desc']),
             "根据slug获取文章" => route('posts.get', ['slug' => 'slug']),
             "生成新的文章slug并校验" => route('posts.slug', ['slug' => 'slug']),
 
-            "获取全部标签" => route('tags'),
-            "获取标签下文章" => route('tags', ['id' => 1]),
+            "获取全部标签" => route('tags.index'),
+            "获取标签下文章" => route('tags.get', ['tag' => 'tag']),
 
             "获取指定文章评论" => route('comments', ['post_id' => 'slug']),
 
