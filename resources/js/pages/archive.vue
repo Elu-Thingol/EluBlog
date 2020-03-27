@@ -1,6 +1,6 @@
 <template>
     <div class="archive">
-        <div class="count">{{this.$route.params.name || $t('header.archive')}}：{{count}}{{$t('archive.article')}}</div>
+        <div class="count">{{this.$route.params.name || $t('header.archive')}}：{{count}} {{$t('archive.article')}}</div>
         <el-tabs
             tab-position="left"
             v-loading="_.isEmpty(activities.data)"

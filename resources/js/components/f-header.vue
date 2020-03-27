@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-menu
-            :default-active="activeIndex"
+            :default-active="activeIndex()"
             class="d-flex"
             mode="horizontal"
             router
@@ -35,11 +35,18 @@ export default {
     name: 'f-header',
     data() {
         return {
-            activeIndex: '/home'
-        };
+            defaultIndex: '/home'
+        }
     },
     methods: {
-        toggleLang(lang) {
+        activeIndex: function () {
+            let index = this.$route.path
+            if (["/home", "/archive", "/about"].indexOf(index) === -1) {
+                index = this.defaultIndex
+            }
+            return index;
+        },
+        toggleLang: function (lang) {
             if (lang === 'zh') {
                 localStorage.setItem('locale', 'zh')
                 this.$i18n.locale = localStorage.getItem('locale')
