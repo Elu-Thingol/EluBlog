@@ -18,8 +18,11 @@ class TagController extends BaseController
     public function getByTag(Request $request, $tag)
     {
         $data = Tag::where('name', $tag)
-            ->with('posts')
-            ->get();
+            ->with('postList')
+            ->first([
+                'id',
+                'name'
+            ]);
 
         return $this->success($data);
     }

@@ -32,7 +32,7 @@ class Post extends Model
      * @var array
      */
     public static $statuses = [self::STATUS_PUBLISHED, self::STATUS_DRAFT, self::STATUS_PENDING];
-  
+
     public function tags()
     {
         /**
@@ -40,6 +40,16 @@ class Post extends Model
          * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
          */
         return $this->belongsToMany(Tag::class, PostTag::class);
+    }
+
+    public function tagList()
+    {
+        /**
+         * 获取标签集合
+         * @return static
+         */
+        return $this->tags()
+            ->select('name');
     }
 
     /**

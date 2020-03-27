@@ -8,11 +8,16 @@
             type="flex"
             background-color="#545c64"
             text-color="#fff"
-            active-text-color="#ffd04b" 
+            active-text-color="#ffd04b"
         >
-            <el-menu-item class="
-            mr-auto"
-        >洛九小筑</el-menu-item>
+            <el-menu-item class="mr-auto">
+                <router-link
+                    to="/home"
+                    tag="span"
+                >
+                    洛九小筑
+                </router-link>
+            </el-menu-item>
             <el-menu-item index="/home">{{$t("header.home")}}</el-menu-item>
             <el-menu-item index="/archive">{{$t("header.archive")}}</el-menu-item>
             <el-menu-item index="/about">{{$t("header.about")}}</el-menu-item>

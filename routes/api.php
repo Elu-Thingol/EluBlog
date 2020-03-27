@@ -26,6 +26,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // });
 Route::get('/v1', 'API\v1\BaseController@index')->name('api.v1.index');
 Route::get('/v1/posts', 'API\v1\PostController@index')->name('posts.index');
+Route::get('/v1/posts/timeline', 'API\v1\PostController@getTimeline')->name('posts.timeline');
 Route::get('/v1/posts/details/{slug}', 'API\v1\PostController@getBySlug')->where('slug', '[0-9]+')->name('posts.get');
 Route::get('/v1/posts/slug', 'API\v1\PostController@getSlug')->name('posts.slug');
 Route::get('/v1/tags', 'API\v1\TagController@index')->name('tags.index');

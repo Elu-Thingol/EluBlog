@@ -53,6 +53,7 @@ class BaseController extends Controller
         $data = [
             "获取全部文章" => route('posts.index', ['page' => 1, 'per_page' => 20]),
             "结果排序" => route('posts.index', ['sortby' => 'title', 'order' => 'asc_or_desc']),
+            "获取文章时间线" => route('posts.timeline'),
             "根据slug获取文章" => route('posts.get', ['slug' => 'slug']),
             "生成新的文章slug并校验" => route('posts.slug', ['slug' => 'slug']),
 

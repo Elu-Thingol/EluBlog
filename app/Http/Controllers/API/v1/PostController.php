@@ -12,14 +12,33 @@ class PostController extends BaseController
     {
         $page = $request->get('page', 1);
         $per_page = $request->input('per_page', 20);
-        $sortby = $request->query('sortby', 'published_date');
+        $sortby = $request->query('sortby', 'published_at');
         $order = $request->get('order', 'desc');
 
-        $data = Post::with('tags')
+        $data = Post::with('tagList')
             ->published()
             ->orderBy('featured', 'desc')
             ->orderBy($sortby, $order)
-            ->paginate($per_page, '*', 'page', $page);
+            ->paginate($per_page, [
+                'id',
+                'title',
+                'image', 'excerpt',
+                'slug',
+                'published_at',
+                'featured',
+                'view_num'
+            ], 'page', $page);
+
+        return $this->success($data);
+    }
+
+    public function getTimeline(Request $request)
+    {
+        $data = Post::selectRaw("id, title, slug, published_at, YEAR(published_at) as year")
+            ->published()
+            ->orderBy('published_at', 'desc')
+            ->get()
+            ->groupBy('year');
 
         return $this->success($data);
     }
@@ -27,9 +46,22 @@ class PostController extends BaseController
     public function getBySlug(Request $request, $slug)
     {
         $data = Post::where('slug', $slug)
-            ->with('tags')
+            ->with('tagList')
             ->published()
-            ->first();
+            ->first([
+                'id',
+                'title',
+                'image',
+                'excerpt',
+                'body',
+                'slug',
+                'published_at',
+                'seo_title',
+                'meta_description',
+                'meta_keywords',
+                'featured',
+                'view_num'
+            ]);
 
         $data->view_num++;
         $data->save();
@@ -41,12 +73,12 @@ class PostController extends BaseController
     {
         $title = $request->input('title', 'title');
         $slug = strval(uright(crc32($title), 0));
-        
+
         // 去重验证
         while (Post::where('slug', $slug)->exists()) {
             $slug++;
         }
-        
+
 
         $data = [
             "slug" => $slug,

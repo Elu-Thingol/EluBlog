@@ -2,6 +2,7 @@
     <div class="tag">
         <el-card
             shadow="hover"
+            v-loading="_.isEmpty(tags)"
             class="box-card"
         >
             <div

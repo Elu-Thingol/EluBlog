@@ -25,7 +25,7 @@
                         </h5>
                         <el-row class="art-info d-flex align-items-center justify-content-start">
                             <div class="art-time">
-                                <i class="el-icon-time"></i>：{{$Helpers.dateFormat("YYYY-mm-dd", post.published_date)}}
+                                <i class="el-icon-time"></i>：{{$Helpers.dateFormat("YYYY-mm-dd", post.published_at)}}
                             </div>
                             <div class="d-flex align-items-center">
                                 <img
@@ -33,13 +33,13 @@
                                     src="../../images/tag.png"
                                 />：
                                 <el-tag
-                                    v-if="post.tags.length==0"
+                                    v-if="post.tag_list.length==0"
                                     size="mini"
                                     style="margin-right: 4px;"
                                 >无标签</el-tag>
                                 <el-tag
                                     v-else
-                                    v-for="(tag, index) in post.tags"
+                                    v-for="(tag, index) in post.tag_list"
                                     :key="index"
                                     size="mini"
                                     style="margin-right: 4px;"

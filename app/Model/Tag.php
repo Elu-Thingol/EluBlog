@@ -17,4 +17,19 @@ class Tag extends Model
          */
         return $this->belongsToMany(Post::class, PostTag::class)->published();
     }
+
+    public function postList()
+    {
+        /**
+         * 获取此标签文章集合
+         * @return static
+         */
+        return $this->posts()
+            ->select(
+                'title',
+                'slug',
+                'published_at'
+            )
+            ->orderBy('published_at', 'desc');
+    }
 }

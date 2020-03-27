@@ -23,7 +23,7 @@
                     <div class="text-center timeAndView">
                         <span class="article-time">
                             <i class="el-icon-time"></i>
-                            发表于：<span>{{$Helpers.dateFormat("YYYY-mm-dd", post.published_date)}}</span>
+                            发表于：<span>{{$Helpers.dateFormat("YYYY-mm-dd", post.published_at)}}</span>
                         </span>
                         &nbsp;|&nbsp;
                         <span class="article-views">
