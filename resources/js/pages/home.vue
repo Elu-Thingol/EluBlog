@@ -50,7 +50,7 @@
                             <div class="side-img hidden-sm-and-down">
                                 <img
                                     class="art-banner"
-                                    :src="$Helpers.imgUrl(post.image)"
+                                    :src="post.image?$Helpers.imgUrl(post.image):'https://random.52ecy.cn/randbg.php'"
                                 />
                             </div>
                             <div class="side-abstract">
