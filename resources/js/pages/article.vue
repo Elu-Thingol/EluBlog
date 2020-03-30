@@ -36,8 +36,7 @@
                     </p>
                 </div>
                 <el-divider></el-divider>
-                <hr />
-                <div class="post-card is-hover-shadow">
+                <div class="post-card is-hover-alpha">
                     <div id="artcle-content">
                         <markdown-it-vue
                             id="markdown-it-vue"
@@ -47,13 +46,24 @@
 
                         <p>&nbsp;</p>
 
-                        <p><span style="color:#3399ea;"><em>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 向上的路并不拥挤，到多数人选择了安逸！--洛九</em></span></p>
+                        <p
+                            v-if="!_.isEmpty(hitokoto)"
+                            style="text-align:right;"
+                        >
+                            <span style="color:#3399ea;padding-right:5em;"><em>{{hitokoto.hitokoto}}</em></span>
+                            <br />
+                            <span style="color:#9EA19F;padding-right:1em;"><em><small>—— 《{{hitokoto.from}}》{{hitokoto.from_who}}</small></em></span>
+                        </p>
                     </div>
-                    <div id="statement">
+                    <el-card
+                        id="statement"
+                        shadow="never"
+                        :body-style="{ padding: '0px' }"
+                    >
                         <div class="item">{{$t('article.author')}}：洛九</div>
                         <div class="item">{{$t('article.originalLink')}}：<a :href="url">{{url}}</a></div>
                         <div class="item">{{$t('article.copyright')}}：本博客所有文章除特别声明外,转载请注明出处!</div>
-                    </div>
+                    </el-card>
                 </div>
             </el-col>
         </el-row>
@@ -68,7 +78,8 @@ export default {
     data() {
         return {
             url: document.URL, //  获取当前页地址
-            post: Object
+            post: {},
+            hitokoto: {}
         }
     },
     components: {
@@ -76,7 +87,7 @@ export default {
     },
     created() {
         this.getDetail();
-        $('#artcle-info').css("background-image", 'white');
+        this.getHitokoto();
     },
     mounted() {
         document.getElementById('markdown-it-vue').addEventListener('copy', this.setClipboardText, false);
@@ -89,6 +100,16 @@ export default {
                 if (!this._.isEmpty(res)) {
                     this.post = res.data.data;
                     console.log(this.post);
+                }
+            })
+        },
+        getHitokoto: function () {
+            // 发起请求
+            let list_r = this.$HttpAPI.getHitokoto()
+            list_r.then(res => {
+                if (!this._.isEmpty(res)) {
+                    this.hitokoto = res.data;
+                    console.log(this.hitokoto);
                 }
             })
         },
@@ -151,11 +172,11 @@ export default {
     width: 110%;
     height: 110%;
     object-fit: cover;
-    filter: blur(2px);
+    filter: blur(10px);
     -webkit-filter: blur(10px); /* Chrome, Opera */
 }
 
-/*半透明黑色蒙版，圆角，动画等修饰*/
+/*半透明黑色蒙版，圆角，内阴影，动画等修饰*/
 #artcle-info {
     /* margin-bottom: 50px; */
     border-radius: 2px;
@@ -185,11 +206,16 @@ export default {
     background-color: #fff7;
     transition: 0.3s;
     border-radius: 4px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.03);
     overflow: hidden;
 }
 
 .is-hover-shadow:hover {
     box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0), 0 2px 12px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+.is-hover-alpha:hover {
+    background-color: #fffc !important;
 }
 
 pre.has {

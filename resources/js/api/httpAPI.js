@@ -83,5 +83,16 @@ export default {
         return this.iWanted({
             url: `${this.BASE_URL}/tags/${name}`
         });
+    },
+
+    // 获取一言
+    getHitokoto: function() {
+        return this.iWanted({
+            url: `https://v1.hitokoto.cn`,
+            params: {
+                encode: "json",
+                charset: "utf-8"
+            }
+        });
     }
 };
