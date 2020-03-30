@@ -65,9 +65,11 @@ export default {
     },
 
     // 请求文章详细数据
-    getDetail: function(slug) {
+    getDetail: function(slug, view_first) {
         return this.iWanted({
-            url: `${this.BASE_URL}/posts/details/${slug}`
+            url: `${this.BASE_URL}/posts/details/${slug}${
+                view_first ? "?view_first=1" : ""
+            }`
         });
     },
 

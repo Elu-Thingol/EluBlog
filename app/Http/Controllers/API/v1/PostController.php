@@ -45,6 +45,8 @@ class PostController extends BaseController
 
     public function getBySlug(Request $request, $slug)
     {
+        $view_first = $request->get('view_first', '0');
+
         $data = Post::where('slug', $slug)
             ->with('tagList')
             ->published()
@@ -63,8 +65,10 @@ class PostController extends BaseController
                 'view_num'
             ]);
 
-        $data->view_num++;
-        $data->save();
+        if ($view_first == '1') {
+            $data->view_num++;
+            $data->save();
+        }
 
         return $this->success($data);
     }

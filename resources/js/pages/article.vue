@@ -74,7 +74,8 @@ export default {
     methods: {
         getDetail: function () {
             // 发起请求
-            let list_r = this.$HttpAPI.getDetail(this.$route.params.slug)
+            let list_r = this.$HttpAPI.getDetail(this.$route.params.slug, this.$store.getters.isFirst)
+            this.$store.commit('unsetFirst'); // 设置已读标记
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {
                     this.post = res.data.data;

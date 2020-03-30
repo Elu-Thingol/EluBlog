@@ -10,6 +10,7 @@ import "element-ui/lib/theme-chalk/display.css";
 import fHeader from "./components/f-header";
 import fFooter from "./components/f-footer";
 import i18n from "./i18n/i18n";
+import store from "./store";
 import HttpAPI from "./api/httpAPI";
 import Helpers from "./helpers";
 
@@ -36,7 +37,9 @@ const router = new VueRouter({
 });
 
 new Vue({
+    el:'#app',
     router,
     i18n,
+    store,
     render: h => h(App)
-}).$mount("#app");
+});
