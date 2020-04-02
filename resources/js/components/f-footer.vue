@@ -1,14 +1,20 @@
 <template>
     <div class="f-footer">
-        Copyright © 2020 洛九
-        <br>
+        <span v-if="!_.isEmpty(blog)">Copyright © 2020 {{blog.personal.nickname}}</span>
+        <br />
         <span id="poweredby">Powered by Vue</span>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-    name: 'f-footer'
+    name: 'f-footer',
+    computed: {
+        ...mapGetters({
+            blog: 'info/getBlog',
+        }),
+    }
 }
 </script>
 
@@ -22,7 +28,7 @@ export default {
     /* background-color: #555; */
     font: 12px/1.14 arial, 宋体;
     color: #606975;
-    font-family: "Noto Sans SC";
+    font-family: 'Noto Sans SC';
     font-weight: 100;
 }
 </style>

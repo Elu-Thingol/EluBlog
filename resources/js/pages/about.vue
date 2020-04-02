@@ -1,32 +1,27 @@
 <template>
     <div class="about">
-        <el-row
-            class="main"
-            type="flex"
-            justify="center"
-        >
+        <el-row class="main"
+                type="flex"
+                justify="center"
+                v-loading="_.isEmpty(blog)"
+                element-loading-text="拼命加载中"
+                element-loading-spinner="el-icon-loading">
             <el-col :span="16">
                 <h5 class="title"><i class="el-icon-star-on"></i>{{$t('about.aboutMe')}}</h5>
-                <el-card
-                    class="statement"
-                    shadow="never"
-                    :body-style="{ padding: '0px' }"
-                >
-                    <div class="item">it技术的探索者</div>
-                    <div class="item">座右铭：向上的路并不拥挤，而大多数人选择了安逸。</div>
+                <el-card class="statement"
+                         shadow="never"
+                         :body-style="{ padding: '0px' }">
+                    <div class="item">{{_.isEmpty(blog)?'昵称':blog.personal.nickname}}</div>
+                    <div class="item"><span style='float:left;width:3.5em'>座右铭</span>：{{_.isEmpty(blog)?'':blog.personal.motto}}</div>
                 </el-card>
-                <el-card
-                    class="statement"
-                    shadow="never"
-                    :body-style="{ padding: '0px' }"
-                >
-                    <div class="item">Email：eluthingol@vip.qq.com</div>
-                    <div class="item">QQ：371611050</div>
-                    <div class="item">GitHub：
-                        <a
-                            target="_blank"
-                            href="https://github.com/Elu-Thingol"
-                        >https://github.com/Elu-Thingol</a>
+                <el-card class="statement"
+                         shadow="never"
+                         :body-style="{ padding: '0px' }">
+                    <div class="item"><span style='float:left;width:3.5em'>Email</span>：{{_.isEmpty(blog)?'':blog.contact.email}}</div>
+                    <div class="item"><span style='float:left;width:3.5em'>QQ</span>：{{_.isEmpty(blog)?'':blog.contact.qq}}</div>
+                    <div class="item"><span style='float:left;width:3.5em'>GitHub</span>：
+                        <a target="_blank"
+                           :href="_.isEmpty(blog)?'#':blog.contact.github">{{_.isEmpty(blog)?'':blog.contact.github}}</a>
                     </div>
                 </el-card>
                 <h5 class="title"><i class="el-icon-star-on"></i>{{$t('about.aboutBlog')}}</h5>
@@ -34,56 +29,44 @@
                     <dl class="dl-blog">
                         <dt>{{$t('about.blogSource')}}</dt>
                         <dd>
-                            <a
-                                target="_blank"
-                                href="https://gitee.com/fengziy/Fblog"
-                            ><img
-                                    class="icon"
-                                    src="../../images/mayun.png"
-                                    alt="码云"
-                                /></a>
+                            <a v-for="(item, index) in _.isEmpty(blog)?[]:blog.info.blog_source"
+                               :key="index"
+                               target="_blank"
+                               :href="item.url">
+                                <img class="icon"
+                                     :src="item.img.src"
+                                     :alt="item.img.alt" />
+                            </a>
                         </dd>
                         <dt>{{$t('about.technology')}}</dt>
-                        <dd>Vue、Vue-Router、Element-ui、Vue-i18n</dd>
+                        <dd>{{_.isEmpty(blog)?'':blog.info.technology}}</dd>
                         <dt>{{$t('about.other')}}</dt>
-                        <dd>百度分享、点击爱心特效、复制追加版权信息</dd>
+                        <dd>{{_.isEmpty(blog)?'':blog.info.other}}</dd>
                     </dl>
                 </el-card>
                 <h5 class="title"><i class="el-icon-star-on"></i>{{$t('about.contactMe')}}</h5>
                 <el-card shadow="always">
-                    <el-form
-                        label-position="left"
-                        :rules="rules"
-                        label-width="80px"
-                        ref="formLabelAlign"
-                        :model="formLabelAlign"
-                    >
-                        <el-form-item
-                            :label="$t('about.yourName')"
-                            prop="name"
-                        >
+                    <el-form label-position="left"
+                             :rules="rules"
+                             label-width="80px"
+                             ref="formLabelAlign"
+                             :model="formLabelAlign">
+                        <el-form-item :label="$t('about.yourName')"
+                                      prop="name">
                             <el-input v-model="formLabelAlign.name"></el-input>
                         </el-form-item>
-                        <el-form-item
-                            :label="$t('about.email')"
-                            prop="email"
-                        >
+                        <el-form-item :label="$t('about.email')"
+                                      prop="email">
                             <el-input v-model="formLabelAlign.email"></el-input>
                         </el-form-item>
-                        <el-form-item
-                            :label="$t('about.content')"
-                            prop="content"
-                        >
-                            <el-input
-                                type="textarea"
-                                v-model="formLabelAlign.content"
-                            ></el-input>
+                        <el-form-item :label="$t('about.content')"
+                                      prop="content">
+                            <el-input type="textarea"
+                                      v-model="formLabelAlign.content"></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button
-                                type="primary"
-                                @click="submitForm('formLabelAlign')"
-                            >{{$t('about.submit')}}</el-button>
+                            <el-button type="primary"
+                                       @click="submitForm('formLabelAlign')">{{$t('about.submit')}}</el-button>
                         </el-form-item>
                     </el-form>
                 </el-card>
@@ -93,6 +76,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     name: 'about',
     data() {
@@ -125,17 +109,22 @@ export default {
                     trigger: 'blur'
                 }]
             }
-        };
+        }
+    },
+    computed: {
+        ...mapGetters({
+            blog: 'info/getBlog',
+        }),
     },
     methods: {
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    alert('submit!');
+                    alert('submit!')
                 } else {
-                    return false;
+                    return false
                 }
-            });
+            })
         }
     }
 }

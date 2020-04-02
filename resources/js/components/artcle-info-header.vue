@@ -19,7 +19,7 @@
             &nbsp;|&nbsp;
             <span class="article-views">
                 <i class="el-icon-view"></i>
-                阅读量：<span>{{view_num}}</span>万
+                阅读量：<span>{{view_num}}</span>
             </span>
         </div>
         <p class="abstract">

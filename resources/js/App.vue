@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
     name: 'app',
     data() {
@@ -31,7 +32,13 @@ export default {
     },
     components: {
     },
+    created() {
+        this.infoInit();
+    },
     methods: {
+        ...mapActions({
+            infoInit: 'info/INFO_INIT'
+        })
         // 吸顶导航 现用css样式实现
         /*         watchScroll() {
                     var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop

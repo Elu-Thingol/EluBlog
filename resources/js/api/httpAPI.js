@@ -2,7 +2,7 @@
 
 export default {
     // 基础路径
-    BASE_URL: "http://elu.blog.io/api/v1",
+    BASE_URL: `${window.blog_address}/api/v1`,
 
     // 用户名、密码验证
     verifyUser: function(username, password) {
@@ -84,6 +84,11 @@ export default {
     getByTag: function(name) {
         return this.iWanted({
             url: `${this.BASE_URL}/tags/${name}`
+        });
+    },
+    getInfos: function() {
+        return this.iWanted({
+            url: `${this.BASE_URL}/infos`
         });
     }
 };

@@ -1,99 +1,77 @@
 <template>
     <div class="home">
-        <el-row
-            id="artList"
-            type="flex"
-            justify="space-around"
-            v-loading="_.isEmpty(posts.data)"
-            element-loading-text="拼命加载中"
-            element-loading-spinner="el-icon-loading"
-        >
+        <el-row id="artList"
+                type="flex"
+                justify="space-around"
+                v-loading="_.isEmpty(posts.data)"
+                element-loading-text="拼命加载中"
+                element-loading-spinner="el-icon-loading">
             <el-col :span="16">
 
-                <el-row
-                    v-for="(post, index) in posts.data.data"
-                    :key="index"
-                    class="art-item"
-                >
+                <el-row v-for="(post, index) in posts.data.data"
+                        :key="index"
+                        class="art-item">
                     <el-card shadow="hover">
                         <h5>
-                            <router-link
-                                :to="'/article/'+post.slug"
-                                tag="span"
-                                class="art-title"
-                            >{{post.title}}</router-link>
+                            <router-link :to="'/article/'+post.slug"
+                                         tag="span"
+                                         class="art-title">{{post.title}}</router-link>
                         </h5>
                         <el-row class="art-info d-flex align-items-center justify-content-start">
                             <div class="art-time">
                                 <i class="el-icon-time"></i>：{{$Helpers.dateFormat("YYYY-mm-dd", post.published_at)}}
                             </div>
                             <div class="d-flex align-items-center">
-                                <img
-                                    class="tag"
-                                    src="../../images/tag.png"
-                                />：
-                                <el-tag
-                                    v-if="post.tag_list.length==0"
-                                    size="mini"
-                                    style="margin-right: 4px;"
-                                >无标签</el-tag>
-                                <el-tag
-                                    v-else
-                                    v-for="(tag, index) in post.tag_list"
-                                    :key="index"
-                                    size="mini"
-                                    style="margin-right: 4px;"
-                                >{{tag.name}}</el-tag>
+                                <img class="tag"
+                                     src="../../images/tag.png" />：
+                                <el-tag v-if="post.tag_list.length==0"
+                                        size="mini"
+                                        style="margin-right: 4px;">无标签</el-tag>
+                                <el-tag v-else
+                                        v-for="(tag, index) in post.tag_list"
+                                        :key="index"
+                                        size="mini"
+                                        style="margin-right: 4px;">{{tag.name}}</el-tag>
                             </div>
                         </el-row>
                         <el-row class="art-body">
                             <div class="side-img hidden-sm-and-down">
-                                <img
-                                    class="art-banner"
-                                    :src="post.image?$Helpers.imgUrl(post.image):'https://random.52ecy.cn/randbg.php'"
-                                />
+                                <img class="art-banner"
+                                     :src="post.image?$Helpers.imgUrl(post.image):'https://random.52ecy.cn/randbg.php'" />
                             </div>
                             <div class="side-abstract">
                                 <div class="art-abstract">{{post.excerpt}}</div>
                                 <div class="art-more">
-                                    <router-link
-                                        :to="'/article/'+post.slug"
-                                        tag="span"
-                                    >
+                                    <router-link :to="'/article/'+post.slug"
+                                                 tag="span">
                                         <el-button plain>{{$t('home.readMore')}}</el-button>
                                     </router-link>
                                     <div class="view">
-                                        <i class="el-icon-view"></i> {{post.view_num?post.view_num:0}}
+                                        <i class="el-icon-view"></i> {{post.view_num?$Helpers.viewDisplay(post.view_num):0}}
                                     </div>
                                 </div>
                             </div>
                         </el-row>
                     </el-card>
-                    <img
-                        v-show="post.featured"
-                        class="star"
-                        src="../../images/star.png"
-                    />
+                    <img v-show="post.featured"
+                         class="star"
+                         src="../../images/star.png" />
                 </el-row>
 
                 <div class="block pagination">
-                    <el-pagination
-                        background
-                        :current-page="currentPage"
-                        :page-sizes="[5, 10, 20, 50, 100]"
-                        :page-size="pagesize"
-                        :total="posts.data.total"
-                        layout="total, sizes, prev, pager, next, jumper"
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                    ></el-pagination>
+                    <el-pagination background
+                                   :current-page="currentPage"
+                                   :page-sizes="[5, 10, 20, 50, 100]"
+                                   :page-size="pagesize"
+                                   :total="posts.data.total"
+                                   layout="total, sizes, prev, pager, next, jumper"
+                                   @size-change="handleSizeChange"
+                                   @current-change="handleCurrentChange"></el-pagination>
                 </div>
             </el-col>
-            <el-col
-                :span="6"
-                class="hidden-sm-and-down"
-                id="side"
-            >
+            <el-col :span="6"
+                    class="hidden-sm-and-down"
+                    id="side">
                 <div class="item">
                     <tag></tag>
                 </div>
@@ -106,6 +84,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import friend from '../components/friend'
 import tag from '../components/tag'
 export default {
@@ -117,12 +96,20 @@ export default {
             pagesize: 5 //  el-pagination 每页的数据
         }
     },
+    computed: {
+        ...mapGetters({
+            site: 'info/getSite',
+            blog: 'info/getBlog'
+        }),
+    },
     components: {
         friend,
         tag
     },
     created() {
         this.getPosts()
+        console.log(this.site)
+        console.log(this.blog)
     },
     methods: {
         getPosts: function () {
@@ -133,8 +120,8 @@ export default {
             })
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {
-                    this.posts = res.data;
-                    console.log(this.posts.data.data);
+                    this.posts = res.data
+                    console.log(this.posts.data.data)
                 }
             })
         },

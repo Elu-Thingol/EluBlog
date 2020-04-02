@@ -32,14 +32,7 @@ Route::get('/v1/posts/slug', 'API\v1\PostController@getSlug')->name('posts.slug'
 Route::get('/v1/tags', 'API\v1\TagController@index')->name('tags.index');
 Route::get('/v1/tags/{tag}', 'API\v1\TagController@getByTag')->name('tags.get');
 Route::get('/v1/comments', function (Request $request) {
-    return response()->apiRes(
-        [
-            "id" => $request->get('id'),
-            "page" => $request->get('page'),
-            "per_page" => $request->get('per_page'),
-        ],
-        "This is comments."
-    );
+    return setting('site.title');
 })->name('comments');
 Route::get('/v1/users', function (Request $request) {
     return response()->apiRes(
@@ -54,3 +47,4 @@ Route::get('/v1/users', function (Request $request) {
         "This is users."
     );
 })->name('users');
+Route::get('/v1/infos', 'API\v1\InfoController@index')->name('infos.index');

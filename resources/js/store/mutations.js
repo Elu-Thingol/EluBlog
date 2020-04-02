@@ -1,8 +1,10 @@
 /* jshint esversion: 6 */
 
+import types from './mutation-types';
+
 const mutations = {
-    setUsername: function(state, username) {
-        state.username = username;
+    [types.SET_USERNAME]: function(state, payload) {
+        state.username = payloadrouter.appusername;
     }
 };
 

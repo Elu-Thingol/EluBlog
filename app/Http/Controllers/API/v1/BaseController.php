@@ -67,6 +67,8 @@ class BaseController extends Controller
             "用户认证" => route('users'),
             "修改资料" => route('users'),
             "注销用户" => route('users'),
+
+            "相关信息" => route('infos.index'),
         ];
 
         return $this->success($data);

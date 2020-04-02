@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 
 export default {
-    baseUrl: "http://elu.blog.io/storage/",
+    BASE_URL: `${window.blog_address}`,
     dateFormat: function(fmt, date) {
         let ret;
         date = new Date(date);
@@ -28,11 +28,18 @@ export default {
         return fmt;
     },
     imgUrl: function(path) {
-        return (
-            this.baseUrl +
-            String(path)
-                .replace(/\\/g, "/")
-                .replace(/^\//, "")
+        return `${this.BASE_URL}/storage/${String(path)
+            .replace(/\\/g, "/")
+            .replace(/^\//, "")}`;
+    },
+    urlTail: function(path) {
+        return String(path)
+            .replace(/$/g, "/")
+            .replace(/\/+$/, "/");
+    },
+    viewDisplay: function(num) {
+        return (n => (n > 9999 ? String(Math.floor(n / 10000)) + "万" : n))(
+            parseInt(num)
         );
     }
 };
