@@ -208,11 +208,11 @@ export default {
         },
         handleFilter: function () {
             this.setSearch({ show: false })
-            this.getPostsWithSearch()
             this.$message({
                 message: `设置关键字为“${this.list_query.title}”,标签为“${this.list_query.importance}”，正在搜索符合条件的文章···`,
                 center: true
             })
+            this.getPostsWithSearch()
         },
         handleClean: function () {
             this.list_query.title = ''
@@ -223,6 +223,7 @@ export default {
                 center: true,
                 type: 'success'
             })
+            this.getPosts();
         }
     },
     watch: {
