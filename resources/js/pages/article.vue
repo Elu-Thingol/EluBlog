@@ -43,8 +43,8 @@
 import { mapActions, mapGetters } from 'vuex'
 import MarkdownItVue from 'markdown-it-vue'
 import 'markdown-it-vue/dist/markdown-it-vue.css'
-import ArtcleInfoHeader from '../components/artcle-info-header'
-import Hitokoto from '../components/hitokoto'
+import artcleInfoHeader from '../components/artcle-info-header'
+import hitokoto from '../components/hitokoto'
 export default {
     name: 'articles', // 因为和article标记同名故改为复数形式
     data() {
@@ -60,8 +60,8 @@ export default {
     },
     components: {
         MarkdownItVue,
-        ArtcleInfoHeader,
-        Hitokoto
+        artcleInfoHeader,
+        hitokoto
     },
     created() {
         this.getDetail()

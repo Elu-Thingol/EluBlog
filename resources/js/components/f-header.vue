@@ -16,6 +16,11 @@
                     </router-link>
                 </transition>
             </el-menu-item>
+            <el-menu-item>
+                <el-button type="text"
+                           icon="el-icon-search"
+                           @click="setSearch({ show: true })"></el-button>
+            </el-menu-item>
             <el-menu-item index="/home">{{$t("header.home")}}</el-menu-item>
             <el-menu-item index="/archive">{{$t("header.archive")}}</el-menu-item>
             <el-menu-item index="/about">{{$t("header.about")}}</el-menu-item>
@@ -29,7 +34,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
     name: 'f-header',
     data() {
@@ -43,6 +48,9 @@ export default {
         }),
     },
     methods: {
+        ...mapActions({
+            setSearch: 'SET_SEARCH_DIALOG_VISIBLE'
+        }),
         activeIndex: function () {
             let index = this.$route.path
             if (["/home", "/archive", "/about"].indexOf(index) === -1) {

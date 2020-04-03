@@ -10,12 +10,23 @@ class PostController extends BaseController
 {
     public function index(Request $request)
     {
-        $page = $request->get('page', 1);
+        $page = $request->input('page', 1);
         $per_page = $request->input('per_page', 20);
-        $sortby = $request->query('sortby', 'published_at');
-        $order = $request->get('order', 'desc');
+        $sortby = $request->input('sortby', 'published_at');
+        $order = $request->input('order', 'desc');
+
+        $key_words = $request->input('key_words', '');
+        $tag = $request->input('tag', '');
 
         $data = Post::with('tagList')
+            ->when($key_words != '', function ($query) use ($key_words) {
+                return $query->where('title', 'like', '%' . $key_words . '%');
+            })
+            ->when($tag != '', function ($query) use ($tag) {
+                return $query->whereHas('tagList', function ($query) use ($tag) {
+                    $query->where('name', '=', $tag);
+                });
+            })
             ->published()
             ->orderBy('featured', 'desc')
             ->orderBy($sortby, $order)

@@ -15,8 +15,8 @@ const visitList = {
         }
     },
     mutations: {
-        [types.PUSH_SLUG]: function({ list }, payload) {
-            list.push(payload.slug);
+        [types.PUSH_SLUG]: function({ list }, { slug }) {
+            list.push(slug);
         }
     },
     actions: {

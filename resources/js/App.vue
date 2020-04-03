@@ -2,16 +2,12 @@
     <div class="app">
         <!-- <f-header :class="{'navBarWrap':navBarFixed}" ></f-header> -->
         <f-header class="navBarWrap"></f-header>
-        <el-row
-            type="flex"
-            justify="center"
-            id="content"
-        >
+        <el-row type="flex"
+                justify="center"
+                id="content">
             <!-- <el-col :xs="20" :md="20" :style="{'minHeight':minHeight+'px'}" > -->
-            <el-col
-                :xs="20"
-                :md="20"
-            >
+            <el-col :xs="20"
+                    :md="20">
                 <router-view></router-view>
             </el-col>
         </el-row>
@@ -20,7 +16,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from "vuex"
 export default {
     name: 'app',
     data() {
@@ -33,7 +29,7 @@ export default {
     components: {
     },
     created() {
-        this.infoInit();
+        this.infoInit()
     },
     methods: {
         ...mapActions({
@@ -64,7 +60,7 @@ export default {
 
 <style scoped>
 .app {
-    font-family: "microsoft yahei";
+    font-family: 'microsoft yahei';
 }
 #content {
     /* background-color: #f9f9f9; */

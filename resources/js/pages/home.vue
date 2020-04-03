@@ -2,11 +2,21 @@
     <div class="home">
         <el-row id="artList"
                 type="flex"
-                justify="space-around"
-                v-loading="_.isEmpty(posts.data)"
-                element-loading-text="拼命加载中"
-                element-loading-spinner="el-icon-loading">
-            <el-col :span="16">
+                justify="space-around">
+            <el-col :span="16"
+                    v-loading="_.isEmpty(posts.data)"
+                    element-loading-text="拼命加载中"
+                    element-loading-spinner="el-icon-loading">
+                <el-dialog title="搜索文章"
+                           :visible.sync="searchDialogVisible"
+                           width="800px">
+                    <search-form :searchForm="search_form"
+                                 :listQuery="list_query"
+                                 :importanceOptions="importance_options"
+                                 @handleFilter="handleFilter"
+                                 @handleClean="handleClean">
+                    </search-form>
+                </el-dialog>
 
                 <el-row v-for="(post, index) in posts.data.data"
                         :key="index"
@@ -84,39 +94,100 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import friend from '../components/friend'
 import tag from '../components/tag'
+import searchForm from '../components/search-form'
 export default {
     name: 'home',
     data() {
         return {
             posts: { data: [] },
             currentPage: 1, //  el-pagination 初始页
-            pagesize: 5 //  el-pagination 每页的数据
+            pagesize: 5,//  el-pagination 每页的数据
+            // 所有的搜索组件
+            search_form: [
+                {
+                    type: 'Input'
+                }, {
+                    type: 'select'
+                }, {
+                    type: 'SearchBtn'
+                }, {
+                    type: 'CleanBtn'
+                }
+            ],
+            //双向数据绑定
+            list_query: {
+                title: '',
+                importance: ''
+            }
         }
     },
     computed: {
         ...mapGetters({
             site: 'info/getSite',
-            blog: 'info/getBlog'
+            blog: 'info/getBlog',
+            importance_options: 'getTags', // 下拉选择器
+            getSearch: 'getSearchDialogVisible' // 搜索框显示
         }),
+        searchDialogVisible: {
+            set: function (value) {
+                this.setSearch({ show: value })
+            },
+
+            get: function () {
+                return this.getSearch
+            }
+        }
     },
     components: {
         friend,
-        tag
+        tag,
+        searchForm
     },
     created() {
         this.getPosts()
         console.log(this.site)
         console.log(this.blog)
     },
+    mounted() {
+        var _this = this
+        document.onkeyup = function (e) {
+            let key = window.event.keyCode
+            // 释放 “\” 键盘显示搜索框
+            if (key == 220) {
+                _this.setSearch({ show: true })
+            }
+        }
+    },
     methods: {
+        ...mapActions({
+            setSearch: 'SET_SEARCH_DIALOG_VISIBLE'
+        }),
+        demo() {
+            console.log('demo')
+        },
         getPosts: function () {
             // 发起请求
             let list_r = this.$HttpAPI.getPosts({
                 page: this.currentPage,
                 per_page: this.pagesize
+            })
+            list_r.then(res => {
+                if (!this._.isEmpty(res)) {
+                    this.posts = res.data
+                    console.log(this.posts.data.data)
+                }
+            })
+        },
+        getPostsWithSearch: function () {
+            // 发起请求
+            let list_r = this.$HttpAPI.getPosts({
+                page: this.currentPage,
+                per_page: this.pagesize,
+                key_words: this.list_query.title,
+                tag: this.list_query.importance
             })
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {
@@ -135,6 +206,24 @@ export default {
             this.currentPage = currentPage
             console.log(this.currentPage) // 点击第几页
         },
+        handleFilter: function () {
+            this.setSearch({ show: false })
+            this.getPostsWithSearch()
+            this.$message({
+                message: `设置关键字为“${this.list_query.title}”,标签为“${this.list_query.importance}”，正在搜索符合条件的文章···`,
+                center: true
+            })
+        },
+        handleClean: function () {
+            this.list_query.title = ''
+            this.list_query.importance = ''
+            this.setSearch({ show: false })
+            this.$message({
+                message: '已清除搜索选项~',
+                center: true,
+                type: 'success'
+            })
+        }
     },
     watch: {
         // 监控成员的变化，并自动执行下面的函数

@@ -50,10 +50,7 @@ export default {
         $.extend(defaultSetting, settings);
         return this.iWanted({
             url: `${this.BASE_URL}/posts`,
-            params: {
-                page: defaultSetting.page,
-                per_page: defaultSetting.per_page
-            }
+            params: defaultSetting
         });
     },
 

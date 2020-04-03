@@ -1,4 +1,6 @@
-require('./bootstrap');
+/* jshint esversion: 6 */
+
+require("./bootstrap");
 
 import Vue from "vue";
 import App from "./App.vue";
@@ -23,6 +25,17 @@ Vue.use(VueRouter);
 Vue.component("f-header", fHeader);
 Vue.component("f-footer", fFooter);
 
+// Vue.config.keyCodes = {
+//     v: 86,
+//     f1: 112,
+//     // camelCase 不可用
+//     mediaPlayPause: 179,
+//     // 取而代之的是 kebab-case 且用双引号括起来
+//     "media-play-pause": 179,
+//     up: [38, 87],
+//     leader: 220
+// };
+
 Object.defineProperty(Vue.prototype, "_", { value: lodash });
 Object.defineProperty(Vue.prototype, "$HttpAPI", { value: HttpAPI });
 Object.defineProperty(Vue.prototype, "$Helpers", { value: Helpers });
@@ -37,7 +50,7 @@ const router = new VueRouter({
 });
 
 new Vue({
-    el:'#app',
+    el: "#app",
     router,
     i18n,
     store,
