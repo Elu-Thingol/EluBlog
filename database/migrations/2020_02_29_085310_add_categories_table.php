@@ -17,7 +17,6 @@ class AddCategoriesTable extends Migration
             $table->bigInteger('parent_id')->unsigned()->nullable()->default(null)->comment('父分类ID');
             $table->foreign('parent_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('set null');
             $table->bigInteger('order')->default(1);
-            $table->dropColumn('slug');
         });
     }
 
@@ -32,7 +31,6 @@ class AddCategoriesTable extends Migration
             $table->dropForeign('categories_parent_id_foreign');
             $table->dropColumn('parent_id');
             $table->dropColumn('order');
-            $table->string('slug')->unique()->comment('分类标识符(路径)');
         });
     }
 }
