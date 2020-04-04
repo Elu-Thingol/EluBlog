@@ -1,5 +1,7 @@
 <?php
 
+use Orangehill\Iseed\IseedServiceProvider;
+
 return [
 
     /*
@@ -162,6 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        Orangehill\Iseed\IseedServiceProvider::class,
         TCG\Voyager\VoyagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         /*
