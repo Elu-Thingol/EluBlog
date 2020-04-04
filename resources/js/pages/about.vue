@@ -19,8 +19,7 @@
                          :body-style="{ padding: '0px' }">
                     <div class="item"><span style='float:left;width:3.5em'>Email</span>：{{_.isEmpty(blog)?'':blog.contact.email}}</div>
                     <div class="item"><span style='float:left;width:3.5em'>QQ</span>：{{_.isEmpty(blog)?'':blog.contact.qq}}</div>
-                    <div class="item"><span style='float:left;width:3.5em'>GitHub</span>：
-                        <a target="_blank"
+                    <div class="item"><span style='float:left;width:3.5em'>GitHub</span>：<a target="_blank"
                            :href="_.isEmpty(blog)?'#':blog.contact.github">{{_.isEmpty(blog)?'':blog.contact.github}}</a>
                     </div>
                 </el-card>
