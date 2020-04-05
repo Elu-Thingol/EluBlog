@@ -9,8 +9,8 @@ import VueRouter from "vue-router";
 import routes from "./routes";
 import "element-ui/lib/theme-chalk/index.css";
 import "element-ui/lib/theme-chalk/display.css";
-import fHeader from "./components/f-header";
-import fFooter from "./components/f-footer";
+// import fHeader from "./components/f-header";
+// import fFooter from "./components/f-footer";
 import i18n from "./i18n/i18n";
 import store from "./store";
 import HttpAPI from "./api/httpAPI";
@@ -22,8 +22,17 @@ import "../sass/siyuan.scss";
 Vue.config.productionTip = false;
 // Vue.use(ElementUI);
 // Vue.use(VueRouter);
-Vue.component("f-header", fHeader);
-Vue.component("f-footer", fFooter);
+
+function loadView(dir, view) {
+    // 注释不要去掉，对应上面 webpack 编译后的文件名
+    return () =>
+        import(
+            /* webpackChunkName: "[request]" */ "./" + dir + "/" + view + ".vue"
+        );
+}
+
+Vue.component("f-header", loadView("components", "f-header"));
+Vue.component("f-footer", loadView("components", "f-footer"));
 
 // Vue.config.keyCodes = {
 //     v: 86,

@@ -1,4 +1,4 @@
-// import home from "./pages/home";
+import home from "./pages/home";
 // import about from "./pages/about";
 // import article from "./pages/article";
 // import archive from "./pages/archive";
@@ -14,12 +14,12 @@ function loadView(dir, view) {
 const routes = [
     {
         path: "/",
-        component: loadView("pages", "home")
+        component: home
     },
     {
         path: "/home",
         name: "home",
-        component: loadView("pages", "home")
+        component: home
     },
     {
         path: "/about",
@@ -39,7 +39,18 @@ const routes = [
     {
         path: "/article/:slug",
         name: "article",
-        component: loadView("pages", "article")
+        component: loadView("pages", "article"),
+        children: [
+            {
+                path: "markdown",
+                name: "article-markdown",
+                component: loadView("pages", "article-markdown")
+            }
+        ]
+    },
+    {
+        path: "/article/:slug/markdown",
+        redirect: "/article/:slug"
     },
     {
         path: "/apply",

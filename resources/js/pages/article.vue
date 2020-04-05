@@ -3,24 +3,23 @@
         <el-row class="main"
                 type="flex"
                 justify="center"
-                v-loading="_.isEmpty(post)"
+                v-loading="_.isEmpty(post) || isMIVLoading"
                 element-loading-text="拼命加载中"
                 element-loading-spinner="el-icon-loading">
             <el-col :span="16">
-                <artcle-info-header :title="post.title"
-                                    :image="post.image?$Helpers.imgUrl(post.image):'https://random.52ecy.cn/randbg.php'"
-                                    :excerpt="post.excerpt"
-                                    :published_at="$Helpers.dateFormat('YYYY-mm-dd', post.published_at)"
-                                    :view_num="post.view_num?$Helpers.viewDisplay(post.view_num):0">
-                </artcle-info-header>
+                <article-info-header :title="post.title"
+                                     :image="post.image?$Helpers.imgUrl(post.image):'https://random.52ecy.cn/randbg.php'"
+                                     :excerpt="post.excerpt"
+                                     :published_at="$Helpers.dateFormat('YYYY-mm-dd', post.published_at)"
+                                     :view_num="post.view_num?$Helpers.viewDisplay(post.view_num):0">
+                </article-info-header>
 
                 <el-divider></el-divider>
 
                 <div class="post-card is-hover-alpha">
                     <div id="artcle-content">
-                        <markdown-it-vue id="markdown-it-vue"
-                                         class="md-body"
-                                         :content="String(post.body?post.body:'（/▽＼）看不见我')" />
+                        <router-view :content="String(post.body?post.body:'（/▽＼）看不见我')"
+                                     @handleMarkdownItVue="handleMarkdownItVue"></router-view>
 
                         <p>&nbsp;</p>
 
@@ -41,39 +40,43 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import MarkdownItVue from 'markdown-it-vue'
-import 'markdown-it-vue/dist/markdown-it-vue.css'
-import artcleInfoHeader from '../components/artcle-info-header'
+import articleInfoHeader from '../components/article-info-header'
 import hitokoto from '../components/hitokoto'
 export default {
     name: 'articles', // 因为和article标记同名故改为复数形式
     data() {
         return {
             url: document.URL, //  获取当前页地址
-            post: {}
+            post: {},
+            isMIVLoading: true
         }
     },
     computed: {
         ...mapGetters({
-            isVisited: 'visit/isExists'
+            isVisited: 'visit/isExists',
         })
     },
     components: {
-        MarkdownItVue,
-        artcleInfoHeader,
+        articleInfoHeader,
         hitokoto
     },
-    created() {
-        this.getDetail()
+    beforeRouteEnter: (to, from, next) => {
+        next(vm => {
+            vm.$router.push(`${ vm.$route.path }/markdown`)
+        })
     },
-    mounted() {
-        document
-            .getElementById('markdown-it-vue')
-            .addEventListener('copy', this.setClipboardText, false)
+    created() {
+        var vm = this
+        window.articleBack = false
+        window.addEventListener('popstate', function () {         // 监听回退按钮
+            window.articleBack = false
+            vm.$router.go(-1)    // 在回退时进行某种操作。
+        }, false)
+        this.getDetail()
     },
     methods: {
         ...mapActions({
-            pushSlug: 'visit/PUSH_SLUG'
+            pushSlug: 'visit/PUSH_SLUG',
         }),
         getDetail: function () {
             // 发起请求
@@ -92,39 +95,8 @@ export default {
                 }
             })
         },
-        /*拷贝内容添加声明*/
-        setClipboardText: function (event) {
-            event.preventDefault()
-            var url = document.URL
-            var node = document.createElement('div')
-            node.appendChild(
-                window
-                    .getSelection()
-                    .getRangeAt(0)
-                    .cloneContents()
-            )
-            var htmlData =
-                '<div>' +
-                node.innerHTML +
-                `<br/><br/>${ this.$t('article.author') }：洛九<br/>` +
-                `${ this.$t('article.originalLink') }：${ this.url }<br/>` +
-                `${ this.$t(
-                    'article.copyright'
-                ) }：本博客所有文章除特别声明外,转载请注明出处!<br/><br/>` +
-                '</div>'
-            var textData =
-                window.getSelection().getRangeAt(0) +
-                `\n\n${ this.$t('article.author') }：洛九\n` +
-                `${ this.$t('article.originalLink') }：${ this.url }\n` +
-                `${ this.$t(
-                    'article.copyright'
-                ) }：本博客所有文章除特别声明外,转载请注明出处!\n\n`
-            if (event.clipboardData) {
-                event.clipboardData.setData('text/html', htmlData)
-                event.clipboardData.setData('text/plain', textData)
-            } else if (window.clipboardData) {
-                return window.clipboardData.setData('text', textData)
-            }
+        handleMarkdownItVue: function () {
+            this.isMIVLoading = false
         }
     }
 }

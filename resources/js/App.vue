@@ -8,7 +8,11 @@
             <!-- <el-col :xs="20" :md="20" :style="{'minHeight':minHeight+'px'}" > -->
             <el-col :xs="20"
                     :md="20">
-                <router-view></router-view>
+                <transition :name="transitionName">
+                    <keep-alive include="list, detail">
+                        <router-view></router-view>
+                    </keep-alive>
+                </transition>
             </el-col>
         </el-row>
         <f-footer></f-footer>
@@ -24,6 +28,7 @@ export default {
             // 吸顶导航 现用css样式实现
             /*             minHeight: 0,
                         navBarFixed: false, */
+            transitionName: "" // 切页动画
         }
     },
     components: {
@@ -54,6 +59,14 @@ export default {
                 window.onresize = function () {
                     that.minHeight = document.documentElement.clientHeight
                 } */
+    },
+    watch: {
+        '$route': function () {
+            // 切页动画
+            if (window.$isBack != null) {
+                this.transitionName = window.$isBack ? 'slide-right' : 'slide-left'
+            }
+        }
     }
 }
 </script>
@@ -74,5 +87,25 @@ export default {
     top: 0;
     z-index: 999;
     width: 100%;
+}
+
+/* 切页动画 */
+.router-view {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.slide-left-enter,
+.slide-right-leave-active {
+    -webkit-transform: translate(100%, 0);
+    transform: translate(100%, 0);
+}
+
+.slide-left-leave-active,
+.slide-right-enter {
+    -webkit-transform: translate(-100%, 0);
+    transform: translate(-100% 0);
 }
 </style>

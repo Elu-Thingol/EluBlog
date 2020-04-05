@@ -152,12 +152,12 @@ export default {
         console.log(this.blog)
     },
     mounted() {
-        var _this = this
+        var vm = this
         document.onkeyup = function (e) {
             let key = window.event.keyCode
             // 释放 “\” 键盘显示搜索框
             if (key == 220) {
-                _this.setSearch({ show: true })
+                vm.setSearch({ show: true })
             }
         }
     },
