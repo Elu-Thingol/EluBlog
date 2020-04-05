@@ -16,10 +16,6 @@ const mutations = {
     },
     [types.HIDE_SEARCH_DIALOG_VISIBLE]: function(state) {
         state.searchDialogVisible = false;
-    },
-
-    [types.SET_ARTICLE_BACK]: function(state, { status }) {
-        state.articleBack = status;
     }
 };
 

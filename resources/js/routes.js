@@ -49,10 +49,6 @@ const routes = [
         ]
     },
     {
-        path: "/article/:slug/markdown",
-        redirect: "/article/:slug"
-    },
-    {
         path: "/apply",
         name: "apply",
         component: loadView("pages", "apply")

@@ -21,10 +21,8 @@ export default {
         MarkdownItVue
     },
     beforeRouteLeave: (to, from, next) => {
-        if (from.path == `${ to.path }/markdown`) {
-            // this.$store.dispatch('SET_ARTICLE_BACK', { status: true })
+        if (from.path === `${ to.path }/markdown`) {
             window.articleBack = true
-
         }
         next()
     },

@@ -62,15 +62,19 @@ export default {
     },
     beforeRouteEnter: (to, from, next) => {
         next(vm => {
-            vm.$router.push(`${ vm.$route.path }/markdown`)
+            if (vm.$route.name === 'article') {
+                vm.$router.push(`${ vm.$route.path }/markdown`)
+            }
         })
     },
     created() {
         var vm = this
         window.articleBack = false
         window.addEventListener('popstate', function () {         // 监听回退按钮
-            window.articleBack = false
-            vm.$router.go(-1)    // 在回退时进行某种操作。
+            if (window.articleBack) {
+                window.articleBack = false
+                vm.$router.go(-1)    // 在回退时进行某种操作。
+            }
         }, false)
         this.getDetail()
     },

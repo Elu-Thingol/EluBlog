@@ -6,9 +6,7 @@ const getters = {
         return state.username !== "";
     },
     getTags: state => state.tags,
-    getSearchDialogVisible: state => !!state.searchDialogVisible,
-
-    getArticleBack: state => !!state.articleBack
+    getSearchDialogVisible: state => !!state.searchDialogVisible
 };
 
 export default getters;
