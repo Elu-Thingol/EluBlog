@@ -49,25 +49,17 @@ mix.webpackConfig({
         jquery: "jQuery",
         axios: "axios"
     }
-});
+})
 
-// mix.autoload({
-//     jquery: ["$", "window.jQuery", "jQuery"] // more than one
-// });
+    .js("resources/js/app.js", "public/js")
+    .babel(
+        ["resources/js/app-background-fish.js", "resources/js/app-szgotop.js"],
+        "public/js/app-other.js"
+    )
 
-mix.js("resources/js/app.js", "public/js").sass(
-    "resources/sass/app.scss",
-    "public/css"
-);
+    .sass("resources/sass/app.scss", "public/css")
 
-mix.scripts(
-    [
-        "resources/js/app-baidu-share.js",
-        "resources/js/app-mouse-heart.js",
-        "resources/js/app-background-fish.js",
-        "resources/js/app-szgotop.js"
-    ],
-    "public/js/app-other.js"
-);
+    .copy("resources/js/app-mouse-heart.js", "public/js/app-heart.js")
+    .copy("resources/images/szgotop.gif", "public/images/szgotop.gif")
 
-mix.version();
+    .version();

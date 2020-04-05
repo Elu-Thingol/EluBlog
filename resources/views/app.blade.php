@@ -37,6 +37,7 @@
     <script src="https://cdn.bootcss.com/element-ui/2.13.0/index.js"></script>
     <script src="https://cdn.bootcss.com/element-ui/2.13.0/locale/zh-CN.min.js"></script>
     <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
+    <script type="text/javascript" src="{{mix('js/app-heart.js')}}"></script>
     <script type="text/javascript" src="{{mix('js/app-other.js')}}"></script>
 </body>
 
