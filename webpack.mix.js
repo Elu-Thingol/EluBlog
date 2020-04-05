@@ -1,4 +1,8 @@
+/* jshint esversion: 6 */
+
 const mix = require("laravel-mix");
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+//     .BundleAnalyzerPlugin;
 
 /*
  |--------------------------------------------------------------------------
@@ -10,6 +14,32 @@ const mix = require("laravel-mix");
  | file for the application as well as bundling up all the JS files.
  |
  */
+
+mix.webpackConfig({
+    output: {
+        chunkFilename: "js/[name].js"
+    },
+    module: {
+        rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules(?!\/foundation-sites)|bower_components/,
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: Config.babel()
+                    }
+                ]
+            }
+        ]
+    },
+    resolve: {
+        alias: {
+            "@": path.resolve("resources/assets/sass")
+        }
+    },
+    // plugins: [new BundleAnalyzerPlugin()]
+});
 
 // mix.autoload({
 //     jquery: ["$", "window.jQuery", "jQuery"] // more than one

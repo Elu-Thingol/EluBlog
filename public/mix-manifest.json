@@ -1,5 +1,16 @@
 {
-    "/js/app.js": "/js/app.js?id=33af375476bc2a4d4098",
+    "/js/app.js": "/js/app.js?id=646345414455f98d16f5",
     "/css/app.css": "/css/app.css?id=27f685a2f855e16c4d51",
+    "/js/components-artcle-info-header-vue.js": "/js/components-artcle-info-header-vue.js?id=40f2fb48212ff330f271",
+    "/js/components-friend-vue.js": "/js/components-friend-vue.js?id=152783655ae81732a239",
+    "/js/components-hitokoto-vue.js": "/js/components-hitokoto-vue.js?id=5d822d5ed20a1be7ff85",
+    "/js/components-search-form-vue.js": "/js/components-search-form-vue.js?id=10eea5e58b756ca7d300",
+    "/js/components-tag-vue.js": "/js/components-tag-vue.js?id=0d26de151b639ed1df1b",
+    "/js/pages-about-vue.js": "/js/pages-about-vue.js?id=de11a872bb232e68a7b3",
+    "/js/pages-apply-vue.js": "/js/pages-apply-vue.js?id=5597873263f8fa785dac",
+    "/js/pages-archive-vue.js": "/js/pages-archive-vue.js?id=4478c14c2869531eec41",
+    "/js/pages-article-vue.js": "/js/pages-article-vue.js?id=afac0481486e5f74d059",
+    "/js/pages-home-vue.js": "/js/pages-home-vue.js?id=20d9a97658c180bf1ee3",
+    "/js/vendors~pages-article-vue.js": "/js/vendors~pages-article-vue.js?id=fa56eb563b37be9e9dd5",
     "/js/app-other.js": "/js/app-other.js?id=7035b3fccf1420d24401"
 }
