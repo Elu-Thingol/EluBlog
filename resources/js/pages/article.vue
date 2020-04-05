@@ -54,9 +54,10 @@ export default {
     computed: {
         ...mapGetters({
             isVisited: 'visit/isExists',
+            blog: 'info/getBlog',
         }),
-        url: function(){
-            return this.$route.fullPath
+        url: function () {
+            return `${ this.blog.address }/#${ this.$route.fullPath }`
         }
     },
     components: {
