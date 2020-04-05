@@ -19,6 +19,7 @@
                 <div class="post-card is-hover-alpha">
                     <div id="artcle-content">
                         <router-view :content="String(post.body?post.body:'（/▽＼）看不见我')"
+                                     :url="url"
                                      @handleMarkdownItVue="handleMarkdownItVue"></router-view>
 
                         <p>&nbsp;</p>
@@ -46,7 +47,6 @@ export default {
     name: 'articles', // 因为和article标记同名故改为复数形式
     data() {
         return {
-            url: document.URL, //  获取当前页地址
             post: {},
             isMIVLoading: true
         }
@@ -54,7 +54,8 @@ export default {
     computed: {
         ...mapGetters({
             isVisited: 'visit/isExists',
-        })
+        }),
+        url: () => (this.$route.fullPath)
     },
     components: {
         articleInfoHeader,

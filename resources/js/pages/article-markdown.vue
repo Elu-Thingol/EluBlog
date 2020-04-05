@@ -15,7 +15,11 @@ export default {
         content: {
             type: String,
             default: '（/▽＼）看不见我'
-        }
+        },
+        url: {
+            type: String,
+            default: '--- LINK ---'
+        },
     },
     components: {
         MarkdownItVue
