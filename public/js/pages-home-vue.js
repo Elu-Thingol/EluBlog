@@ -184,7 +184,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "vuex");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuex__WEBPACK_IMPORTED_MODULE_0__);
 function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
 
@@ -312,7 +313,8 @@ function _defineProperty(obj, key, value) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "vuex");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuex__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_friend__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/friend */ "./resources/js/components/friend.vue");
 /* harmony import */ var _components_tag__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/tag */ "./resources/js/components/tag.vue");
 /* harmony import */ var _components_search_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/search-form */ "./resources/js/components/search-form.vue");

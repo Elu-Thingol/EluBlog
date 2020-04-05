@@ -20,8 +20,8 @@ import "../sass/style.scss";
 import "../sass/siyuan.scss";
 
 Vue.config.productionTip = false;
-Vue.use(ElementUI);
-Vue.use(VueRouter);
+// Vue.use(ElementUI);
+// Vue.use(VueRouter);
 Vue.component("f-header", fHeader);
 Vue.component("f-footer", fFooter);
 

@@ -39,6 +39,16 @@ mix.webpackConfig({
         }
     },
     // plugins: [new BundleAnalyzerPlugin()]
+    externals: {
+        vue: "Vue",
+        vuex: "Vuex",
+        "vue-i18n": "VueI18n",
+        "vue-router": "VueRouter",
+        "element-ui": "Element",
+        lodash: "_",
+        jquery: "jQuery",
+        axios: "axios"
+    }
 });
 
 // mix.autoload({

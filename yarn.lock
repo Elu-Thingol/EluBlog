@@ -1319,6 +1319,11 @@ babel-plugin-dynamic-import-node@^2.3.0:
   dependencies:
     object.assign "^4.1.0"
 
+babel-plugin-dynamic-import-webpack@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npm.taobao.org/babel-plugin-dynamic-import-webpack/download/babel-plugin-dynamic-import-webpack-1.1.0.tgz#955306608cdae6191cd1d3f50cf93826ff69f4e1"
+  integrity sha1-lVMGYIza5hkc0dP1DPk4Jv9p9OE=
+
 babel-plugin-syntax-dynamic-import@^6.18.0:
   version "6.18.0"
   resolved "https://registry.npm.taobao.org/babel-plugin-syntax-dynamic-import/download/babel-plugin-syntax-dynamic-import-6.18.0.tgz#8d6a26229c83745a9982a441051572caa179b1da"
@@ -8257,11 +8262,6 @@ vue-i18n@^8.15.3:
   version "8.15.3"
   resolved "https://registry.npm.taobao.org/vue-i18n/download/vue-i18n-8.15.3.tgz#9f947802d9b734fcb92e2ce724da654f2f9fc0f4"
   integrity sha1-n5R4Atm3NPy5LiznJNplTy+fwPQ=
-
-vue-light-timeline@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npm.taobao.org/vue-light-timeline/download/vue-light-timeline-1.0.3.tgz#0270adc8075402d4b34252774869dff226882ea3"
-  integrity sha1-AnCtyAdUAtSzQlJ3SGnf8iaILqM=
 
 vue-loader@^15.4.2:
   version "15.8.3"

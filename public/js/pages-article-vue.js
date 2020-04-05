@@ -172,7 +172,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "vuex");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuex__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var markdown_it_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! markdown-it-vue */ "./node_modules/markdown-it-vue/dist/markdown-it-vue.umd.min.js");
 /* harmony import */ var markdown_it_vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(markdown_it_vue__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var markdown_it_vue_dist_markdown_it_vue_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! markdown-it-vue/dist/markdown-it-vue.css */ "./node_modules/markdown-it-vue/dist/markdown-it-vue.css");
