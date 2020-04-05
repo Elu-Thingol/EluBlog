@@ -55,7 +55,9 @@ export default {
         ...mapGetters({
             isVisited: 'visit/isExists',
         }),
-        url: () => (this.$route.fullPath)
+        url: function(){
+            return this.$route.fullPath
+        }
     },
     components: {
         articleInfoHeader,
