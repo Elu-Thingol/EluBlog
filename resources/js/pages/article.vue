@@ -18,7 +18,7 @@
 
                 <div class="post-card is-hover-alpha">
                     <div id="artcle-content">
-                        <div v-loading="!_.isEmpty(post) && isMIVLoading"></div>
+                        <div v-if="isMIVLoading" v-loading="!_.isEmpty(post) && isMIVLoading"></div>
                         <article-markdown :content="String(post.body?post.body:'（/▽＼）看不见我')"
                                           :url="url"
                                           @handleMarkdownItVue="handleMarkdownItVue"></article-markdown>
