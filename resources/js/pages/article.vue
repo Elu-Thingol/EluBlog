@@ -3,7 +3,7 @@
         <el-row class="main"
                 type="flex"
                 justify="center"
-                v-loading="_.isEmpty(post) || isMIVLoading"
+                v-loading="_.isEmpty(post)"
                 element-loading-text="拼命加载中"
                 element-loading-spinner="el-icon-loading">
             <el-col :span="16">
@@ -18,9 +18,10 @@
 
                 <div class="post-card is-hover-alpha">
                     <div id="artcle-content">
-                        <router-view :content="String(post.body?post.body:'（/▽＼）看不见我')"
-                                     :url="url"
-                                     @handleMarkdownItVue="handleMarkdownItVue"></router-view>
+                        <div v-loading="!_.isEmpty(post) && isMIVLoading"></div>
+                        <article-markdown :content="String(post.body?post.body:'（/▽＼）看不见我')"
+                                          :url="url"
+                                          @handleMarkdownItVue="handleMarkdownItVue"></article-markdown>
 
                         <p>&nbsp;</p>
 
@@ -42,6 +43,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import articleInfoHeader from '../components/article-info-header'
+const articleMarkdown = () => import('../components/article-markdown')
 import hitokoto from '../components/hitokoto'
 export default {
     name: 'articles', // 因为和article标记同名故改为复数形式
@@ -57,29 +59,15 @@ export default {
             blog: 'info/getBlog',
         }),
         url: function () {
-            return `${ this.blog.address }/#${ this.$route.fullPath }`
+            return `${ this.blog.address }/#${ this.$Helpers.articleUrl(this.post.slug) }`
         }
     },
     components: {
         articleInfoHeader,
+        articleMarkdown,
         hitokoto
     },
-    beforeRouteEnter: (to, from, next) => {
-        next(vm => {
-            if (vm.$route.name === 'article') {
-                vm.$router.push(`${ vm.$route.path }/markdown`)
-            }
-        })
-    },
     created() {
-        var vm = this
-        window.articleBack = false
-        window.addEventListener('popstate', function () {         // 监听回退按钮
-            if (window.articleBack) {
-                window.articleBack = false
-                vm.$router.go(-1)    // 在回退时进行某种操作。
-            }
-        }, false)
         this.getDetail()
     },
     methods: {

@@ -32,6 +32,9 @@ export default {
             .replace(/\\/g, "/")
             .replace(/^\//, "")}`;
     },
+    articleUrl: function(slug) {
+        return `/article/${String(slug)}`;
+    },
     urlTail: function(path) {
         return String(path)
             .replace(/$/g, "/")

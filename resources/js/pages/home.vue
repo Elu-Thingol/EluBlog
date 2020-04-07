@@ -23,7 +23,7 @@
                         class="art-item">
                     <el-card shadow="hover">
                         <h5>
-                            <router-link :to="'/article/'+post.slug"
+                            <router-link :to="$Helpers.articleUrl(post.slug)"
                                          tag="span"
                                          class="art-title">{{post.title}}</router-link>
                         </h5>
@@ -52,7 +52,7 @@
                             <div class="side-abstract">
                                 <div class="art-abstract">{{post.excerpt}}</div>
                                 <div class="art-more">
-                                    <router-link :to="'/article/'+post.slug"
+                                    <router-link :to="$Helpers.articleUrl(post.slug)"
                                                  tag="span">
                                         <el-button plain>{{$t('home.readMore')}}</el-button>
                                     </router-link>

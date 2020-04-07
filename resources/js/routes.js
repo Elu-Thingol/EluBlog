@@ -39,14 +39,7 @@ const routes = [
     {
         path: "/article/:slug",
         name: "article",
-        component: loadView("pages", "article"),
-        children: [
-            {
-                path: "markdown",
-                name: "article-markdown",
-                component: loadView("pages", "article-markdown")
-            }
-        ]
+        component: loadView("pages", "article")
     },
     {
         path: "/apply",
@@ -58,4 +51,5 @@ const routes = [
         redirect: "/"
     }
 ];
+
 export default routes;

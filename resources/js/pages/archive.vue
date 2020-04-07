@@ -18,7 +18,7 @@
                         <div class="line-item"
                              @mouseover="hoverLine(activity)"
                              @mouseout="leaveLine(activity)">
-                            <router-link :to="'/article/'+activity.slug"
+                            <router-link :to="$Helpers.articleUrl(+activity.slug)"
                                          tag="span">
                                 {{activity.title}}
                             </router-link>
@@ -40,7 +40,7 @@
                         <div class="line-item"
                              @mouseover="hoverLine(activity)"
                              @mouseout="leaveLine(activity)">
-                            <router-link :to="'/article/'+activity.slug"
+                            <router-link :to="$Helpers.articleUrl(+activity.slug)"
                                          tag="span">
                                 {{activity.title}}
                             </router-link>

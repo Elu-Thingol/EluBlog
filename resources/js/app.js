@@ -19,7 +19,9 @@ import Helpers from "./helpers";
 import "../sass/style.scss";
 import "../sass/siyuan.scss";
 
-Vue.config.productionTip = false;
+Vue.config.devtools = true;
+Vue.config.performance = true;
+Vue.config.productionTip = true;
 // Vue.use(ElementUI);
 // Vue.use(VueRouter);
 
