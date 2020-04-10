@@ -22,29 +22,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //         //
 //     });
 // });
-// Route::group(['prefix' => 'v1'], function () {
-// });
-Route::get('/v1', 'API\v1\BaseController@index')->name('api.v1.index');
-Route::get('/v1/posts', 'API\v1\PostController@index')->name('posts.index');
-Route::get('/v1/posts/timeline', 'API\v1\PostController@getTimeline')->name('posts.timeline');
-Route::get('/v1/posts/details/{slug}', 'API\v1\PostController@getBySlug')->where('slug', '[0-9]+')->name('posts.get');
-Route::get('/v1/posts/slug', 'API\v1\PostController@getSlug')->name('posts.slug');
-Route::get('/v1/tags', 'API\v1\TagController@index')->name('tags.index');
-Route::get('/v1/tags/{tag}', 'API\v1\TagController@getByTag')->name('tags.get');
-Route::get('/v1/comments', function (Request $request) {
-    return setting('site.title');
-})->name('comments');
-Route::get('/v1/users', function (Request $request) {
-    return response()->apiRes(
-        [
-            "id" => $request->get('id'),
-            "page" => $request->get('page'),
-            "per_page" => $request->get('per_page'),
-            "featured" => $request->get('featured'),
-            "sortby" => $request->get('sortby'),
-            "order" => $request->get('order'),
-        ],
-        "This is users."
-    );
-})->name('users');
-Route::get('/v1/infos', 'API\v1\InfoController@index')->name('infos.index');
+
+Route::group(['prefix' => 'v1'], function () {
+    Route::get('', 'API\v1\BaseController@index')->name('api.v1.index');
+    Route::get('/posts', 'API\v1\PostController@index')->name('posts.index');
+    Route::get('/posts/timeline', 'API\v1\PostController@timelineIndex')->name('posts.timeline.index');
+    Route::get('/posts/{slug}', 'API\v1\PostController@show')->where('slug', '[0-9]+')->name('posts.show');
+    Route::get('/posts/slug/{title}', 'API\v1\PostController@slugShow')->name('posts.slug.show');
+    Route::get('/tags', 'API\v1\TagController@index')->name('tags.index');
+    Route::get('/tags/{tag}', 'API\v1\TagController@show')->name('tags.show');
+    Route::post('/feedback', 'API\v1\FeedbackController@store')->name('feedback.store');
+    Route::get('/friends', 'API\v1\FriendController@index')->name('friends.index');
+    Route::post('/friends', 'API\v1\FriendController@store')->name('friends.store');
+    Route::get('/infos', 'API\v1\InfoController@index')->name('infos.index');
+});

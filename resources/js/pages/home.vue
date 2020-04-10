@@ -173,7 +173,7 @@ export default {
             let list_r = this.$HttpAPI.getPosts({
                 page: this.currentPage,
                 per_page: this.pagesize
-            })
+            }, this)
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {
                     this.posts = res.data
@@ -188,7 +188,7 @@ export default {
                 per_page: this.pagesize,
                 key_words: this.list_query.title,
                 tag: this.list_query.importance
-            })
+            }, this)
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {
                     this.posts = res.data
@@ -209,7 +209,7 @@ export default {
         handleFilter: function () {
             this.setSearch({ show: false })
             this.$message({
-                message: `设置关键字为“${this.list_query.title}”,标签为“${this.list_query.importance}”，正在搜索符合条件的文章···`,
+                message: `设置关键字为“${ this.list_query.title }”,标签为“${ this.list_query.importance }”，正在搜索符合条件的文章···`,
                 center: true
             })
             this.getPostsWithSearch()
@@ -223,7 +223,7 @@ export default {
                 center: true,
                 type: 'success'
             })
-            this.getPosts();
+            this.getPosts()
         }
     },
     watch: {

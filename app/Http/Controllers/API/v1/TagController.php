@@ -15,7 +15,7 @@ class TagController extends BaseController
         return $this->success($data);
     }
 
-    public function getByTag(Request $request, $tag)
+    public function show(Request $request, $tag)
     {
         $data = Tag::where('name', $tag)
             ->with('postList')

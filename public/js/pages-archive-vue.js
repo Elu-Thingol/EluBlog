@@ -76,7 +76,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     if (this.$route.name === 'tag') {
-      this.getByTag(this.$route.params.name);
+      this.getByTag();
     } else {
       this.getTimeline();
     }
@@ -86,7 +86,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this; // 发起请求
 
 
-      var list_r = this.$HttpAPI.getTimeline();
+      var list_r = this.$HttpAPI.getTimeline(this);
       list_r.then(function (res) {
         if (!_this._.isEmpty(res)) {
           _this.activities = res.data;
@@ -106,11 +106,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    getByTag: function getByTag(name) {
+    getByTag: function getByTag() {
       var _this2 = this; // 发起请求
 
 
-      var list_r = this.$HttpAPI.getByTag(name);
+      var list_r = this.$HttpAPI.getByTag({
+        name: this.$route.params.name
+      }, this);
       list_r.then(function (res) {
         if (!_this2._.isEmpty(res)) {
           _this2.activities = res.data;

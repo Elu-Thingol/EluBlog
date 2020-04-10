@@ -38,7 +38,7 @@ export default {
         }),
         getTags: function () {
             // 发起请求
-            let list_r = this.$HttpAPI.getTags()
+            let list_r = this.$HttpAPI.getTags(this)
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {
                     this.tags = res.data

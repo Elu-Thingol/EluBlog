@@ -64,7 +64,7 @@ export default {
     },
     created() {
         if (this.$route.name === 'tag') {
-            this.getByTag(this.$route.params.name)
+            this.getByTag()
         } else {
             this.getTimeline()
         }
@@ -72,7 +72,7 @@ export default {
     methods: {
         getTimeline: function () {
             // 发起请求
-            let list_r = this.$HttpAPI.getTimeline()
+            let list_r = this.$HttpAPI.getTimeline(this)
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {
                     this.activities = res.data
@@ -86,9 +86,9 @@ export default {
                 }
             })
         },
-        getByTag: function (name) {
+        getByTag: function () {
             // 发起请求
-            let list_r = this.$HttpAPI.getByTag(name)
+            let list_r = this.$HttpAPI.getByTag({ name: this.$route.params.name }, this)
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {
                     this.activities = res.data

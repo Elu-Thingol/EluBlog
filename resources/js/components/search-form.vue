@@ -34,7 +34,11 @@
                            @click="handleFilter"
                            v-if="item.type==='SearchBtn'">搜索</el-button>
                 <!-- 清除按钮 -->
-                <el-popconfirm title="确定清除搜索吗？"
+                <el-popconfirm title="要清除搜索吗？"
+                               confirmButtonText='好的'
+                               cancelButtonText='不用了'
+                               icon="el-icon-info"
+                               iconColor="red"
                                @onConfirm="handleClean">
                     <el-button slot="reference"
                                class="filter-item"

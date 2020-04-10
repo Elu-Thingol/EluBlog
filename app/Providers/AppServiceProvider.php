@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use TCG\Voyager\Voyager;
 use Larapack\Hooks\Hooks;
 use Illuminate\Support\ServiceProvider;
+use TCG\Voyager\Facades\Voyager;
 
 class AppServiceProvider extends ServiceProvider
 {

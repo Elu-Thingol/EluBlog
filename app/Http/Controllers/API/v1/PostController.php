@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Model\Post;
 use Illuminate\Http\Request;
-use Symfony\Component\Console\Input\Input;
 
 class PostController extends BaseController
 {
@@ -43,7 +42,7 @@ class PostController extends BaseController
         return $this->success($data);
     }
 
-    public function getTimeline(Request $request)
+    public function timelineIndex(Request $request)
     {
         $data = Post::selectRaw("id, title, slug, published_at, YEAR(published_at) as year")
             ->published()
@@ -54,9 +53,9 @@ class PostController extends BaseController
         return $this->success($data);
     }
 
-    public function getBySlug(Request $request, $slug)
+    public function show(Request $request, $slug)
     {
-        $view_first = $request->get('view_first', '0');
+        $view_first = $request->input('view_first', '0');
 
         $data = Post::where('slug', $slug)
             ->with('tagList')
@@ -84,9 +83,8 @@ class PostController extends BaseController
         return $this->success($data);
     }
 
-    public function getSlug(Request $request)
+    public function slugShow(Request $request, $title)
     {
-        $title = $request->input('title', 'title');
         $slug = strval(uright(crc32($title), 0));
 
         // 去重验证

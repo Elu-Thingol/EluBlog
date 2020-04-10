@@ -18,7 +18,8 @@
 
                 <div class="post-card is-hover-alpha">
                     <div id="artcle-content">
-                        <div v-if="isMIVLoading" v-loading="!_.isEmpty(post) && isMIVLoading"></div>
+                        <div v-if="isMIVLoading"
+                             v-loading="!_.isEmpty(post) && isMIVLoading"></div>
                         <article-markdown :content="String(post.body?post.body:'（/▽＼）看不见我')"
                                           :url="url"
                                           @handleMarkdownItVue="handleMarkdownItVue"></article-markdown>
@@ -75,14 +76,18 @@ export default {
             pushSlug: 'visit/PUSH_SLUG',
         }),
         getDetail: function () {
+            const slug = this.$route.params.slug
+
             // 发起请求
-            let list_r = this.$HttpAPI.getDetail(
-                this.$route.params.slug,
-                !this.isVisited(this.$route.params.slug)
-            )
+            let list_r = this.$HttpAPI.getDetail({
+                slug: slug,
+                view_first: !this.isVisited(slug)
+            }, this)
+
+            // 设置已读标记
             this.pushSlug({
-                slug: this.$route.params.slug
-            }) // 设置已读标记
+                slug: slug
+            })
 
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {

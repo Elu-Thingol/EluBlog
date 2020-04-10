@@ -221,16 +221,24 @@ $add = is_null($dataTypeContent->getKey());
                         </div>
                         <div class="form-group">
                             <label for="status">{{ __('voyager::post.status') }}</label>
-                            <select class="form-control" name="status">
-                                <option value="PUBLISHED" @if(isset($dataTypeContent->status) &&
-                                    $dataTypeContent->status == 'PUBLISHED')
-                                    selected="selected"@endif>{{ __('voyager::post.status_published') }}</option>
-                                <option value="DRAFT" @if(isset($dataTypeContent->status) && $dataTypeContent->status ==
-                                    'DRAFT') selected="selected"@endif>{{ __('voyager::post.status_draft') }}</option>
-                                <option value="PENDING" @if(isset($dataTypeContent->status) && $dataTypeContent->status
-                                    == 'PENDING') selected="selected"@endif>{{ __('voyager::post.status_pending') }}
-                                </option>
-                            </select>
+                            <div style="display: flex">
+                                <select id="status" class="form-control" name="status">
+                                    <option value="PUBLISHED" @if(isset($dataTypeContent->status) &&
+                                        $dataTypeContent->status == 'PUBLISHED')
+                                        selected="selected"@endif>{{ __('voyager::post.status_published') }}</option>
+                                    <option value="DRAFT" @if(isset($dataTypeContent->status) &&
+                                        $dataTypeContent->status ==
+                                        'DRAFT') selected="selected"@endif>{{ __('voyager::post.status_draft') }}
+                                    </option>
+                                    <option value="PENDING" @if(isset($dataTypeContent->status) &&
+                                        $dataTypeContent->status
+                                        == 'PENDING') selected="selected"@endif>{{ __('voyager::post.status_pending') }}
+                                    </option>
+                                </select>
+                                <input id="republish" type="checkbox" class="toggleswitch"
+                                    data-on="更新发布" data-off="仅内容">
+                                <input type="hidden" name="republish" value="false">
+                            </div>
                         </div>
                         {{-- <div class="form-group">
                             <label for="category_id">{{ __('voyager::post.category') }}</label>
@@ -262,11 +270,18 @@ $add = is_null($dataTypeContent->getKey());
                     </div>
                 </div>
                 <div class="panel-body">
-                    @if(isset($dataTypeContent->image))
-                    <img src="{{ filter_var($dataTypeContent->image, FILTER_VALIDATE_URL) ? $dataTypeContent->image : Voyager::image( $dataTypeContent->image ) }}"
-                        style="width:100%" />
-                    @endif
-                    <input type="file" name="image">
+                    <div class="form-group">
+                        @if(isset($dataTypeContent->image))
+                        <div data-field-name="image">
+                            <a href="#" class="voyager-x remove-single-image"
+                                style="font-size: 1.8em;position: absolute;text-shadow: 0px 0px 0px #fff,0px 0px 1px #fff,-1px -2px 2px #ffffff8f,2px 1px 1.2px #000000b3;"></a>
+                            <img src="{{ filter_var($dataTypeContent->image, FILTER_VALIDATE_URL) ? $dataTypeContent->image : Voyager::image( $dataTypeContent->image ) }}"
+                                data-file-name="{{ $dataTypeContent->image }}"
+                                data-id="{{ $dataTypeContent->getKey() }}" style="width:100%" />
+                        </div>
+                        @endif
+                        <input type="file" name="image">
+                    </div>
                 </div>
             </div>
 
@@ -362,7 +377,7 @@ $add = is_null($dataTypeContent->getKey());
 
     function deleteHandler(tag, isMulti) {
         return function() {
-        $file = $(this).siblings(tag);
+        $file = $(this).siblings(tag)
 
         params = {
             slug:   '{{ $dataType->slug }}',
@@ -422,6 +437,42 @@ $add = is_null($dataTypeContent->getKey());
             $('#confirm_delete_modal').modal('hide');
         });
         $('[data-toggle="tooltip"]').tooltip();
+
+
+        $("#republish").bootstrapToggle("off")
+        $("#republish").parent().css({"margin-left": "10px", "flex-shrink": "0"})
+
+        const republish_width = {
+            width:$("#republish").parent().css("width"),
+            minWidth:$("#republish").parent().css("min-width"),
+        }
+
+
+        if ("PUBLISHED" !== $("#status").val()){
+            $("#republish").parent().css({
+                display: "none",
+                width: "0",
+                "min-width": 0});
+            $("#republish").parent().hide(0);
+        }
+        
+        $('#status').change(function(){
+            if ("PUBLISHED" === $(this).val()){
+                $("#republish").parent().show(400, "linear", ()=>{
+                    $("#republish").parent().css("width", republish_width.width);
+                    setTimeout(() => $("#republish").parent().css("min-width", republish_width.minWidth), 100);
+                })
+            }
+            else{
+                $("#republish").parent().css("width", 0)
+                $("#republish").parent().css("min-width", 0);
+                $("#republish").parent().hide("slow");
+            }
+        });
+
+        $("#republish").change(function() {
+                $("[name='republish']").val($(this).prop("checked"))
+        });
     });
 
     /**
@@ -433,9 +484,8 @@ $add = is_null($dataTypeContent->getKey());
         if (!$.trim($(this).val())){
             $.ajax({
                 type: "GET",
-                url: "/api/v1/posts/slug",
+                url: `/api/v1/posts/slug/${title}`,
                 cache: false,
-                data: "title=" + title, //传参
                 dataType: "json", //返回值类型
                 async: false, //设置同步
                 context: this,

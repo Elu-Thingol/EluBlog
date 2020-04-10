@@ -1,17 +1,20 @@
 {
-    "/js/app.js": "/js/app.js?id=a1c0c5eb6f7c8722bac6",
+    "/js/app.js": "/js/app.js?id=35ec1fdac86742ef1313",
     "/css/app.css": "/css/app.css?id=27f685a2f855e16c4d51",
     "/js/components-article-info-header-vue.js": "/js/components-article-info-header-vue.js?id=bce4390bfd9f19010498",
     "/js/components-article-markdown-vue.js": "/js/components-article-markdown-vue.js?id=003e782e3c323be6d76e",
     "/js/components-f-footer-vue.js": "/js/components-f-footer-vue.js?id=b960cd95412d6943ec6c",
     "/js/components-f-header-vue.js": "/js/components-f-header-vue.js?id=c2d7d2917444ccb1c9b5",
     "/js/components-hitokoto-vue.js": "/js/components-hitokoto-vue.js?id=5d822d5ed20a1be7ff85",
-    "/js/pages-about-vue.js": "/js/pages-about-vue.js?id=d663786b0fbb7857a312",
-    "/js/pages-apply-vue.js": "/js/pages-apply-vue.js?id=ac63a814f3ae8d250302",
-    "/js/pages-archive-vue.js": "/js/pages-archive-vue.js?id=2ab37ea58c449d482a15",
-    "/js/pages-article-vue.js": "/js/pages-article-vue.js?id=64e7a8eb1ed13cd07f4b",
+    "/js/pages-about-vue.js": "/js/pages-about-vue.js?id=4b49b9bbbabd8c8d621f",
+    "/js/pages-apply-vue.js": "/js/pages-apply-vue.js?id=79c1745433551500318e",
+    "/js/pages-archive-vue.js": "/js/pages-archive-vue.js?id=e4871844f81c50264aae",
+    "/js/pages-article-vue.js": "/js/pages-article-vue.js?id=427e5f79043e981221de",
     "/js/vendors~components-article-markdown-vue.js": "/js/vendors~components-article-markdown-vue.js?id=5c1ef2f89adda5156404",
     "/js/app-other.js": "/js/app-other.js?id=fc96ba3c5772a9041335",
     "/js/app-heart.js": "/js/app-heart.js?id=7bd1047499fb5203ba82",
-    "/images/szgotop.gif": "/images/szgotop.gif?id=6c0421b12123c0bad3ff"
+    "/images/szgotop.gif": "/images/szgotop.gif?id=6c0421b12123c0bad3ff",
+    "/js/components-friend-vue.js": "/js/components-friend-vue.js?id=8ee1977b55f2f05e1d69",
+    "/js/components-search-form-vue.js": "/js/components-search-form-vue.js?id=765a5a0dc2d95567629a",
+    "/js/components-tag-vue.js": "/js/components-tag-vue.js?id=3b5d6a8cb075be8a4d8a"
 }

@@ -265,6 +265,7 @@ function _defineProperty(obj, key, value) {
 //
 //
 //
+//
 
 
 
@@ -304,14 +305,18 @@ var articleMarkdown = function articleMarkdown() {
     pushSlug: 'visit/PUSH_SLUG'
   }), {
     getDetail: function getDetail() {
-      var _this = this; // 发起请求
+      var _this = this;
 
+      var slug = this.$route.params.slug; // 发起请求
 
-      var list_r = this.$HttpAPI.getDetail(this.$route.params.slug, !this.isVisited(this.$route.params.slug));
+      var list_r = this.$HttpAPI.getDetail({
+        slug: slug,
+        view_first: !this.isVisited(slug)
+      }, this); // 设置已读标记
+
       this.pushSlug({
-        slug: this.$route.params.slug
-      }); // 设置已读标记
-
+        slug: slug
+      });
       list_r.then(function (res) {
         if (!_this._.isEmpty(res)) {
           _this.post = res.data.data;

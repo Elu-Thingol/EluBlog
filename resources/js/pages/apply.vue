@@ -133,10 +133,70 @@ export default {
         }),
     },
     methods: {
-        nextStep() {
-            this.currStep++
+        submitForm: function (formName) {
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    this.$confirm('即将提交信息, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        this.$HttpAPI.postFriends(this.formLabelAlign, this).then(res => {
+                            this.$message({
+                                type: 'info',
+                                message: '正在提交'
+                            })
+
+                            if (0 === res.data.code) {
+                                this.$notify({
+                                    title: '提交成功',
+                                    message: '您所填写的信息已提交成功',
+                                    type: 'success',
+                                    offset: 60,
+                                    showClose: false
+                                })
+
+                                this.currStep++
+                            } else {
+                                this.$notify({
+                                    title: '提交失败',
+                                    message: '您所填写的信息未能提交成功',
+                                    type: 'warning',
+                                    offset: 60,
+                                    showClose: false
+                                })
+
+                                console.info(res.data.code)
+                                console.info(res.data.message)
+                                console.info(res.data.data)
+                            }
+                        })
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消提交'
+                        })
+                    })
+                } else {
+                    this.$notify({
+                        title: '提交拦截',
+                        message: '请检查填写的信息是否完备',
+                        type: 'warning',
+                        offset: 60,
+                        showClose: false
+                    })
+                    return false
+                }
+            })
         },
-        lastStep() {
+        nextStep: function () {
+            if (this.currStep === 2) {
+                this.submitForm('formLabelAlign')
+            } else {
+                this.currStep++
+            }
+        },
+        lastStep: function () {
             this.currStep--
         }
     }

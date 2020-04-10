@@ -16,7 +16,7 @@ class BaseController extends Controller
             "code" => 0,
             "msg" => $msg,
             "data" => $data,
-            'timestamp' => Carbon::now()->timestamp
+            "timestamp" => Carbon::now()->timestamp
         ];
         return response()->json($result, 200);
     }
@@ -51,24 +51,21 @@ class BaseController extends Controller
     public function index(Request $request)
     {
         $data = [
-            "获取全部文章" => route('posts.index', ['page' => 1, 'per_page' => 20]),
-            "结果排序" => route('posts.index', ['sortby' => 'title', 'order' => 'asc_or_desc']),
-            "获取文章时间线" => route('posts.timeline'),
-            "根据slug获取文章" => route('posts.get', ['slug' => 'slug']),
-            "生成新的文章slug并校验" => route('posts.slug', ['slug' => 'slug']),
+            "获取全部文章" => route("posts.index", ["page" => 1, "per_page" => 20]),
+            "结果排序" => route("posts.index", ["sortby" => "title", "order" => "asc_or_desc"]),
+            "获取文章时间线" => route("posts.timeline.index"),
+            "根据slug获取文章" => route("posts.show", ["slug" => "slug"]),
+            "生成新的文章slug并校验" => route("posts.slug.show", ["title" => "title"]),
 
-            "获取全部标签" => route('tags.index'),
-            "获取标签下文章" => route('tags.get', ['tag' => 'tag']),
+            "获取全部标签" => route("tags.index"),
+            "获取标签下文章" => route("tags.show", ["tag" => "tag"]),
 
-            "获取指定文章评论" => route('comments', ['post_id' => 'slug']),
+            "提交用户留言" => route("feedback.store"),
 
-            "注册用户" => route('users'),
-            "登录用户" => route('users'),
-            "用户认证" => route('users'),
-            "修改资料" => route('users'),
-            "注销用户" => route('users'),
+            "获取友链列表" => route("friends.index"),
+            "提交友链申请" => route("friends.store"),
 
-            "相关信息" => route('infos.index'),
+            "相关信息" => route("infos.index"),
         ];
 
         return $this->success($data);

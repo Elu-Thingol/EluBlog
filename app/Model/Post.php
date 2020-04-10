@@ -52,24 +52,6 @@ class Post extends Model
             ->select('name');
     }
 
-    /**
-     * 一篇文章有多个评论
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
-
-    /**
-     * 获取这篇文章的评论以parent_id来分组
-     * @return static
-     */
-    public function getComments()
-    {
-        return $this->comments()->with('owner')->get()->groupBy('parent_id');
-    }
-
     public function save(array $options = [])
     {
         // If no author has been assigned, assign the current user's id as the author of the post
