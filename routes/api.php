@@ -13,15 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-// Route::middleware('api')->group(function () {
-//     Route::get('/user', function () {
-//         //
-//     });
-// });
+Route::middleware('auth:api')->get('/user', 'Auth\UserController@index');
 
 Route::group(['prefix' => 'v1'], function () {
     Route::get('', 'API\v1\BaseController@index')->name('api.v1.index');
