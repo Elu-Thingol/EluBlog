@@ -81,8 +81,6 @@ export default {
                         this.count += count
                         this.years.push({ key: key, count: count })
                     })
-                    console.log(this.years)
-                    console.log(this.activities.data)
                 }
             })
         },
@@ -93,7 +91,6 @@ export default {
                 if (!this._.isEmpty(res)) {
                     this.activities = res.data
                     this.count = this.activities.data.post_list.length
-                    console.log(this.activities.data)
                 }
             })
         },

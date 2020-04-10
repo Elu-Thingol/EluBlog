@@ -72,7 +72,6 @@ export default {
                 .then(res => {
                     if (!this._.isEmpty(res)) {
                         this.hitokoto = res.data;
-                        console.log(this.hitokoto);
                     }
                 })
         }

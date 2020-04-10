@@ -148,8 +148,6 @@ export default {
     },
     created() {
         this.getPosts()
-        console.log(this.site)
-        console.log(this.blog)
     },
     mounted() {
         var vm = this
@@ -165,9 +163,6 @@ export default {
         ...mapActions({
             setSearch: 'SET_SEARCH_DIALOG_VISIBLE'
         }),
-        demo() {
-            console.log('demo')
-        },
         getPosts: function () {
             // 发起请求
             let list_r = this.$HttpAPI.getPosts({
@@ -177,7 +172,6 @@ export default {
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {
                     this.posts = res.data
-                    console.log(this.posts.data.data)
                 }
             })
         },
@@ -192,7 +186,6 @@ export default {
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {
                     this.posts = res.data
-                    console.log(this.posts.data.data)
                 }
             })
         },
@@ -200,11 +193,9 @@ export default {
         // current-change	currentPage 改变时会触发	当前页currentPage
         handleSizeChange: function (size) {
             this.pagesize = size
-            console.log(this.pagesize) // 每页下拉显示数据
         },
         handleCurrentChange: function (currentPage) {
             this.currentPage = currentPage
-            console.log(this.currentPage) // 点击第几页
         },
         handleFilter: function () {
             this.setSearch({ show: false })
