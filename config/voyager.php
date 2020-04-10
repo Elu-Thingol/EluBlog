@@ -147,7 +147,8 @@ return [
         'widgets' => [
             'App\\Widgets\\UserDimmer',
             'App\\Widgets\\PostDimmer',
-            'App\\Widgets\\PageDimmer',
+            'App\\Widgets\\FriendDimmer',
+            'App\\Widgets\\FeedbackDimmer',
         ],
 
     ],

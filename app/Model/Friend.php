@@ -35,4 +35,28 @@ class Friend extends Model
     {
         return $query->where('status', '=', static::STATUS_APPROVED);
     }
+
+    /**
+     * Scope a query to only published scopes.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeNotpassed(Builder $query)
+    {
+        return $query->where('status', '=', static::STATUS_NOTPASSED);
+    }
+
+    /**
+     * Scope a query to only published scopes.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePending(Builder $query)
+    {
+        return $query->where('status', '=', static::STATUS_PENDING);
+    }
 }
