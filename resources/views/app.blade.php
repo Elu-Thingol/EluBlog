@@ -11,6 +11,7 @@
     <link rel="icon" type="image/x-icon" href="storage/{{setting('site.logo')}}">
 
     <link href="https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
     <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css" />
 </head>
 

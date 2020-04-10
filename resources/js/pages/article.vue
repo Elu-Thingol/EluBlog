@@ -15,7 +15,6 @@
                 </article-info-header>
 
                 <el-divider></el-divider>
-
                 <div class="post-card is-hover-alpha">
                     <div id="artcle-content">
                         <div v-if="isMIVLoading"
@@ -25,6 +24,11 @@
                                           @handleMarkdownItVue="handleMarkdownItVue"></article-markdown>
 
                         <p>&nbsp;</p>
+
+                        <transition name="fade">
+                            <share v-if="showShare"
+                                   :config="shareConfig"></share>
+                        </transition>
 
                         <hitokoto></hitokoto>
                     </div>
@@ -45,13 +49,15 @@
 import { mapActions, mapGetters } from 'vuex'
 import articleInfoHeader from '../components/article-info-header'
 const articleMarkdown = () => import('../components/article-markdown')
+const Share = () => import('vue-social-share')
 import hitokoto from '../components/hitokoto'
 export default {
     name: 'articles', // 因为和article标记同名故改为复数形式
     data() {
         return {
             post: {},
-            isMIVLoading: true
+            isMIVLoading: true,
+            showShare: false,
         }
     },
     computed: {
@@ -61,12 +67,26 @@ export default {
         }),
         url: function () {
             return `${ this.blog.address }/#${ this.$Helpers.articleUrl(this.post.slug) }`
+        },
+        shareConfig: function () {
+            return Object.assign({
+                url: this.url, // 网址，默认使用 window.location.href
+                source: this.blog.address, // 来源（QQ空间会用到）, 默认读取head标签：<meta name="site" content="http://overtrue" />
+                title: this.post.title, // 标题，默认读取 document.title 或者 <meta name="title" content="share.js" />
+                // image: '', // 图片, 默认取网页中第一个img标签
+                description: this.post.excerpt, // 描述, 默认读取head标签：<meta name="description" content="PHP弱类型的实现原理分析" />
+                sites: ['qzone', 'qq', 'weibo', 'wechat', 'douban'], // 启用的站点
+                // disabled: ['google', 'facebook', 'twitter'], // 禁用的站点
+                wechatQrcodeTitle: '微信扫一扫：分享', // 微信二维码提示文字
+                wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>'
+            }, this.post.image ? {image: this.$Helpers.imgUrl(this.post.image) } : {})
         }
     },
     components: {
         articleInfoHeader,
         articleMarkdown,
-        hitokoto
+        hitokoto,
+        Share
     },
     created() {
         this.getDetail()
@@ -92,7 +112,7 @@ export default {
             list_r.then(res => {
                 if (!this._.isEmpty(res)) {
                     this.post = res.data.data
-                    console.log(this.post)
+                    setTimeout(() => (this.showShare = true), 1)
                 }
             })
         },
@@ -122,5 +142,19 @@ export default {
     border-left: 3px solid #f56c6c;
     padding: 20px;
     background-color: #ebeef5;
+}
+
+/* 渐隐渐现 */
+.fade-enter {
+    opacity: 0;
+}
+.fade-enter-active {
+    transition: opacity 3s;
+}
+.fade-leave-to {
+    opacity: 0;
+}
+.fade-leave-active {
+    transition: opacity 3s;
 }
 </style>

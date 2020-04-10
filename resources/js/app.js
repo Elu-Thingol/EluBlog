@@ -7,8 +7,8 @@ import App from "./App.vue";
 import ElementUI from "element-ui";
 import VueRouter from "vue-router";
 import routes from "./routes";
-import "element-ui/lib/theme-chalk/index.css";
-import "element-ui/lib/theme-chalk/display.css";
+// import "element-ui/lib/theme-chalk/index.css";
+// import "element-ui/lib/theme-chalk/display.css";
 // import fHeader from "./components/f-header";
 // import fFooter from "./components/f-footer";
 import i18n from "./i18n/i18n";
@@ -19,9 +19,9 @@ import Helpers from "./helpers";
 import "../sass/style.scss";
 import "../sass/siyuan.scss";
 
-Vue.config.devtools = true;
-Vue.config.performance = true;
-Vue.config.productionTip = true;
+const ZwPlayer = () => import("zw-player");
+
+Vue.config.productionTip = false;
 // Vue.use(ElementUI);
 // Vue.use(VueRouter);
 
@@ -35,6 +35,7 @@ function loadView(dir, view) {
 
 Vue.component("f-header", loadView("components", "f-header"));
 Vue.component("f-footer", loadView("components", "f-footer"));
+Vue.component("zw-player", ZwPlayer);
 
 // Vue.config.keyCodes = {
 //     v: 86,

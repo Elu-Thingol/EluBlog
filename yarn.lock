@@ -1255,7 +1255,7 @@ autoprefixer@^9.4.2:
     postcss "^7.0.26"
     postcss-value-parser "^4.0.2"
 
-axios@^0.19:
+axios@^0.19, axios@^0.19.0:
   version "0.19.2"
   resolved "https://registry.npm.taobao.org/axios/download/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha1-PqNsXYgY0NX4qKl6bTa4bNwAyyc=
@@ -7443,6 +7443,11 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
+social-share.js@^1.0.16:
+  version "1.0.16"
+  resolved "https://registry.npm.taobao.org/social-share.js/download/social-share.js-1.0.16.tgz#1fd4a91c46c8c6835670f11472ecb2e293215310"
+  integrity sha1-H9SpHEbIxoNWcPEUcuyy4pMhUxA=
+
 sockjs-client@1.4.0:
   version "1.4.0"
   resolved "https://registry.npm.taobao.org/sockjs-client/download/sockjs-client-1.4.0.tgz#c9f2568e19c8fd8173b4997ea3420e0bb306c7d5"
@@ -8281,6 +8286,11 @@ vm-browserify@^1.0.1:
   resolved "https://registry.npm.taobao.org/vm-browserify/download/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha1-eGQcSIuObKkadfUR56OzKobl3aA=
 
+vue-github-badge@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/vue-github-badge/download/vue-github-badge-1.0.1.tgz#dff7ce07320e64a218edf106b15a43176ec06106"
+  integrity sha1-3/fOBzIOZKIY7fEGsVpDF27AYQY=
+
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
@@ -8306,6 +8316,14 @@ vue-router@^3.1.5:
   version "3.1.5"
   resolved "https://registry.npm.taobao.org/vue-router/download/vue-router-3.1.5.tgz?cache=0&sync_timestamp=1579092196248&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-router%2Fdownload%2Fvue-router-3.1.5.tgz#ff29b8a1e1306c526b52d4dc0532109f16c41231"
   integrity sha1-/ym4oeEwbFJrUtTcBTIQnxbEEjE=
+
+vue-social-share@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.npm.taobao.org/vue-social-share/download/vue-social-share-0.0.3.tgz#901dd165d4750214976dec053101abb51abb3868"
+  integrity sha1-kB3RZdR1AhSXbewFMQGrtRq7OGg=
+  dependencies:
+    social-share.js "^1.0.16"
+    vue-github-badge "^1.0.0"
 
 vue-style-loader@^4.1.0:
   version "4.1.2"
@@ -8663,3 +8681,11 @@ zrender@4.3.0:
   version "4.3.0"
   resolved "https://registry.npm.taobao.org/zrender/download/zrender-4.3.0.tgz#9f056121b20bbae44414d287bf6a119ff7042661"
   integrity sha1-nwVhIbILuuREFNKHv2oRn/cEJmE=
+
+zw-player@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npm.taobao.org/zw-player/download/zw-player-1.0.6.tgz#35a8d10b644d2fbc3cf4eea57cbae0156db9689c"
+  integrity sha1-NajRC2RNL7w89O6lfLrgFW25aJw=
+  dependencies:
+    axios "^0.19.0"
+    jquery "^3.4.1"

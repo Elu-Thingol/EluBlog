@@ -2,6 +2,7 @@
     <div class="app">
         <!-- <f-header :class="{'navBarWrap':navBarFixed}" ></f-header> -->
         <f-header class="navBarWrap"></f-header>
+        <zw-player></zw-player>
         <el-row type="flex"
                 justify="center"
                 id="content">
