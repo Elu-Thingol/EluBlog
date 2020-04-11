@@ -20,9 +20,9 @@ export default new Vuex.Store({
     plugins: [
         createVuexAlong({
             // 设置保存的集合名字，避免同站点下的多项目数据冲突
-            name: "blog-visit-vuex-along",
+            name: "blog-vuex-along",
             local: {
-                list: ["visit.list"]
+                list: ["visit.list", "friendSubmitTime", "feedbackSubmitTime"]
                 // 过滤模块 ma 数据， 将其他的存入 localStorage
                 // isFilter: true // 过滤 list 中的字段而非保存
             }

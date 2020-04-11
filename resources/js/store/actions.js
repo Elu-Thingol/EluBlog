@@ -13,6 +13,13 @@ const actions = {
                 ? types.SHOW_SEARCH_DIALOG_VISIBLE
                 : types.HIDE_SEARCH_DIALOG_VISIBLE
         );
+    },
+
+    [types.SET_FRIEND_SUBMIT_TIME]: function({ commit }) {
+        commit(types.SET_FRIEND_SUBMIT_TIME);
+    },
+    [types.SET_FEEDBACK_SUBMIT_TIME]: function({ commit }) {
+        commit(types.SET_FEEDBACK_SUBMIT_TIME);
     }
 };
 

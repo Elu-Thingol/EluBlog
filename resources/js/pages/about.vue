@@ -44,12 +44,14 @@
                     </dl>
                 </el-card>
                 <h5 class="title"><i class="el-icon-star-on"></i>{{$t('about.contactMe')}}</h5>
-                <el-card shadow="always">
+                <el-card shadow="always"
+                         @click.native="handleTip">
                     <el-form label-position="left"
                              :rules="rules"
                              label-width="80px"
                              ref="formLabelAlign"
-                             :model="formLabelAlign">
+                             :model="formLabelAlign"
+                             :disabled="isFormDisabled">
                         <el-form-item :label="$t('about.yourName')"
                                       prop="name">
                             <el-input v-model="formLabelAlign.name"></el-input>
@@ -75,11 +77,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
     name: 'about',
     data() {
         return {
+            isFormDisabled: false,
             formLabelAlign: {
                 name: '',
                 email: '',
@@ -113,9 +116,20 @@ export default {
     computed: {
         ...mapGetters({
             blog: 'info/getBlog',
-        }),
+            canSubmit: 'canFeedbackSubmit',
+            getTimeRemaining: 'getFeedbackTimeRemaining'
+        })
+    },
+    created() {
+        this.runInterval()
+    },
+    destroyed() {
+        clearInterval(this.interval)
     },
     methods: {
+        ...mapActions({
+            setSubmitTime: 'SET_FEEDBACK_SUBMIT_TIME'
+        }),
         submitForm: function (formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
@@ -125,11 +139,6 @@ export default {
                         type: 'warning'
                     }).then(() => {
                         this.$HttpAPI.postFeedback(this.formLabelAlign, this).then(res => {
-                            this.$message({
-                                type: 'info',
-                                message: '正在提交'
-                            })
-
                             if (0 === res.data.code) {
                                 this.$notify({
                                     title: '提交成功',
@@ -138,8 +147,12 @@ export default {
                                     offset: 60,
                                     showClose: false
                                 })
-                                
-                                this.currStep++
+
+                                this.setSubmitTime()
+                                this.runInterval()
+                                this.formLabelAlign.name = ''
+                                this.formLabelAlign.email = ''
+                                this.formLabelAlign.content = ''
                             } else {
                                 this.$notify({
                                     title: '提交失败',
@@ -157,7 +170,7 @@ export default {
                     }).catch(() => {
                         this.$message({
                             type: 'info',
-                            message: '已取消提交'
+                            message: '您已取消提交'
                         })
                     })
                 } else {
@@ -172,6 +185,34 @@ export default {
                 }
             })
         },
+        runInterval: function () {
+            var vm = this
+            vm.isFormDisabled = !vm.canSubmit()
+            vm.interval = setInterval(function () {
+                vm.isFormDisabled = !vm.canSubmit()
+                if (vm.canSubmit()) {
+                    clearInterval(vm.interval)
+                    return
+                }
+            }, 500)
+        },
+        handleTip: function () {
+            if (this.isFormDisabled) {
+                const h = this.$createElement
+
+                this.$notify({
+                    title: '动作拦截',
+                    message: h('div',
+                        [
+                            h('p', '300秒内不允许重复留言'),
+                            h('p', `请您在 ${ this._.ceil(300 - this.getTimeRemaining() / 1000) } 秒后再试`)
+                        ]),
+                    type: 'warning',
+                    offset: 60,
+                    showClose: false
+                })
+            }
+        }
     }
 }
 </script>

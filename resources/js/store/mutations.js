@@ -16,6 +16,13 @@ const mutations = {
     },
     [types.HIDE_SEARCH_DIALOG_VISIBLE]: function(state) {
         state.searchDialogVisible = false;
+    },
+
+    [types.SET_FRIEND_SUBMIT_TIME]: function(state) {
+        state.friendSubmitTime = _.now();
+    },
+    [types.SET_FEEDBACK_SUBMIT_TIME]: function(state) {
+        state.feedbackSubmitTime = _.now();
     }
 };
 

@@ -6,7 +6,8 @@
             <el-col :span="16">
                 <h5 class="title"><i class="el-icon-circle-plus-outline"></i>{{$t('apply.process')}}</h5>
                 <el-divider></el-divider>
-                <el-card shadow="hover">
+                <el-card shadow="hover"
+                         @click.native="handleTip">
                     <el-steps align-center
                               :active="currStep">
                         <el-step :title="$t('apply.step1')"
@@ -40,7 +41,8 @@
                                  :rules="rules"
                                  label-width="80px"
                                  ref="formLabelAlign"
-                                 :model="formLabelAlign">
+                                 :model="formLabelAlign"
+                                 :disabled="isFormDisabled">
                             <el-form-item :label="$t('apply.nickName')"
                                           prop="name">
                                 <el-input v-model="formLabelAlign.name"></el-input>
@@ -76,7 +78,8 @@
                         <el-button type="primary"
                                    icon="el-icon-circle-check-outline"
                                    @click="nextStep"
-                                   v-if="currStep !== 3">{{$t('apply.next')}}</el-button>
+                                   v-if="currStep !== 3"
+                                   :disabled="currStep === 2 && isFormDisabled">{{$t('apply.next')}}</el-button>
                     </el-row>
                 </el-card>
             </el-col>
@@ -85,12 +88,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
     name: 'apply',
     data() {
         return {
             currStep: 1,
+            isFormDisabled: false,
             formLabelAlign: {
                 name: '',
                 email: '',
@@ -130,9 +134,20 @@ export default {
     computed: {
         ...mapGetters({
             blog: 'info/getBlog',
+            canSubmit: 'canFriendSubmit',
+            getTimeRemaining: 'getFriendTimeRemaining'
         }),
     },
+    created() {
+        this.runInterval()
+    },
+    destroyed() {
+        clearInterval(this.interval)
+    },
     methods: {
+        ...mapActions({
+            setSubmitTime: 'SET_FRIEND_SUBMIT_TIME'
+        }),
         submitForm: function (formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
@@ -142,11 +157,6 @@ export default {
                         type: 'warning'
                     }).then(() => {
                         this.$HttpAPI.postFriends(this.formLabelAlign, this).then(res => {
-                            this.$message({
-                                type: 'info',
-                                message: '正在提交'
-                            })
-
                             if (0 === res.data.code) {
                                 this.$notify({
                                     title: '提交成功',
@@ -156,6 +166,8 @@ export default {
                                     showClose: false
                                 })
 
+                                this.setSubmitTime()
+                                this.runInterval()
                                 this.currStep++
                             } else {
                                 this.$notify({
@@ -174,7 +186,7 @@ export default {
                     }).catch(() => {
                         this.$message({
                             type: 'info',
-                            message: '已取消提交'
+                            message: '您已取消提交'
                         })
                     })
                 } else {
@@ -198,6 +210,34 @@ export default {
         },
         lastStep: function () {
             this.currStep--
+        },
+        runInterval: function () {
+            var vm = this
+            vm.isFormDisabled = !vm.canSubmit()
+            vm.interval = setInterval(function () {
+                vm.isFormDisabled = !vm.canSubmit()
+                if (vm.canSubmit()) {
+                    clearInterval(vm.interval)
+                    return
+                }
+            }, 1000 * 60)
+        },
+        handleTip: function () {
+            if (this.isFormDisabled && this.currStep === 2) {
+                const h = this.$createElement
+
+                this.$notify({
+                    title: '动作拦截',
+                    message: h('div',
+                        [
+                            h('p', '24小时内不允许重复申请'),
+                            h('p', `请您在 ${ this._.ceil(24 - this.getTimeRemaining() / (1000 * 60 * 60)) } 小时后再试`)
+                        ]),
+                    type: 'warning',
+                    offset: 60,
+                    showClose: false
+                })
+            }
         }
     }
 }
