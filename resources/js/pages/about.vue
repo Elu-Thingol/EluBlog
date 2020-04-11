@@ -51,7 +51,8 @@
                              label-width="80px"
                              ref="formLabelAlign"
                              :model="formLabelAlign"
-                             :disabled="isFormDisabled">
+                             :disabled="isFormDisabled"
+                             style="margin: 22px 5px 0 5px;">
                         <el-form-item :label="$t('about.yourName')"
                                       prop="name">
                             <el-input v-model="formLabelAlign.name"></el-input>

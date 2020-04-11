@@ -7,7 +7,8 @@
                 <h5 class="title"><i class="el-icon-circle-plus-outline"></i>{{$t('apply.process')}}</h5>
                 <el-divider></el-divider>
                 <el-card shadow="hover"
-                         @click.native="handleTip">
+                         @click.native="handleTip"
+                         style="padding: 10px 2px;">
                     <el-steps align-center
                               :active="currStep">
                         <el-step :title="$t('apply.step1')"
