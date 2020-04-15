@@ -19,7 +19,8 @@ import Helpers from "./helpers";
 import "../sass/style.scss";
 import "../sass/siyuan.scss";
 
-const ZwPlayer = () => import("zw-player");
+const ZwPlayer = () =>
+    import(/* webpackChunkName: "zw-player" */ "zw-player");
 
 Vue.config.productionTip = false;
 // Vue.use(ElementUI);

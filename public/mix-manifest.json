@@ -1,7 +1,7 @@
 {
     "/js/components-article-markdown-vue.js": "/js/components-article-markdown-vue.js?id=a7e9339ea7469027d086",
     "/js/vendors~components-article-markdown-vue.js": "/js/vendors~components-article-markdown-vue.js?id=11f883ecb291a06c393e",
-    "/js/app.js": "/js/app.js?id=b54a54e0f506eb1aa49f",
+    "/js/app.js": "/js/app.js?id=269f4a686ab9a8cc04c6",
     "/css/app.css": "/css/app.css?id=2248b467fa4dc1b6bdc8",
     "/js/components-article-info-header-vue.js": "/js/components-article-info-header-vue.js?id=89b01dcd2ccec41ebdd8",
     "/js/components-f-footer-vue.js": "/js/components-f-footer-vue.js?id=80004fefa841a50c1c7a",
@@ -10,7 +10,9 @@
     "/js/pages-about-vue.js": "/js/pages-about-vue.js?id=8d4988e8424bf6effe67",
     "/js/pages-apply-vue.js": "/js/pages-apply-vue.js?id=a71bd358b1567e8cfaa6",
     "/js/pages-archive-vue.js": "/js/pages-archive-vue.js?id=a7896bd23b989e266099",
-    "/js/pages-article-vue.js": "/js/pages-article-vue.js?id=ac3f858d920aaf0cdd79",
+    "/js/pages-article-vue.js": "/js/pages-article-vue.js?id=c5b8497572f9b73391de",
+    "/js/vendors~vue-social-share.js": "/js/vendors~vue-social-share.js?id=fd0bea56424a42365217",
+    "/js/vendors~zw-player.js": "/js/vendors~zw-player.js?id=1a3d341147f98cfa4b88",
     "/js/app-other.js": "/js/app-other.js?id=fc96ba3c5772a9041335",
     "/js/app-heart.js": "/js/app-heart.js?id=7bd1047499fb5203ba82",
     "/images/szgotop.gif": "/images/szgotop.gif?id=6c0421b12123c0bad3ff"

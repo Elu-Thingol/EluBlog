@@ -36,12 +36,14 @@
     "dependencies": {
         "element-ui": "^2.13.0",
         "global": "^4.4.0",
+        "live2d-vue": "^0.2.5",
         "markdown-it-vue": "^1.0.11",
         "uglify-js": "^3.8.1",
         "vue": "^2.6.11",
         "vue-i18n": "^8.15.3",
         "vue-router": "^3.1.5",
         "vue-social-share": "^0.0.3",
+        "vuepress-plugin-cat": "^1.0.3",
         "vuex": "^3.1.3",
         "vuex-along": "^1.2.10",
         "zw-player": "^1.0.6"

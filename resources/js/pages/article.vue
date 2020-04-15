@@ -49,7 +49,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import articleInfoHeader from '../components/article-info-header'
 const articleMarkdown = () => import('../components/article-markdown')
-const Share = () => import('vue-social-share')
+const Share = () => import(/* webpackChunkName: "vue-social-share" */ 'vue-social-share')
 import hitokoto from '../components/hitokoto'
 export default {
     name: 'articles', // 因为和article标记同名故改为复数形式
