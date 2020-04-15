@@ -6,8 +6,6 @@
     </div>
 </template>
 <script>
-import MarkdownItVue from 'markdown-it-vue'
-import 'markdown-it-vue/dist/markdown-it-vue.css'
 export default {
     name: "articles-markdown", // 因为和article标记同名故改为复数形式
     props: {
@@ -21,14 +19,11 @@ export default {
             default: '--- LINK ---'
         },
     },
-    components: {
-        MarkdownItVue: MarkdownItVue
-    },
     mounted() {
         document
             .getElementById('markdown-it-vue')
             .addEventListener('copy', this.setClipboardText, false)
-        
+
         this.handleMarkdownItVue()
     },
     methods: {

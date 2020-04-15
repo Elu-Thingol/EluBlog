@@ -18,7 +18,8 @@
                 <div class="post-card is-hover-alpha">
                     <div id="artcle-content">
                         <div v-if="isMIVLoading"
-                             v-loading="!_.isEmpty(post) && isMIVLoading"></div>
+                             v-loading="!_.isEmpty(post) && isMIVLoading"
+                             style="margin-top: 10px"></div>
                         <article-markdown :content="String(post.body?post.body:'（/▽＼）看不见我')"
                                           :url="url"
                                           @handleMarkdownItVue="handleMarkdownItVue"></article-markdown>
@@ -79,7 +80,7 @@ export default {
                 // disabled: ['google', 'facebook', 'twitter'], // 禁用的站点
                 wechatQrcodeTitle: '微信扫一扫：分享', // 微信二维码提示文字
                 wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>'
-            }, this.post.image ? {image: this.$Helpers.imgUrl(this.post.image) } : {})
+            }, this.post.image ? { image: this.$Helpers.imgUrl(this.post.image) } : {})
         }
     },
     components: {

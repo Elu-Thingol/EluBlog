@@ -45,6 +45,7 @@ mix.webpackConfig({
         "vue-i18n": "VueI18n",
         "vue-router": "VueRouter",
         "element-ui": "Element",
+        "markdown-it-vue": '"markdown-it-vue"',
         lodash: "_",
         jquery: "jQuery",
         axios: "axios"

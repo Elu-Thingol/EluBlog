@@ -10,8 +10,9 @@
     <title>{{setting('site.title')}} - {{setting('site.description')}}</title>
     <link rel="icon" type="image/x-icon" href="storage/{{setting('site.logo')}}">
 
-    <link href="https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/markdown-it-vue@1.0.11/dist/markdown-it-vue.css" rel="stylesheet" type="text/css" />
     <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css" />
 
     <style>
@@ -127,11 +128,12 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/element-ui/2.13.0/index.js"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/element-ui/2.13.0/locale/zh-CN.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/markdown-it-vue@1.0.11/dist/markdown-it-vue.umd.min.js"></script>
     <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
     <script type="text/javascript" src="{{mix('js/app-heart.js')}}"></script>
     <script type="text/javascript" src="{{mix('js/app-other.js')}}"></script>
-    <script type="text/javascript" src="{{mix('vendor/live2dw/lib/L2Dwidget.0.min.js')}}"></script>
     <script type="text/javascript" src="{{mix('vendor/live2dw/lib/L2Dwidget.min.js')}}"></script>
+    <script type="text/javascript" src="{{mix('vendor/live2dw/lib/L2Dwidget.0.min.js')}}"></script>
     <script>
         L2Dwidget.init({
             pluginRootPath: "vendor/live2dw/",
