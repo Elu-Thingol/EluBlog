@@ -18,6 +18,79 @@
         #live2dcanvas {
             border: 0 !important;
         }
+
+        #loader-wrapper .loader-section {
+            background: #6e6e6e;
+            -webkit-animation: Gradient 15s ease infinite;
+            -moz-animation: Gradient 15s ease infinite;
+            animation: Gradient 15s ease infinite;
+        }
+
+        @-webkit-keyframes Gradient {
+            0% {
+                background-color: #6e6e6e;
+            }
+
+            25% {
+                background-color: #161616;
+            }
+
+            50% {
+                background-color: #6e6e6e;
+            }
+
+            75% {
+                background-color: #c7c7c7;
+            }
+
+            100% {
+                background-color: #6e6e6e;
+            }
+        }
+
+        @-moz-keyframes Gradient {
+            0% {
+                background-color: #6e6e6e;
+            }
+
+            25% {
+                background-color: #161616;
+            }
+
+            50% {
+                background-color: #6e6e6e;
+            }
+
+            75% {
+                background-color: #c7c7c7;
+            }
+
+            100% {
+                background-color: #6e6e6e;
+            }
+        }
+
+        @keyframes Gradient {
+            0% {
+                background-color: #6e6e6e;
+            }
+
+            25% {
+                background-color: #161616;
+            }
+
+            50% {
+                background-color: #6e6e6e;
+            }
+
+            75% {
+                background-color: #c7c7c7;
+            }
+
+            100% {
+                background-color: #6e6e6e;
+            }
+        }
     </style>
 </head>
 
@@ -27,7 +100,18 @@
             continue.</strong>
     </noscript>
 
-    <div id="app"></div>
+    <div id="app">
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+            <div class="load_title">正在加载 <strong>Elu's Blog</strong> 请耐心等待
+                <br>
+                <span>V1.0</span>
+            </div>
+        </div>
+    </div>
+    
     <div id="jsi-flying-fish-container" class="container"></div>
     <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
 
