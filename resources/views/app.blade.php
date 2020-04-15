@@ -20,6 +20,10 @@
             border: 0 !important;
         }
 
+        #live2d-widget{
+            z-index: 400 !important;
+        }
+
         #loader-wrapper .loader-section {
             background: #6e6e6e;
             -webkit-animation: Gradient 15s ease infinite;
@@ -146,9 +150,9 @@
             },
             display: { 
                 superSample: 2,
-                position: "left", 
+                position: "right", 
                 width: 200, height: 400,
-                hOffset: 10,
+                hOffset: 100,
                 vOffset: -55 
             },
             mobile: { 
