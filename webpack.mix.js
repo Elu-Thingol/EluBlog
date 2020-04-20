@@ -58,9 +58,27 @@ mix.webpackConfig({
         "public/js/app-other.js"
     )
 
-    .sass("resources/sass/app.scss", "public/css")
+    .sass("resources/sass/app.scss", "public/css", {
+        sassOptions: {
+            precision: 8,
+            outputStyle: "compressed"
+        }
+    })
+    .sass("resources/sass/prism.scss", "public/css", {
+        sassOptions: {
+            precision: 8,
+            outputStyle: "compressed"
+        }
+    })
+    .sass("resources/sass/markdown-it-vue.scss", "public/css", {
+        sassOptions: {
+            precision: 8,
+            outputStyle: "compressed"
+        }
+    })
 
     .copy("resources/js/app-mouse-heart.js", "public/js/app-heart.js")
+    .copy("resources/js/prism.js", "public/js/prism.js")
     .copy("resources/images/szgotop.gif", "public/images/szgotop.gif")
 
     .version();

@@ -39,6 +39,7 @@ Vue.component("f-header", loadView("components", "f-header"));
 Vue.component("f-footer", loadView("components", "f-footer"));
 Vue.component("zw-player", ZwPlayer);
 
+
 // Vue.config.keyCodes = {
 //     v: 86,
 //     f1: 112,

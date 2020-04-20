@@ -67,3 +67,7 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../../sass/md-body';
+</style>

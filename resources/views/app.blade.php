@@ -12,15 +12,16 @@
 
     <link href="https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/markdown-it-vue@1.0.11/dist/markdown-it-vue.css" rel="stylesheet" type="text/css" />
     <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{mix('css/markdown-it-vue.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{mix('css/prism.css')}}" rel="stylesheet" type="text/css" />
 
     <style>
         #live2dcanvas {
             border: 0 !important;
         }
 
-        #live2d-widget{
+        #live2d-widget {
             z-index: 400 !important;
         }
 
@@ -116,30 +117,34 @@
             </div>
         </div>
     </div>
-    
+
     <div id="jsi-flying-fish-container" class="container"></div>
     <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
+</body>
 
-    <script>
-        var blog_address = "{{setting('blog.address')}}";
-    </script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/vuex/3.1.3/vuex.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/vue-i18n/8.16.0/vue-i18n.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/element-ui/2.13.0/index.js"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/element-ui/2.13.0/locale/zh-CN.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/markdown-it-vue@1.0.11/dist/markdown-it-vue.umd.min.js"></script>
-    <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
-    <script type="text/javascript" src="{{mix('js/app-heart.js')}}"></script>
-    <script type="text/javascript" src="{{mix('js/app-other.js')}}"></script>
-    <script type="text/javascript" src="{{mix('vendor/live2dw/lib/L2Dwidget.min.js')}}"></script>
-    <script type="text/javascript" src="{{mix('vendor/live2dw/lib/L2Dwidget.0.min.js')}}"></script>
-    <script>
-        L2Dwidget.init({
+<script>
+    var blog_address = "{{setting('blog.address')}}";
+</script>
+<script type="text/javascript" src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/vuex/3.1.3/vuex.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/vue-i18n/8.16.0/vue-i18n.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/element-ui/2.13.0/index.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/element-ui/2.13.0/locale/zh-CN.min.js"></script>
+<script type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/markdown-it-vue@1.1.3/dist/markdown-it-vue.umd.js"></script>
+
+
+<script type="text/javascript" src="{{mix('js/app.js')}}"></script>
+<script type="text/javascript" src="{{mix('js/app-heart.js')}}"></script>
+<script type="text/javascript" src="{{mix('js/app-other.js')}}"></script>
+<script type="text/javascript" src="{{mix('vendor/live2dw/lib/L2Dwidget.min.js')}}"></script>
+<script type="text/javascript" src="{{mix('vendor/live2dw/lib/L2Dwidget.0.min.js')}}"></script>
+<script>
+    L2Dwidget.init({
             pluginRootPath: "vendor/live2dw/",
             pluginJsPath: "lib/",
             pluginModelPath: "assets/",
@@ -160,7 +165,6 @@
             },
             log: false
         })
-    </script>
-</body>
+</script>
 
 </html>

@@ -92,6 +92,9 @@ export default {
     created() {
         this.getDetail()
     },
+    destroyed() {
+        $('#prism').remove()
+    },
     methods: {
         ...mapActions({
             pushSlug: 'visit/PUSH_SLUG',
@@ -114,6 +117,14 @@ export default {
                 if (!this._.isEmpty(res)) {
                     this.post = res.data.data
                     setTimeout(() => (this.showShare = true), 1)
+                    setTimeout(() => {
+                        let script = document.createElement('script')
+                        script.type = 'text/javascript'
+                        script.src = '/js/prism.js'
+                        script.id = 'prism'
+                        $('head').append(script)
+                        // document.getElementsByTagName('head')[0].appendChild(script)
+                    }, 500)
                 }
             })
         },
