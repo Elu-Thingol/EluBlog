@@ -8,13 +8,51 @@
     <meta name="description" content="{{setting('site.description')}}" />
 
     <title>{{setting('site.title')}} - {{setting('site.description')}}</title>
+
     <link rel="icon" type="image/x-icon" href="storage/{{setting('site.logo')}}">
 
-    <link href="https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{mix('css/markdown-it-vue.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{mix('css/prism.css')}}" rel="stylesheet" type="text/css" />
+    <script>
+        var blog_address = "{{setting('blog.address')}}";
+        
+        function errorload(elem) { //cdn错误
+            if (elem.getAttribute('data-errorTimes') == 1) { 
+                elem.onerror = null; // 执行完onerror事件后，置οnerrοr=null 来清除onerror事件。
+                return;
+            }
+            elem.setAttribute('data-errorTimes', 1);
+            var _src = elem.getAttribute('data-localSrc');
+            if (elem.tagName === "SCRIPT") {loadScript(_src, elem)}
+            if (elem.tagName === "LINK") {loadLink(_src, elem)}
+        }
+    
+        function loadScript(_src, prevEl) { //引入本地js
+            var _el = document.createElement('script');
+            _el.src = _src;
+            if (prevEl) {
+                prevEl.parentNode.insertBefore(_el, prevEl.nextSibling);
+            } else {
+                document.body.appendChild(_el);
+            }
+        }
+    
+        function loadLink(_src, prevEl) { //引入本地css
+            var _el = document.createElement('link');
+            _el.href = _src;
+            _el.rel = "stylesheet";
+            _el.type = "text/css";
+            if (prevEl) {
+                prevEl.parentNode.insertBefore(_el, prevEl.nextSibling);
+            } else {
+                document.body.appendChild(_el);
+            }
+        }
+    </script>
+
+    <link data-localSrc="{{mix('vendor/element-ui/2.13.0/theme-chalk/index.css')}}" href="https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
+    <link data-localSrc="{{mix('vendor/social-share.js/1.0.16/css/share.min.css')}}" href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
+    <link data-localSrc="{{mix('css/app.css')}}" href="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/css/app.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
+    <link data-localSrc="{{mix('vendor/markdown-it-vue@1.1.3/dist/markdown-it-vue.css')}}" href="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/vendor/markdown-it-vue@1.1.3/dist/markdown-it-vue.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
+    <link data-localSrc="{{mix('vendor/prism/prism.css')}}" href="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/vendor/prism/prism.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
 
     <style>
         #live2dcanvas {
@@ -122,27 +160,42 @@
     <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
 </body>
 
-<script>
-    var blog_address = "{{setting('blog.address')}}";
+<script data-localSrc="{{mix('vendor/lodash.js/4.17.15/lodash.min.js')}}" type="text/javascript"
+    src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js" onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('vendor/jquery/3.4.1/jquery.min.js')}}" type="text/javascript"
+    src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js" onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('vendor/axios/0.19.2/axios.min.js')}}" type="text/javascript"
+    src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js" onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('vendor/vue/2.6.11/vue.min.js')}}" type="text/javascript"
+    src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js" onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('vendor/vuex/3.1.3/vuex.min.js')}}" type="text/javascript"
+    src="https://cdn.bootcss.com/vuex/3.1.3/vuex.min.js" onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('vendor/vue-i18n/8.16.0/vue-i18n.min.js')}}" type="text/javascript"
+    src="https://cdn.bootcss.com/vue-i18n/8.16.0/vue-i18n.min.js" onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('vendor/vue-router/3.1.3/vue-router.min.js')}}" type="text/javascript"
+    src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js" onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('vendor/element-ui/2.13.0/index.js')}}" type="text/javascript"
+    src="https://cdn.bootcss.com/element-ui/2.13.0/index.js" onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('vendor/element-ui/2.13.0/locale/zh-CN.min.js')}}" type="text/javascript"
+    src="https://cdn.bootcss.com/element-ui/2.13.0/locale/zh-CN.min.js" onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('vendor/markdown-it-vue@1.1.3/dist/markdown-it-vue.umd.js')}}" type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/markdown-it-vue@1.1.3/dist/markdown-it-vue.umd.js"
+    onerror="errorload(this)"></script>
+
+
+<script data-localSrc="{{mix('js/app.js')}}" type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/app/js/app.js" onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('js/app-heart.js')}}" type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/app/js/app-heart.js" onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('js/app-other.js')}}" type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/app/js/app-other.js" onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('vendor/live2dw/lib/L2Dwidget.min.js')}}" type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/vendor/live2dw/lib/L2Dwidget.min.js"
+    onerror="errorload(this)"></script>
+<script data-localSrc="{{mix('vendor/live2dw/lib/L2Dwidget.0.min.js')}}" type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/vendor/live2dw/lib/L2Dwidget.0.min.js"
+    onerror="errorload(this)">
 </script>
-<script type="text/javascript" src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/vuex/3.1.3/vuex.min.js"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/vue-i18n/8.16.0/vue-i18n.min.js"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/element-ui/2.13.0/index.js"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/element-ui/2.13.0/locale/zh-CN.min.js"></script>
-<script type="text/javascript"
-    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/markdown-it-vue@1.1.3/dist/markdown-it-vue.umd.js"></script>
-
-
-<script type="text/javascript" src="{{mix('js/app.js')}}"></script>
-<script type="text/javascript" src="{{mix('js/app-heart.js')}}"></script>
-<script type="text/javascript" src="{{mix('js/app-other.js')}}"></script>
-<script type="text/javascript" src="{{mix('vendor/live2dw/lib/L2Dwidget.min.js')}}"></script>
-<script type="text/javascript" src="{{mix('vendor/live2dw/lib/L2Dwidget.0.min.js')}}"></script>
 <script>
     L2Dwidget.init({
             pluginRootPath: "vendor/live2dw/",

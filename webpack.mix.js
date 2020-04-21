@@ -64,21 +64,34 @@ mix.webpackConfig({
             outputStyle: "compressed"
         }
     })
-    .sass("resources/sass/prism.scss", "public/css", {
+    .sass("resources/sass/prism.scss", "public/vendor/prism", {
         sassOptions: {
             precision: 8,
             outputStyle: "compressed"
         }
     })
-    .sass("resources/sass/markdown-it-vue.scss", "public/css", {
-        sassOptions: {
-            precision: 8,
-            outputStyle: "compressed"
+    .sass(
+        "resources/sass/markdown-it-vue.scss",
+        "public/vendor/markdown-it-vue@1.1.3/dist",
+        {
+            sassOptions: {
+                precision: 8,
+                outputStyle: "compressed"
+            }
         }
-    })
+    )
 
+    .copy(
+        "resources/sass/element-ui@2.13.0_theme-chalk_index.scss",
+        "public/vendor/element-ui/2.13.0/theme-chalk/index.css"
+    )
+    .copy(
+        "resources/sass/social-share.js@1.0.16_css_share.min.scss",
+        "public/vendor/social-share.js/1.0.16/css/share.min.css"
+    )
     .copy("resources/js/app-mouse-heart.js", "public/js/app-heart.js")
-    .copy("resources/js/prism.js", "public/js/prism.js")
+    .copy("resources/js/prism.js", "public/vendor/prism/prism.js")
     .copy("resources/images/szgotop.gif", "public/images/szgotop.gif")
+    .copy("public/js", "public/vendor/app/js")
 
     .version();
