@@ -118,10 +118,10 @@ export default {
                     this.post = res.data.data
                     setTimeout(() => (this.showShare = true), 1)
                     setTimeout(() => {
-                        script = document.createElement('script')
+                        let script = document.createElement('script')
                         script.dataset.localSrc = "/vendor/prism/prism.js"
                         script.type = 'text/javascript'
-                        script.src = 'https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.4/public/vendor/prism/prism.js'
+                        script.src = 'https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.5/public/vendor/prism/prism.js'
                         script.id = 'prism'
                         script.onerror = errorload
                         $('head').append(script)
