@@ -121,7 +121,7 @@ export default {
                         script = document.createElement('script')
                         script.dataset.localSrc = "/vendor/prism/prism.js"
                         script.type = 'text/javascript'
-                        script.src = 'https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.2/public/vendor/prism/prism.js'
+                        script.src = 'https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.4/public/vendor/prism/prism.js'
                         script.id = 'prism'
                         script.onerror = errorload
                         $('head').append(script)
