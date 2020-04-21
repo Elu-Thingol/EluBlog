@@ -50,9 +50,9 @@
 
     <link data-localSrc="{{mix('vendor/element-ui/2.13.0/theme-chalk/index.css')}}" href="https://cdn.bootcss.com/element-ui/2.13.0/theme-chalk/index.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
     <link data-localSrc="{{mix('vendor/social-share.js/1.0.16/css/share.min.css')}}" href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
-    <link data-localSrc="{{mix('css/app.css')}}" href="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/css/app.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
-    <link data-localSrc="{{mix('vendor/markdown-it-vue@1.1.3/dist/markdown-it-vue.css')}}" href="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/vendor/markdown-it-vue@1.1.3/dist/markdown-it-vue.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
-    <link data-localSrc="{{mix('vendor/prism/prism.css')}}" href="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/vendor/prism/prism.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
+    <link data-localSrc="{{mix('css/app.css')}}" href="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.2/public/css/app.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
+    <link data-localSrc="{{mix('vendor/markdown-it-vue@1.1.3/dist/markdown-it-vue.css')}}" href="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.2/public/vendor/markdown-it-vue@1.1.3/dist/markdown-it-vue.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
+    <link data-localSrc="{{mix('vendor/prism/prism.css')}}" href="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.2/public/vendor/prism/prism.css" rel="stylesheet" type="text/css" onerror="errorload(this)"/>
 
     <style>
         #live2dcanvas {
@@ -184,16 +184,16 @@
 
 
 <script data-localSrc="{{mix('js/app.js')}}" type="text/javascript"
-    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/app/js/app.js" onerror="errorload(this)"></script>
+    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.2/public/app/js/app.js" onerror="errorload(this)"></script>
 <script data-localSrc="{{mix('js/app-heart.js')}}" type="text/javascript"
-    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/app/js/app-heart.js" onerror="errorload(this)"></script>
+    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.2/public/app/js/app-heart.js" onerror="errorload(this)"></script>
 <script data-localSrc="{{mix('js/app-other.js')}}" type="text/javascript"
-    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/app/js/app-other.js" onerror="errorload(this)"></script>
+    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.2/public/app/js/app-other.js" onerror="errorload(this)"></script>
 <script data-localSrc="{{mix('vendor/live2dw/lib/L2Dwidget.min.js')}}" type="text/javascript"
-    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/vendor/live2dw/lib/L2Dwidget.min.js"
+    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.2/public/vendor/live2dw/lib/L2Dwidget.min.js"
     onerror="errorload(this)"></script>
 <script data-localSrc="{{mix('vendor/live2dw/lib/L2Dwidget.0.min.js')}}" type="text/javascript"
-    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/vendor/live2dw/lib/L2Dwidget.0.min.js"
+    src="https://cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.2/public/vendor/live2dw/lib/L2Dwidget.0.min.js"
     onerror="errorload(this)">
 </script>
 <script>
