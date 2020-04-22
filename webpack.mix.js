@@ -1,6 +1,7 @@
 /* jshint esversion: 6 */
 
 const mix = require("laravel-mix");
+const path = require("path");
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 //     .BundleAnalyzerPlugin;
 
@@ -35,7 +36,7 @@ mix.webpackConfig({
     },
     resolve: {
         alias: {
-            "@": path.resolve("resources/assets/sass")
+            "@": path.resolve("resources/sass")
         }
     },
     // plugins: [new BundleAnalyzerPlugin()]
@@ -58,27 +59,11 @@ mix.webpackConfig({
         "public/js/app-other.js"
     )
 
-    .sass("resources/sass/app.scss", "public/css", {
-        sassOptions: {
-            precision: 8,
-            outputStyle: "compressed"
-        }
-    })
-    .sass("resources/sass/prism.scss", "public/vendor/prism", {
-        sassOptions: {
-            precision: 8,
-            outputStyle: "compressed"
-        }
-    })
+    .sass("resources/sass/app.scss", "public/css")
+    .sass("resources/sass/prism.scss", "public/vendor/prism")
     .sass(
         "resources/sass/markdown-it-vue.scss",
-        "public/vendor/markdown-it-vue@1.1.3/dist",
-        {
-            sassOptions: {
-                precision: 8,
-                outputStyle: "compressed"
-            }
-        }
+        "public/vendor/markdown-it-vue@1.1.3/dist"
     )
 
     .copy(
@@ -94,4 +79,8 @@ mix.webpackConfig({
     .copy("resources/images/szgotop.gif", "public/images/szgotop.gif")
     .copy("public/js", "public/vendor/app/js")
 
+    .options({
+        processCssUrls: false
+    })
+    
     .version();
