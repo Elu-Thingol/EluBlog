@@ -47,7 +47,7 @@
                         <el-row class="art-body">
                             <div class="side-img hidden-sm-and-down">
                                 <img class="art-banner"
-                                     :src="post.image?$Helpers.imgUrl(post.image):$Helpers.randomImgUrl()" />
+                                     :src="post.image?$Helpers.imgUrl(post.image):'https://random.52ecy.cn/randbg.php'" />
                             </div>
                             <div class="side-abstract">
                                 <div class="art-abstract">{{post.excerpt}}</div>
