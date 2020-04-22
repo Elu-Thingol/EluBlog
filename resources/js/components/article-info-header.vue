@@ -39,7 +39,7 @@ export default {
         },
         image:{
             type: String,
-            default: 'https://random.52ecy.cn/randbg.php'
+            default: this.$Helpers.randomImgUrl()
             // require: true // 必填
         },
         excerpt:{

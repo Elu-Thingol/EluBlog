@@ -193,7 +193,7 @@
 </script>
 
 
-<script data-localSrc="{{mix('js/app.js')}}" type="text/javascript" src="//cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@v1.0.2/public/vendor/app/js/app.js"
+<script data-localSrc="{{mix('js/app.js')}}" type="text/javascript" src="//cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@v1.0.3/public/vendor/app/js/app.js"
     jspathanchor="true" onerror="errorload(this)"></script>
 <script data-localSrc="{{mix('js/app-heart.js')}}" type="text/javascript"
     src="//cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@v1.0.2/public/vendor/app/js/app-heart.js" onerror="errorload(this)">
