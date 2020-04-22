@@ -55,7 +55,7 @@
         href="//cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet" type="text/css"
         onerror="errorload(this)" />
     <link data-localSrc="{{mix('css/app.css')}}"
-        href="//cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/public/vendor/app/css/app.css" rel="stylesheet" type="text/css"
+        href="//cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.0.1/public/css/app.css" rel="stylesheet" type="text/css"
         onerror="errorload(this)" />
     <link data-localSrc="{{mix('vendor/markdown-it-vue@1.1.3/dist/markdown-it-vue.css')}}"
         href="//cdn.jsdelivr.net/gh/Elu-Thingol/markdown-it-vue@1.1.3/dist/markdown-it-vue.css"
