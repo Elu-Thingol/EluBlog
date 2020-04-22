@@ -8,7 +8,7 @@
                 element-loading-spinner="el-icon-loading">
             <el-col :span="16">
                 <article-info-header :title="post.title"
-                                     :image="post.image?$Helpers.imgUrl(post.image):'https://random.52ecy.cn/randbg.php'"
+                                     :image="post.image?$Helpers.imgUrl(post.image):$Helpers.randomImgUrl()"
                                      :excerpt="post.excerpt"
                                      :published_at="$Helpers.dateFormat('YYYY-mm-dd', post.published_at)"
                                      :view_num="post.view_num?$Helpers.viewDisplay(post.view_num):0">

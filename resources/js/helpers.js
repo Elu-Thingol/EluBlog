@@ -51,6 +51,12 @@ export default {
             .replace(/\\/g, "/")
             .replace(/^\//, "")}`;
     },
+    randomImgUrl: function(path) {
+        return `https://random.52ecy.cn/randbg.php#${_.random(
+            0x00000001,
+            0xffffffff
+        ).toString(16)}`;
+    },
     articleUrl: function(slug) {
         return `/article/${String(slug)}`;
     },
@@ -77,7 +83,7 @@ export default {
                 sUrl = "//" + sUrl;
             }
         }
-        return this.checkUrl(sUrl) ? sUrl : '#';
+        return this.checkUrl(sUrl) ? sUrl : "#";
     },
     viewDisplay: function(num) {
         return (n => (n > 9999 ? String(Math.floor(n / 10000)) + "万" : n))(

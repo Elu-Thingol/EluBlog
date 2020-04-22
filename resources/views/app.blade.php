@@ -192,7 +192,7 @@
     src="//cdn.jsdelivr.net/gh/Elu-Thingol/markdown-it-vue@1.1.3/dist/markdown-it-vue.umd.js" onerror="errorload(this)">
 </script>
 <script data-localSrc="{{mix('js/app.js')}}" type="text/javascript"
-    src="//cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@v1.0.4/public/vendor/app/js/app.js" jspathanchor="true"
+    src="//cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@v1.0.5/public/vendor/app/js/app.js" jspathanchor="true"
     onerror="errorload(this)"></script>
 <script data-localSrc="{{mix('js/app-heart.js')}}" type="text/javascript"
     src="//cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@v1.0.2/public/vendor/app/js/app-heart.js" onerror="errorload(this)">
