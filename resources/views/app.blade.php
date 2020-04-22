@@ -58,7 +58,7 @@
         href="//cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.1.1/public/css/app.css" rel="stylesheet" type="text/css"
         onerror="errorload(this)" />
     <link data-localSrc="{{mix('vendor/markdown-it-vue@1.1.3/dist/markdown-it-vue.css')}}"
-        href="//cdn.jsdelivr.net/gh/Elu-Thingol/markdown-it-vue@1.1.3/dist/markdown-it-vue.css"
+        href="//cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.1.1/public/vendor/markdown-it-vue@1.1.3/dist/markdown-it-vue.css"
         rel="stylesheet" type="text/css" onerror="errorload(this)" />
     <link data-localSrc="{{mix('vendor/prism/prism.css')}}"
         href="//cdn.jsdelivr.net/gh/Elu-Thingol/EluBlog@1.1.1/public/vendor/prism/prism.css" rel="stylesheet"
