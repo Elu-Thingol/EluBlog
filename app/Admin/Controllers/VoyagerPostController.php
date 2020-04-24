@@ -52,7 +52,7 @@ class VoyagerPostController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCon
                 if ('PUBLISHED' == $request->input('status')) {
                     $request->offsetSet('published_at', Carbon::now());
                 } else {
-                    $request->offsetSet('published_at', "");
+                    $request->offsetSet('published_at', null);
                 }
             } else {
                 if ('PUBLISHED' == $request->input('status')) {
@@ -103,7 +103,7 @@ class VoyagerPostController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCon
             if ('PUBLISHED' == $request->input('status')) {
                 $request->offsetSet('published_at', Carbon::now());
             } else {
-                $request->offsetSet('published_at', "");
+                $request->offsetSet('published_at', null);
             }
         }
 
